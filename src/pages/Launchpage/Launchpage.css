@@ -1,0 +1,24 @@
+.launchpage-video {
+    position: absolute;
+    opacity: 90%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.launchpage-text {
+    width: 700px;
+    font-size: 3.5em;
+    text-align: center;
+    color: #e1e1e1;
+}
+
+.launchpage-buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+}
