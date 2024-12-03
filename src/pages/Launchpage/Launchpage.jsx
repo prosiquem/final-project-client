@@ -12,7 +12,7 @@ const Launchpage = () => {
                     <h1 className="launchpage-text">Regístrate o inicia sesión para comenzar la experiencia.</h1>
 
                     <Container className="launchpage-buttons-container">
-                        <Link to="/create-account"><Button className="primary-button">Regístrate</Button></Link>
+                        <Link to="/signup"><Button className="primary-button">Regístrate</Button></Link>
                         <Link to="/login">
                             <Button className="primary-button">Inicia sesión</Button>
                         </Link>

@@ -1,8 +1,52 @@
-# React + Vite
+# Welcome to Koon Repository
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+By Pedro Rosique & Elena Frontiñán
 
-Currently, two official plugins are available:
+**User pages**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+| **URL** | **Description** | **Protected** |
+|---------|-----------------|------------|
+|    /login     |        Login page         |            |
+|    /signup     |        Signup page      |           |
+|    /     |        Landing page         |            |
+|    /home     |        Initial page      |     ✅      |
+|    /profile/:id    |        Profile page         |     ✅       |
+
+**Playlist pages**
+
+| **URL** | **Description** | **Protected** |
+|---------|-----------------|------------|
+|     /mylibrary    |       User playlists          |      ✅      |
+|    /playlist/:id     |         Playlist detail        |       ✅     |
+
+**Album pages**
+
+| **URL** | **Description** | **Protected** |
+|---------|-----------------|------------|
+|    /album/id     |       Album detail          |      ✅      |
+
+**Artists pages**
+
+| **URL** | **Description** | **Protected** |
+|---------|-----------------|------------|
+|     /artists    |         Artists page        |      ✅      |
+|    /artists/:id     |       Artist detail         |      ✅      |
+
+
+**Create pages**
+
+| **URL** | **Description** | **Protected** |
+|---------|-----------------|------------|
+|     /playlist/new    |      Create playlist           |      ✅      |
+|    /playlist/edit     |      Edit playlist           |     ✅       |
+|    /album/new     |        Create Album         |      ✅      |
+|     /album/edit    |       Edit Album          |      ✅      |
+|     /track/new   |        Create Track         |      ✅      |
+|     /track/edit    |        Edit track         |      ✅      |
+
+
+
+
+**Admin pages**
+
+???
