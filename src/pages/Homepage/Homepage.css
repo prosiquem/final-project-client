@@ -1,0 +1,17 @@
+.homepage-greeting-container {
+    position: absolute;
+    top: 135px;
+    left: 100px;
+    margin: 0;
+}
+
+.homepage-greeting-container h1 {
+    font-size: 1.5em;
+    color: #525a62;
+    user-select: none;
+    font-weight: 300;
+}
+
+.username {
+    color: #e1e1e1;
+}
