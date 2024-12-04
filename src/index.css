@@ -4,6 +4,10 @@ body {
   background-color: black;
 }
 
+.link {
+  text-decoration: none;
+}
+
 /* Botones primarios y secundarios */
 button.custom-primary-button {
   border-radius: 50px;
@@ -54,7 +58,8 @@ button.custom-focus-button:hover {
 }
 
 /* Formulario */
-.form-control, .form-select {
+.form-control,
+.form-select {
   border-radius: 50px;
   background-color: #e2e2e243;
   backdrop-filter: blur(10px);
@@ -74,7 +79,7 @@ button.custom-focus-button:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.353)
 }
 
-.form-select:focus{
+.form-select:focus {
   border-radius: 50px;
   color: #a8a8a8;
   background-color: #454545;
@@ -85,7 +90,7 @@ button.custom-focus-button:hover {
 
 .form-floating>.form-control:not(:placeholder-shown)~label::after {
   background-color: #454545 !important
-  }
+}
 
 .select-form .select__single-value {
   color: #a8a8a8;
@@ -170,7 +175,8 @@ button.custom-focus-button:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   position: fixed;
   top: 0;
   right: 0;

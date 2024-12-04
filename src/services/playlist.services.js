@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-class PlaylistServices{
-    constructor(){
+class PlaylistServices {
+    constructor() {
 
         this.axiosApp = axios.create({
             baseURL: `${import.meta.env.VITE_APP_API_URL}/api`
@@ -9,8 +9,14 @@ class PlaylistServices{
 
     }
 
-    fetchOnePlaylist (id) {
-        return(
+    fetchPlaylists() {
+        return (
+            this.axiosApp.get('/playlists')
+        )
+    }
+
+    fetchOnePlaylist(id) {
+        return (
             this.axiosApp.get(`/playlists/${id}`)
         )
     }
