@@ -2,88 +2,94 @@ import { useState } from "react"
 import { Button, Col, Container, Form, Row } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 import authServices from "../../services/auth.services"
-import './SignUpForm.css'
-import Select from 'react-select'
-import makeAnimated from 'react-select/animated'
+import Select from "react-select"
+import makeAnimated from "react-select/animated"
+import "./SignUpForm.css"
 
 const SignUpForm = () => {
-
     const navigate = useNavigate()
 
     const [signupData, setSignupData] = useState({
-        email: '',
-        password: '',
-        username: '',
-        birth: '',
-        gender: '',
-        role: '',
-        avatar: '',
+        email: "",
+        password: "",
+        username: "",
+        birth: "",
+        gender: "",
+        role: "",
+        avatar: "",
         musicGenres: [],
-        artistGallery: '',
+        artistGallery: "",
         socialMedia: [],
         relatedArtists: [],
-        artistName: ''
+        artistName: "",
     })
 
     const [isArtist, setIsArtist] = useState(false)
+    const [focusedButton, setFocusedButton] = useState(null)
 
     const handleRoleChange = (role) => {
-        setIsArtist(role === 'artist')
-        setSignupData(prevData => ({ ...prevData, role }))
+        setIsArtist(role === "artist")
+        setSignupData((prevData) => ({ ...prevData, role }))
+        setFocusedButton(role)
     }
 
-    const handleInputChange = e => {
+    const handleInputChange = (e) => {
         const { value, name } = e.target
         setSignupData({ ...signupData, [name]: value })
     }
 
     const handleSelectChange = (name, selectedOptions) => {
-        const values = selectedOptions ? selectedOptions.map(option => option.value) : []
+        const values = selectedOptions
+            ? selectedOptions.map((option) => option.value)
+            : []
         setSignupData({ ...signupData, [name]: values })
     }
 
-    const handleFormSubmit = e => {
+    const handleFormSubmit = (e) => {
         e.preventDefault()
 
         authServices
             .signupUser(signupData)
-            .then(() => navigate('/login'))
-            .catch(err => console.log(err))
+            .then(() => navigate("/login"))
+            .catch((err) => console.log(err))
     }
 
     const animatedComponents = makeAnimated()
 
     const gender = [
-        { value: 'Woman', label: 'Woman' },
-        { value: 'Man', label: 'Man' },
-        { value: 'Non binary', label: 'Non binary' }
+        { value: "Woman", label: "Woman" },
+        { value: "Man", label: "Man" },
+        { value: "Non binary", label: "Non binary" },
     ]
 
     const musicGenres = [
-        { value: 'Pop', label: 'Pop' },
-        { value: 'Rock', label: 'Rock' },
-        { value: 'Blues', label: 'Blues' }
+        { value: "Pop", label: "Pop" },
+        { value: "Rock", label: "Rock" },
+        { value: "Blues", label: "Blues" },
     ]
 
     const socialMedia = [
-        { value: 'YouTube', label: 'YouTube' },
-        { value: 'Instagram', label: 'Instagram' },
-        { value: 'X', label: 'X' },
-        { value: 'TikTok', label: 'TikTok' }
+        { value: "YouTube", label: "YouTube" },
+        { value: "Instagram", label: "Instagram" },
+        { value: "X", label: "X" },
+        { value: "TikTok", label: "TikTok" },
     ]
 
     return (
-
         <Form className="form" onSubmit={handleFormSubmit}>
             <Container className="role-button-container">
                 <Button
-                    className="custom-focus-button"
-                    onClick={() => handleRoleChange('user')}>
+                    className={`custom-focus-button ${focusedButton === "user" ? "focused" : ""
+                        }`}
+                    onClick={() => handleRoleChange("user")}
+                >
                     Usuario
                 </Button>
                 <Button
-                    className="custom-focus-button"
-                    onClick={() => handleRoleChange('artist')}>
+                    className={`custom-focus-button ${focusedButton === "artist" ? "focused" : ""
+                        }`}
+                    onClick={() => handleRoleChange("artist")}
+                >
                     Artista
                 </Button>
             </Container>

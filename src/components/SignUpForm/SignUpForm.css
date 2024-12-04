@@ -5,6 +5,20 @@
     margin-bottom: 20px;
 }
 
-.role-button-container .custom-focus-button:focus {
+.custom-focus-button {
+    background-color: #ccc;
+    color: black;
+    border: 1px solid transparent;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+}
+
+.custom-focus-button:focus {
     background-color: #752b53d8 !important;
+}
+
+.custom-focus-button.focused {
+    background-color: #752b53d8 !important;
+    color: white;
 }
