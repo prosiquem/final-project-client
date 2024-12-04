@@ -1,11 +1,15 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { Button, Form, Container } from "react-bootstrap"
+import { AuthContext } from './../../contexts/auth.context'
+import authServices from "../../services/auth.services"
 import './LoginForm.css'
 
 const LoginForm = () => {
 
     const navigate = useNavigate()
+
+    const { authenticateUser } = useContext(AuthContext)
 
     const [loginData, setLoginData] = useState({
         email: '',
@@ -19,6 +23,15 @@ const LoginForm = () => {
 
     const handleFormSubmit = e => {
         e.preventDefault()
+
+        authServices
+            .loginUser(loginData)
+            .then(({ data }) => {
+                localStorage.setItem('authToken', data.authToken)
+                authenticateUser()
+                navigate('/home')
+            })
+            .catch(err => console.log(err))
     }
 
     return (
@@ -28,7 +41,8 @@ const LoginForm = () => {
                     type="email"
                     value={loginData.email}
                     onChange={handleInputChange}
-                    name="email" />
+                    name="email"
+                    placeholder="Email" />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="password">
@@ -36,10 +50,11 @@ const LoginForm = () => {
                     type="password"
                     value={loginData.password}
                     onChange={handleInputChange}
-                    name="password" />
+                    name="password"
+                    placeholder="Password" />
             </Form.Group>
             <Container className="submit-button-container">
-                <Button className="primary-button" type="submit">
+                <Button className="custom-primary-button" type="submit">
                     Iniciar sesión
                 </Button>
             </Container>

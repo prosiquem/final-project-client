@@ -1,0 +1,129 @@
+/* Navbar */
+.sidebar {
+    background-color: #101010cc;
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    height: 95vh;
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-left: 30px;
+    margin-top: 2.5vh;
+    position: fixed;
+    transition: width 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+.sidebar.expanded {
+    width: 220px;
+}
+
+.sidebar .nav-button {
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #495057;
+    border: none;
+    margin-top: 30px;
+    margin: 10px 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    padding-left: 18px;
+    position: relative;
+}
+
+.sidebar .nav-button:hover {
+    color: #b5b1ad;
+    background-color: #1a1a1a;
+}
+
+.sidebar .nav-button:focus {
+    color: #b5b1ad;
+    background-color: #87325f5c;
+}
+
+.sidebar .nav-button-home {
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #495057;
+    border: none;
+    margin-top: 30px;
+    margin: 10px 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    padding-left: 15px;
+    position: relative;
+}
+
+.sidebar .nav-button-home:hover {
+    color: #b5b1ad;
+    background-color: #1a1a1a;
+}
+
+.sidebar .nav-button-home:focus {
+    color: #b5b1ad;
+    background-color: #87325f5c;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.sidebar .button-title {
+    opacity: 0;
+    color: #495057;
+    font-size: 16px;
+    margin-left: 50px;
+    width: 100px;
+    text-align: left;
+    flex-grow: 1;
+    transition: opacity 0.3s ease;
+    position: absolute;
+}
+
+.sidebar.expanded .button-title {
+    visibility: visible;
+    animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+.sidebar .button-expand,
+.sidebar .button-retract {
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #495057;
+    border: none;
+    margin: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.sidebar .button-expand:hover,
+.sidebar .button-retract:hover {
+    color: #b5b1ad;
+    background-color: transparent;
+    transform: scale(1.1);
+}

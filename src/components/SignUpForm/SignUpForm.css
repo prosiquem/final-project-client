@@ -1,0 +1,10 @@
+.role-button-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.role-button-container .custom-focus-button:focus {
+    background-color: #752b53d8 !important;
+}
