@@ -3,7 +3,6 @@ import LoginPage from '../pages/LoginPage/LoginPage'
 import Launchpage from '../pages/Launchpage/Launchpage'
 import SignUpPage from '../pages/SignUpPage/SignUpPage'
 import Homepage from '../pages/Homepage/Homepage'
-import CreateAccountPage from '../pages/CreateAccountPage/CreateAccountPage'
 import PaylistDetailPage from '../pages/PlaylistDetailPage/PlaylistDetailPage'
 
 
@@ -17,13 +16,10 @@ const AppRoutes = () => {
 
                 <Route path={'/'} element={<Launchpage />} />
                 <Route path={'/login'} element={<LoginPage />} />
-                <Route path={'/signup'} element={<CreateAccountPage />} />
-                <Route path={'/home'} element={<h1>homepage</h1>} />
+                <Route path={'/signup'} element={<SignUpPage />} />
+                <Route path={'/home'} element={<Homepage />} />
                 <Route path={'/profile/:id'} element={<h1>--------------------Seré un perfil</h1>} />
 
-                <Route path={'/signup'} element={<SignUpPage />} />
-
-                <Route path={'/home'} element={<Homepage />} />
 
                 <Route path={'/mylibrary'} element={<h1>--------------------My library</h1>} />
                 <Route path={'/playlist/:id'} element={<PaylistDetailPage />} />
