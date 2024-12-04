@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Button, Col, Container, Form, Row } from "react-bootstrap"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import authServices from "../../services/auth.services"
 import Select from "react-select"
 import makeAnimated from "react-select/animated"
@@ -65,7 +65,7 @@ const SignUpForm = () => {
     const musicGenres = [
         { value: "Pop", label: "Pop" },
         { value: "Rock", label: "Rock" },
-        { value: "Blues", label: "Blues" },
+        { value: "Rap", label: "Rap" },
     ]
 
     const socialMedia = [
@@ -199,9 +199,15 @@ const SignUpForm = () => {
             )}
 
             <Container className="submit-button-container">
-                <Button className="custom-primary-button" type="submit">
+                <Button
+                    className="custom-primary-button"
+                    type="submit">
                     Registrarse
                 </Button>
+
+                <Link to="/login">
+                    <Button className="custom-secondary-button">Ya tengo una cuenta</Button>
+                </Link>
             </Container>
         </Form>
     )

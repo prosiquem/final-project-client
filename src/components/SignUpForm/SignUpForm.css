@@ -5,6 +5,13 @@
     margin-bottom: 20px;
 }
 
+.submit-button-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
 .custom-focus-button {
     background-color: #ccc;
     color: black;

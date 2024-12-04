@@ -7,7 +7,7 @@
     width: 100px;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-start;
     margin-left: 30px;
     margin-top: 2.5vh;
     position: fixed;
@@ -26,15 +26,15 @@
     background-color: transparent;
     color: #495057;
     border: none;
-    margin-top: 30px;
-    margin: 10px 20px;
+    margin-top: 20px;
+    margin-left: 20px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    font-size: 25px;
+    font-size: 1.8em;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
-    padding-left: 18px;
+    padding-left: 16px;
     position: relative;
 }
 
@@ -45,7 +45,7 @@
 
 .sidebar .nav-button:focus {
     color: #b5b1ad;
-    background-color: #87325f5c;
+    background-color: #8625595c !important;
 }
 
 .sidebar .nav-button-home {
@@ -55,15 +55,14 @@
     background-color: transparent;
     color: #495057;
     border: none;
-    margin-top: 30px;
-    margin: 10px 20px;
+    margin-left: 20px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    font-size: 25px;
+    font-size: 1.7em;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
-    padding-left: 15px;
+    padding-left: 16px;
     position: relative;
 }
 
@@ -76,6 +75,7 @@
     color: #b5b1ad;
     background-color: #87325f5c;
 }
+
 
 @keyframes fadeIn {
     0% {
@@ -104,15 +104,17 @@
     animation: fadeIn 0.5s ease-in-out forwards;
 }
 
-.sidebar .button-expand,
-.sidebar .button-retract {
+.sidebar .nav-button-expand,
+.sidebar .nav-button-retract {
     width: 60px;
     height: 60px;
     border-radius: 5px;
     background-color: transparent;
     color: #495057;
     border: none;
-    margin: 10px 20px;
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -121,9 +123,16 @@
     transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
-.sidebar .button-expand:hover,
-.sidebar .button-retract:hover {
+.sidebar .nav-button-expand:hover,
+.sidebar .nav-button-retract:hover {
     color: #b5b1ad;
     background-color: transparent;
     transform: scale(1.1);
+}
+
+.avatar-img {
+    width: 31px;
+    height: 31px;
+    border-radius: 50%;
+    margin-left: -1px;
 }
