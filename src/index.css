@@ -54,7 +54,7 @@ button.custom-focus-button:hover {
 }
 
 /* Formulario */
-.form .form-control {
+.form-control, .form-select {
   border-radius: 50px;
   background-color: #e2e2e243;
   backdrop-filter: blur(10px);
@@ -68,9 +68,24 @@ button.custom-focus-button:hover {
   color: #a8a8a8;
 }
 
-.form .form-control:focus {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.353);
+.form-control:focus {
+  background-color: #e2e2e243;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.353)
 }
+
+.form-select:focus{
+  border-radius: 50px;
+  color: #a8a8a8;
+  background-color: #454545;
+  outline: 0;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.353)
+}
+
+.form-floating>.form-control:not(:placeholder-shown)~label::after {
+  background-color: #454545 !important
+  }
 
 .select-form .select__single-value {
   color: #a8a8a8;

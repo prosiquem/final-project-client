@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import playlistServices from "../../../services/playlist.services"
+import playlistServices from "../../services/playlist.services"
 
 import { Col, Container, Row, Button, Image, Table } from "react-bootstrap"
 import { Clock, ThreeDotsVertical } from "react-bootstrap-icons"
