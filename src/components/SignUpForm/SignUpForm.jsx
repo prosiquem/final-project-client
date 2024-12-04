@@ -4,9 +4,7 @@ import { useNavigate } from "react-router-dom"
 import authServices from "../../services/auth.services"
 import "./SignUpForm.css"
 
-import { Button, Col, Container, Form, Row, Tab, Tabs } from "react-bootstrap"
-import Select from "react-select"
-import makeAnimated from "react-select/animated"
+import { Button, Form, Tab, Tabs } from "react-bootstrap"
 
 import UserSignUp from "../UserSignUp/UserSignUp"
 import ArtistSignUp from "../ArtistSignUp/ArtistSignUp"
@@ -23,11 +21,18 @@ const SignUpForm = () => {
         role: "USER",
         avatar: "",
         musicGenres: [""],
-        artistGallery: "",
-        socialMedia: [""],
-        relatedArtists: [""],
+        artistGallery: [""],
+        relatedArtists: [],
         artistName: "",
     })
+
+    const [socialMediaData, setSocialMediaData] = useState([
+        {
+            socialMedia: "Youtube",
+            url: "",
+            icon: "Youtube"
+        }
+    ])
 
     const handleRoleChange = (value) => {
         setSignupData({ ...signupData, ['role']: value })
@@ -39,7 +44,7 @@ const SignUpForm = () => {
     }
 
     const handleSingleSelectChange = (name, e) => {
-        const {value} = e.target
+        const { value } = e.target
         setSignupData({ ...signupData, [name]: value })
     }
 
@@ -51,53 +56,111 @@ const SignUpForm = () => {
     }
 
     const handleSocialMediaChange = (e, idx) => {
-
+        const { value } = e.target
+        const socialMediaCopy = [...socialMediaData]
+        socialMediaCopy[idx].url = value
+        setSocialMediaData(socialMediaCopy)
     }
 
     const addSocialMedia = () => {
-        const socialMediaCopy = [...signupData.socialMedia]
-        socialMediaCopy.push("")
-        setSignupData({...signupData, socialMedia: socialMediaCopy})
+        const socialMediaCopy = [...socialMediaData]
+        socialMediaCopy.push(
+            {
+                socialMedia: "Youtube",
+                url: "",
+                icon: "Youtube"
+            }
+        )
+        setSocialMediaData(socialMediaCopy)
     }
 
     const deleteSocialMedia = (idx) => {
-        
+        const socialMediaCopy = [...socialMediaData]
+        if (socialMediaCopy.length > 1) {
+            socialMediaCopy.splice(idx, 1)
+            setSocialMediaData(socialMediaCopy)
+        }
+    }
+
+    const handleSocialMediaSelectChange = (idx, e) => {
+        const socialMediaCopy = [...socialMediaData]
+        const { value } = e.target
+        let socialMedia = value.split(',')
+        socialMediaCopy[idx].socialMedia = socialMedia[0]
+        socialMediaCopy[idx].icon = socialMedia[1]
+        setSocialMediaData(socialMediaCopy)
+    }
+
+    const handleArtistGalleryChange = (e, idx) => {
+        const { value } = e.target
+        const artistGalleryCopy = [...signupData.artistGallery]
+        artistGalleryCopy[idx] = value
+        setSignupData({ ...signupData, artistGallery: artistGalleryCopy })
+    }
+
+    const addArtistPhoto = () => {
+        const artistGalleryCopy = [...signupData.artistGallery]
+        artistGalleryCopy.push("")
+        setSignupData({ ...signupData, artistGallery: artistGalleryCopy })
+    }
+
+    const deleteArtistPhoto = (idx) => {
+        const artistGalleryCopy = [...signupData.artistGallery]
+        if (artistGalleryCopy.length > 1) {
+            artistGalleryCopy.splice(idx, 1)
+            setSignupData({ ...signupData, artistGallery: artistGalleryCopy })
+        }
     }
 
     const handleFormSubmit = (e) => {
         e.preventDefault()
 
+        const reqPayloadSignup = {
+            ...signupData,
+            socialMedia: socialMediaData
+        }
+
         authServices
-            .signupUser(signupData)
+            .signupUser(reqPayloadSignup)
             .then(() => navigate("/login"))
             .catch((err) => console.log(err))
     }
 
     return (
-        <Form className="form" onSubmit={handleFormSubmit}>
+        <Form className="form text-center" onSubmit={handleFormSubmit}>
             <Tabs
-            defaultActiveKey="USER"
-            id="role-selection"
-            onSelect={handleRoleChange}
-            fill
+                defaultActiveKey="USER"
+                id="role-selection"
+                onSelect={handleRoleChange}
+                fill
             >
-                <Tab eventKey="USER" title="Usuario"> 
-                    <UserSignUp 
-                    signupData={signupData}
-                    handleInputChange={handleInputChange}  
-                    handleSingleSelectChange={handleSingleSelectChange} 
+                <Tab eventKey="USER" title="Usuario">
+                    <UserSignUp
+                        signupData={signupData}
+                        handleInputChange={handleInputChange}
+                        handleSingleSelectChange={handleSingleSelectChange}
                     />
                 </Tab>
-                <Tab eventKey="ARTIST" title="Artista"> 
-                    <ArtistSignUp 
-                    signupData={signupData}
-                    handleInputChange={handleInputChange}  
-                    handleSingleSelectChange={handleSingleSelectChange}
-                    handleMultiSelectChange={handleMultiSelectChange}
+                <Tab eventKey="ARTIST" title="Artista">
+                    <ArtistSignUp
+                        signupData={signupData}
+                        socialMediaData={socialMediaData}
+                        handleInputChange={handleInputChange}
+                        handleSingleSelectChange={handleSingleSelectChange}
+                        handleMultiSelectChange={handleMultiSelectChange}
+
+                        handleSocialMediaChange={handleSocialMediaChange}
+                        deleteSocialMedia={deleteSocialMedia}
+                        addSocialMedia={addSocialMedia}
+                        handleSocialMediaSelectChange={handleSocialMediaSelectChange}
+
+                        handleArtistGalleryChange={handleArtistGalleryChange}
+                        addArtistPhoto={addArtistPhoto}
+                        deleteArtistPhoto={deleteArtistPhoto}
                     />
                 </Tab>
             </Tabs>
-            <Button onClick={handleFormSubmit}>Registrarme</Button>
+            <Button onClick={handleFormSubmit} variant="custom-primary">Registrarme</Button>
         </Form>
     )
 }

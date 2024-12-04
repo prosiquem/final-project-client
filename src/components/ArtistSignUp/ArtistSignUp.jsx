@@ -1,18 +1,37 @@
-import { Form, Row, Col, FloatingLabel } from "react-bootstrap"
+import { Form, Row, Col, FloatingLabel, Button } from "react-bootstrap"
 import { GENRES, SOCIAL_MEDIA } from "../../consts/user.consts"
 
 import Select from "react-select"
 import makeAnimated from "react-select/animated"
 import { MUSIC_GENRES } from "../../consts/music.consts"
+import { XLg } from 'react-bootstrap-icons'
 
 
-const ArtistSignUp = ({ signupData, handleInputChange, handleSingleSelectChange, handleMultiSelectChange }) => {
+const ArtistSignUp = ({
+    signupData,
+    handleInputChange,
+    handleSingleSelectChange,
+    handleMultiSelectChange,
+
+    handleSocialMediaChange,
+    deleteSocialMedia,
+    addSocialMedia,
+    socialMediaData,
+    handleSocialMediaSelectChange,
+
+    handleArtistGalleryChange,
+    addArtistPhoto,
+    deleteArtistPhoto
+}) => {
 
     const animatedComponents = makeAnimated()
 
 
     return (
         <div className="ArtistSignUp my-4">
+
+            <h3>Introduce los datos de usuario</h3>
+            <hr />
 
             <Form.Group className="mb-3">
                 <FloatingLabel
@@ -94,6 +113,22 @@ const ArtistSignUp = ({ signupData, handleInputChange, handleSingleSelectChange,
                 </FloatingLabel>
             </Form.Group>
 
+            <h5>Rellena tus datos de artista</h5>
+            <hr />
+
+            <Form.Group className="mb-3">
+                <FloatingLabel
+                    controlId="artistName"
+                    label="Tu nombre como artista"
+                >
+                    <Form.Control
+                        type="text"
+                        name="artistName"
+                        placeholder="Nombre de artista"
+                        value={signupData.artistName}
+                        onChange={handleInputChange} />
+                </FloatingLabel>
+            </Form.Group>
 
             <Form.Group className="mb-3">
                 <Select
@@ -109,47 +144,89 @@ const ArtistSignUp = ({ signupData, handleInputChange, handleSingleSelectChange,
                 />
             </Form.Group>
 
-            <Row>
-                <Col>
-                    <Form.Select className="mb-3" onChange={(e) => handleSingleSelectChange('gender', e)}>
-                        {SOCIAL_MEDIA.map((elm, idx) => {
-                            return (
-                                <option key={idx} value={elm.value}>{elm.label}</option>
-                            )
-                        })}
-                    </Form.Select>
-                </Col>
-                <Col>
-                <Form.Group className="mb-3">
-                    <Form.Control
-                        type="text"
-                        name="social-media-input"
-                        placeholder="URL" />
-            </Form.Group>
-                </Col>
-            </Row>
+            <h5>Sube algunas fotos</h5>
+            <hr />
 
             <Form.Group className="mb-3">
-                <Select
-                    className="select-form"
-                    classNamePrefix="select"
-                    components={animatedComponents}
-                    placeholder="Redes sociales"
-                    name="socialMedia"
-                    options={SOCIAL_MEDIA}
-                    value={SOCIAL_MEDIA.filter(option => signupData.socialMedia.includes(option.value))}
-                    onChange={(selectedOptions) => handleMultiSelectChange('socialMedia', selectedOptions)}
-                    isMulti
-                />
+                {signupData.artistGallery.map((elm, idx) => {
+                    return (
+                        <Row className="my-1">
+                            <Col md="11">
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Galería de fotos"
+                                    value={elm}
+                                    onChange={e => handleArtistGalleryChange(e, idx)}
+                                    id={`formGallery-${idx}`} />
+                            </Col>
+                            <Col md="1">
+                                <Button 
+                                variant="custom-transparent"
+                                onClick={() => deleteArtistPhoto(idx)}>
+                                    <XLg />
+                                </Button>
+                            </Col>
+                        </Row>
+                    )
+                })
+                }
+
+                <Button
+                    variant="custom-transparent"
+                    onClick={addArtistPhoto}>
+                    Añadir foto
+                </Button>
+
             </Form.Group>
 
-            <Form.Group className="mb-3">
-                <Form.Control
-                    type="text"
-                    name="artistGallery"
-                    placeholder="Galería de fotos"
-                    value={signupData.artistGallery}
-                    onChange={handleInputChange} />
+            <h5>Indica tus redes sociales</h5>
+            <hr />
+
+            <Form.Group>
+                {socialMediaData.map((elm, idx) => {
+                    return (
+                        <Row className="gap-2" key={`musicGenre-${idx}`}>
+                            <Col md="3" className="p-0">
+                                <Form.Select className="mb-3" onChange={(e) => handleSocialMediaSelectChange(idx, e)}>
+                                    {SOCIAL_MEDIA.map((elm, idx) => {
+                                        return (
+                                            <option key={idx} value={[elm.value, elm.icon]}>{elm.label}</option>
+                                        )
+                                    })}
+                                </Form.Select>
+                            </Col>
+                            <Col className="p-0">
+                                <Form.Group className="mb-3">
+                                    <Form.Control
+                                        type="text"
+                                        name="social-media-input"
+                                        placeholder="URL"
+                                        onChange={e => handleSocialMediaChange(e, idx)}
+                                        value={elm.url}
+                                        id={`formSocialMedia-${idx}`}
+                                    />
+                                </Form.Group>
+                            </Col>
+                            <Col md="1" className="p-0">
+                                <Button
+                                    variant="custom-transparent"
+                                    onClick={() => deleteSocialMedia(idx)}
+                                    disabled={socialMediaData.length <= 1}
+                                    size="sm">
+                                    <XLg color="#a8a8a8" />
+                                </Button>
+                            </Col>
+                        </Row>
+                    )
+                })
+                }
+                <Button
+                    variant="custom-transparent"
+                    onClick={addSocialMedia}
+                    size="sm"
+                    className="mt-2">
+                    Añadir red social
+                </Button>
             </Form.Group>
 
         </div>

@@ -5,8 +5,8 @@ export const GENRES = [
 ]
 
 export const SOCIAL_MEDIA = [
-    { value: "YouTube", label: "YouTube" },
-    { value: "Instagram", label: "Instagram" },
-    { value: "X", label: "X" },
-    { value: "TikTok", label: "TikTok" }
+    { value: "YouTube", label: "YouTube", icon:"Youtube" },
+    { value: "Instagram", label: "Instagram", icon:"Instagram" },
+    { value: "X", label: "X", icon: "Twitter-x" },
+    { value: "TikTok", label: "TikTok", icon:"Tiktok" }
 ]

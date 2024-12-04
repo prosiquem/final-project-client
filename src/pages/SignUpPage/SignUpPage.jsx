@@ -7,7 +7,9 @@ const CreateAccountPage = () => {
         <div className="signup-page">
             <Container className="page-container">
                 {/* <video className="signup-video" src="src/assets/login.mp4" autoPlay loop muted></video> */}
-                <Row>
+                <Row className="w-100 h-100">
+                    <Col>
+                    </Col>
                     <Col>
                         <SignUpForm />
                     </Col>
