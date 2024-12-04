@@ -1,13 +1,10 @@
 import { Routes, Route } from 'react-router-dom'
 import LoginPage from '../pages/LoginPage/LoginPage'
 import Launchpage from '../pages/Launchpage/Launchpage'
-<<<<<<< HEAD
 import SignUpPage from '../pages/SignUpPage/SignUpPage'
 import Homepage from '../pages/Homepage/Homepage'
-=======
 import CreateAccountPage from '../pages/CreateAccountPage/CreateAccountPage'
 import PaylistDetailPage from '../pages/PlaylistDetailPage/PlaylistDetailPage'
->>>>>>> 73f9cf36cbbdd569c6830de244cb4c66aa3fe539
 
 
 const AppRoutes = () => {
