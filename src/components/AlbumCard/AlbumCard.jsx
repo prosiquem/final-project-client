@@ -9,7 +9,7 @@ const AlbumCard = ({ id, author, cover, title, tracks }) => {
 
     return (
         <article className="album-card mb-3">
-            <Link to={`/playlists/${id}`} className="link">
+            <Link to={`/albums/${id}`} className="link">
                 <div className="album-card-container">
                     <Card className="album-card">
                         <Card.Img

@@ -9,15 +9,9 @@ class FilterServices {
 
     }
 
-    fetchPlaylists() {
+    fetchAll() {
         return (
-            this.axiosApp.get('/playlists')
-        )
-    }
-
-    fetchAlbums() {
-        return (
-            this.axiosApp.get('/albums')
+            this.axiosApp.get('/search')
         )
     }
 }

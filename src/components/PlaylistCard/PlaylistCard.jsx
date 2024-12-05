@@ -3,13 +3,13 @@ import './PlaylistCard.css'
 import { Link } from 'react-router-dom'
 import { MEDIA } from '../../consts/path.consts'
 
-const PlaylistCard = ({ id, owner, cover, name, tracks }) => {
+const PlaylistCard = ({ _id, owner, cover, name, tracks }) => {
 
     const imageSrc = cover || MEDIA.DEFAULT_IMAGES[Math.floor(Math.random() * MEDIA.DEFAULT_IMAGES.length)]
 
     return (
         <article className="playlist-card mb-3">
-            <Link to={`/playlists/${id}`} className="link">
+            <Link to={`/playlist/${_id}`} className="link">
                 <div className="playlist-card-container">
                     <Card className="playlist-card">
                         <Card.Img
