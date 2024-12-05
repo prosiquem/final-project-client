@@ -10,7 +10,7 @@ import { BoxArrowLeft, ChevronDoubleLeft, ChevronDoubleRight, CollectionFill, Co
 const Navigation = () => {
 
     const [isExpanded, setIsExpanded] = useState(false)
-    const { loggedUser } = useContext(AuthContext)
+    const { loggedUser, logoutUser } = useContext(AuthContext)
 
     const toggleExpand = () => {
         setIsExpanded(!isExpanded)
@@ -106,7 +106,7 @@ const Navigation = () => {
                         </NavLink>
                     </Nav>
 
-                    <Button variant='custom-primary'>
+                    <Button variant='custom-primary' onClick={() => logoutUser()}>
                         <BoxArrowLeft />
                         {isExpanded && <span className="button-title ">Cerrar sesión</span>}
                     </Button>

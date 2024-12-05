@@ -1,0 +1,18 @@
+.details-info{
+    border-radius: 16px;
+}
+
+.details-info img {
+    border-radius: 24px;
+}
+
+.details-info h1 {
+    color: hsla(328, 46%, 60%, 0.835);
+    line-height: 150%;
+}
+
+.list {
+    background-color: hsl(0, 0%, 8%);
+    border-radius: 16px;
+}
+

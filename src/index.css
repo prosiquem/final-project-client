@@ -1,5 +1,5 @@
 * {
-  color: #e1e1e1;
+  color: #999999;
   margin: 0px;
   padding: 0px;
 }
@@ -22,6 +22,17 @@ h4,
 h5,
 h6 {
   text-align: left;
+  font-weight: 300;
+}
+
+h1{ 
+  font-weight: 700;
+  font-size: 4em;
+}
+
+label {
+  color: #999999;
+  
 }
 
 .selected>* {
@@ -52,6 +63,12 @@ h6 {
 
 .container {
   max-width: 100vw !important;
+}
+
+.column-between {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 /* Buttons CSS */
@@ -161,7 +178,7 @@ button.custom-focus-button:hover {
   backdrop-filter: blur(10px);
   color: #a8a8a8;
   border: none;
-  height: 40px;
+  min-height: 40px;
   width: 100%;
 }
 
