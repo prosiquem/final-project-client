@@ -1,5 +1,5 @@
 * {
-  color: #e1e1e1;
+  color: #e1e1e1 !important;
 }
 
 body {
@@ -19,6 +19,12 @@ h4,
 h5,
 h6 {
   text-align: left;
+}
+
+.selected>* {
+  color: #87325fd5 !important;
+  font-weight: 500;
+  fill: #87325fd5;
 }
 
 /* Buttons CSS */
@@ -137,6 +143,7 @@ button.custom-focus-button:hover {
 }
 
 .form-control:focus {
+  color: #a8a8a8;
   background-color: #e2e2e243;
   backdrop-filter: blur(10px);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.353)
@@ -235,6 +242,7 @@ button.custom-focus-button:hover {
   border-radius: 10px;
   margin-top: 2.5vh;
   margin-right: 30px;
+  margin-left: 5vw;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -244,6 +252,7 @@ button.custom-focus-button:hover {
   overflow-x: hidden;
   position: fixed;
   top: 0;
-  right: 0;
+  left: 0;
   width: calc(100vw - 180px);
 }
+

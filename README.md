@@ -32,6 +32,10 @@ By Pedro Rosique & Elena Frontiñán
 |     /artists    |         Artists page        |      ✅      |
 |    /artists/:id     |       Artist detail         |      ✅      |
 
+**Explore pages**
+| **URL** | **Description** | **Protected** |
+|---------|-----------------|------------|
+|     /explore    |         Explore page        |      ✅      |
 
 **Create pages**
 
