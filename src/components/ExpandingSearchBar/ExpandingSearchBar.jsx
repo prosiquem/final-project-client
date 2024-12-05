@@ -101,9 +101,9 @@ const ExpandingSearchBar = ({ _id }) => {
                             ))}
                             {artists.map(artist => (
                                 <ListGroup.Item key={artist._id}>
-
-                                    {artist.artistName}
-
+                                    <Link to={`/artists/${artist._id}`}>
+                                        {artist.artistName}
+                                    </Link>
                                 </ListGroup.Item>
                             ))}
                         </ListGroup>
