@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-class PlaylistServices {
+class FilterServices {
     constructor() {
 
         this.axiosApp = axios.create({
@@ -15,17 +15,11 @@ class PlaylistServices {
         )
     }
 
-    fetchOnePlaylist(id) {
+    fetchAlbums() {
         return (
-            this.axiosApp.get(`/playlists/${id}`)
-        )
-    }
-
-    fetchLastPlaylists() {
-        return (
-            this.axiosApp.get('/playlists/last')
+            this.axiosApp.get('/albums')
         )
     }
 }
 
-export default new PlaylistServices()
+export default new FilterServices()

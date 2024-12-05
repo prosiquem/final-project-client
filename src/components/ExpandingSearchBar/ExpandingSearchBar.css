@@ -11,14 +11,15 @@
     width: 50px;
     height: 50px;
     background-color: #1a1a1a;
-    border-radius: 8px;
+    border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     transition: transform 0.4s ease-in-out, width 0.3s ease-in-out;
-    right: 30px;
-    overflow: hidden;
+    top: 20px;
+    right: 60px;
+    overflow: visible;
 }
 
 .searcher.expanded {
@@ -28,7 +29,7 @@
 
 .searcher .search-input {
     padding-right: 30px;
-    background-color: #1a1a1a;
+    background-color: transparent;
     color: #e1e1e1;
     border: none;
     border-radius: 4px;
@@ -41,7 +42,7 @@
 
 .searcher .search-input:focus {
     color: #e1e1e1;
-    background-color: #1a1a1a;
+    background-color: transparent;
 
 }
 
@@ -69,4 +70,25 @@
 
 .searcher:active {
     transform: scale(0.95);
+}
+
+.list-filtered {
+    position: absolute;
+    top: calc(100% + 5px);
+    width: 100%;
+    background-color: #1a1a1a;
+    border: 1px solid #242424;
+    border-radius: 5px;
+    z-index: 10;
+}
+
+.list-filtered .list-group-item {
+    color: #e1e1e1;
+    background-color: transparent;
+    border: none;
+}
+
+.list-filtered .list-group-item:hover {
+    background-color: #353a3f;
+    cursor: pointer;
 }
