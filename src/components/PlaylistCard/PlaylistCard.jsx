@@ -1,11 +1,11 @@
 import { Card } from 'react-bootstrap'
 import './PlaylistCard.css'
 import { Link } from 'react-router-dom'
-import { MEDIA } from '../../consts/path.consts'
+import { DEFAULT_IMAGES } from '../../consts/path.consts'
 
 const PlaylistCard = ({ _id, owner, cover, name, tracks }) => {
 
-    const imageSrc = cover || MEDIA.DEFAULT_IMAGES[Math.floor(Math.random() * MEDIA.DEFAULT_IMAGES.length)]
+    const imageSrc = cover || DEFAULT_IMAGES[Math.floor(Math.random() * DEFAULT_IMAGES.length)]
 
     return (
         <article className="playlist-card mb-3">

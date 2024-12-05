@@ -7,6 +7,7 @@ const Launchpage = () => {
     return (
         <div className="launch-page">
             <Container className="page-container">
+                {/* TODO */}
                 <video className="launchpage-video" src="src/assets/2.mp4" autoPlay loop muted></video>
                 <Row>
                     <Col>

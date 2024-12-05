@@ -23,8 +23,21 @@ const Homepage = () => {
         if (loggedUser) {
             fetchPlaylists()
             fetchLastAlbums()
+
+            // fetchHomeData()
         }
     }, [loggedUser])
+
+    const fetchHomeData = () => {
+
+        const requiredData = [
+            PlaylistServices.fetchPlaylists(),
+            AlbumServices.fetchLastAlbums()
+        ]
+
+        // Promise
+        //     .all(requiredData)
+    }
 
     const fetchPlaylists = () => {
         setIsLoading(true)

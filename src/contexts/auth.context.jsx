@@ -32,6 +32,7 @@ function AuthProviderWrapper(props) {
                 .catch(err => logoutUser())
         } else {
             logoutUser()
+            setIsFetchingUser(false)
         }
     }
 

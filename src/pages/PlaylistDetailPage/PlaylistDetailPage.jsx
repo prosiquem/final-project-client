@@ -6,7 +6,7 @@ import { Clock, ThreeDotsVertical } from "react-bootstrap-icons"
 import Loader from "../../components/Loader/Loader"
 import { useParams } from "react-router-dom"
 
-import { MEDIA } from "../../consts/path.consts"
+import { PLAYLIST_COVER } from "../../consts/path.consts"
 import TrackElement from "../../components/TrackElement/TrackElement"
 
 
@@ -27,7 +27,6 @@ const PaylistDetailPage = () => {
             .then(({ data }) => {
                 setPlaylist(data)
                 setIsLoading(false)
-                console.log(data)
             })
             .catch(err => console.log(err))
     }
@@ -37,7 +36,7 @@ const PaylistDetailPage = () => {
             <Container className="page-container">
 
                 <Row className="details-info w-100">
-                    <Col md="4" className="p-0"><Image src={playlist.cover ? playlist.cover : MEDIA.PLAYLIST_COVER} fluid /></Col>
+                    <Col md="4" className="p-0"><Image src={playlist.cover ? playlist.cover : PLAYLIST_COVER} fluid /></Col>
                     <Col className="p-0">
                         <Row>
                             <Col md="10" ><h4>Playlist</h4></Col>
@@ -48,9 +47,13 @@ const PaylistDetailPage = () => {
                             </Col>
                         </Row>
                         <Row>
-                            <Col><h1>{playlist.name}</h1></Col>
+                            <Col>
+                                <h1>{playlist.name}</h1>
+                            </Col>
                         </Row>
-                        <Row> <h5> {playlist.owner.username} · {playlist.createdAt} · {playlist.tracks.length} canciones </h5></Row>
+                        <Row>
+                            <h5> {playlist.owner.username} · {playlist.createdAt} · {playlist.tracks.length} canciones </h5>
+                        </Row>
                     </Col>
                 </Row>
 
@@ -77,11 +80,13 @@ const PaylistDetailPage = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {playlist.tracks.map((elm, idx) => {
-                                        return (
-                                            <TrackElement key={elm._id} {...elm} idx={idx} />
-                                        )
-                                    })}
+                                    {
+                                        playlist.tracks.map((elm, idx) => {
+                                            return (
+                                                <TrackElement key={elm._id} {...elm} idx={idx} />
+                                            )
+                                        })
+                                    }
                                 </tbody>
                             </Table>
                         </Col>

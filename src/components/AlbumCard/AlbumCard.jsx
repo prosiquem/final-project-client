@@ -1,11 +1,11 @@
 import { Card } from 'react-bootstrap'
 import './AlbumCard.css'
 import { Link } from 'react-router-dom'
-import { MEDIA } from '../../consts/path.consts'
+import { DEFAULT_IMAGES } from '../../consts/path.consts'
 
 const AlbumCard = ({ id, author, cover, title, tracks }) => {
 
-    const image = cover || MEDIA.DEFAULT_IMAGES[Math.floor(Math.random() * MEDIA.DEFAULT_IMAGES.length)]
+    const image = cover || DEFAULT_IMAGES[Math.floor(Math.random() * DEFAULT_IMAGES.length)]
 
     return (
         <article className="album-card mb-3">

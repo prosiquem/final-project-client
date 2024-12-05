@@ -11,7 +11,7 @@ const ExpandingSearchBar = () => {
     const searchRef = useRef(null)
 
     useEffect(() => {
-        FilterServices.fetchPlaylists()
+        FilterServices.fetchAll()
             .then(response => {
                 setPlaylists(response.data)
             })
