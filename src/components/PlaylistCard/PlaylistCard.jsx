@@ -1,17 +1,11 @@
 import { Card } from 'react-bootstrap'
 import './PlaylistCard.css'
 import { Link } from 'react-router-dom'
+import { MEDIA } from '../../consts/path.consts'
 
 const PlaylistCard = ({ id, owner, cover, name, tracks }) => {
 
-    const defaultImages = [
-        "https://indieground.net/wp-content/uploads/2023/03/Freebie-GradientTextures-Preview-05.jpg",
-        "https://plus.unsplash.com/premium_photo-1672201106204-58e9af7a2888?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Z3JhZGllbnQlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww",
-        "https://indieground.net/wp-content/uploads/2023/03/Freebie-GradientTextures-Preview-02.jpg",
-        "https://wallpapers.com/images/hd/bluish-purple-gradient-pajqixc44jlzwbfr.jpg"
-    ]
-
-    const imageSrc = cover || defaultImages[Math.floor(Math.random() * defaultImages.length)]
+    const imageSrc = cover || MEDIA.DEFAULT_IMAGES[Math.floor(Math.random() * MEDIA.DEFAULT_IMAGES.length)]
 
     return (
         <article className="playlist-card mb-3">

@@ -1,34 +1,54 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Col, Container, Row } from "react-bootstrap"
 import { AuthContext } from './../../contexts/auth.context'
-import './Homepage.css'
 import Loader from '../../components/Loader/Loader'
 import PlaylistList from '../../components/PlaylistList/PlaylistList'
-import playlistServices from "../../services/playlist.services"
+import PlaylistServices from "../../services/playlist.services"
+import AlbumServices from "../../services/albums.services"
 import { ArrowRightShort } from 'react-bootstrap-icons'
 import { Link } from 'react-router-dom'
 import ExpandingSearchBar from '../../components/ExpandingSearchBar/ExpandingSearchBar'
+import AlbumList from '../../components/AlbumList/AlbumList'
+import './Homepage.css'
 
 const Homepage = () => {
+
     const [playlists, setPlaylists] = useState([])
+    const [albums, setAlbums] = useState([])
+
     const [isLoading, setIsLoading] = useState(true)
     const { loggedUser } = useContext(AuthContext)
 
     useEffect(() => {
         if (loggedUser) {
             fetchPlaylists()
+            fetchLastAlbums()
         }
     }, [loggedUser])
 
     const fetchPlaylists = () => {
         setIsLoading(true)
-        playlistServices
+        PlaylistServices
             .fetchPlaylists()
             .then(({ data }) => {
                 const filteredPlaylists = data.filter(playlist => {
                     return playlist.owner._id === loggedUser._id
                 })
                 setPlaylists(filteredPlaylists)
+                setIsLoading(false)
+            })
+            .catch(err => {
+                console.log(err)
+                setIsLoading(false)
+            })
+    }
+
+    const fetchLastAlbums = () => {
+        setIsLoading(true)
+        AlbumServices
+            .fetchLastAlbums()
+            .then(({ data }) => {
+                setAlbums(data)
                 setIsLoading(false)
             })
             .catch(err => {
@@ -70,14 +90,14 @@ const Homepage = () => {
                     <Row>
                         <Col>
                             <Link className="link" to="/recent">
-                                <h1>Novedades <ArrowRightShort /></h1>
+                                <h1>Últimos álbumes<ArrowRightShort /></h1>
                             </Link>
                             {isLoading ? (
                                 <div className="loader-container">
                                     <Loader />
                                 </div>
                             ) : (
-                                <PlaylistList playlists={playlists} />
+                                <AlbumList albums={albums} />
                             )}
                         </Col>
                     </Row>

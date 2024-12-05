@@ -7,7 +7,7 @@ const PlaylistList = ({ playlists }) => {
             {
                 playlists.map(elm => {
                     return (
-                        <Col lg={{ span: 3 }} md={{ span: 6 }} key={elm._id}>
+                        <Col lg="3" sm="6" key={elm._id}>
                             <PlaylistCard {...elm} />
                         </Col>
                     )
