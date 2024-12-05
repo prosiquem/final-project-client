@@ -1,8 +1,11 @@
 .homepage-greeting-container {
-    margin-top: 150px;
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.homepage-greeting-container h1 {
+.homepage-greeting-container h2 {
     font-size: 1.3em;
     color: #525a62;
     user-select: none;
@@ -13,13 +16,13 @@
     color: #e1e1e1;
 }
 
-.home-page .homepage-playlists h1 {
+.home-page .homepage-playlists h2 {
     color: #e1e1e1;
     user-select: none;
 
 }
 
-.home-page .homepage-recent-added h1 {
+.home-page .homepage-recent-added h2 {
     color: #e1e1e1;
     user-select: none;
 

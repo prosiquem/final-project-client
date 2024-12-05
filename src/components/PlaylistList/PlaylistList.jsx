@@ -3,11 +3,11 @@ import PlaylistCard from "../PlaylistCard/PlaylistCard"
 
 const PlaylistList = ({ playlists }) => {
     return (
-        <Row className="g-0">
+        <Row className="my-5 gap-4 playlist-list">
             {
                 playlists.map(elm => {
                     return (
-                        <Col lg="3" sm="6" key={elm._id}>
+                        <Col lg="2" md="3" sm="4" key={elm._id}>
                             <PlaylistCard {...elm} />
                         </Col>
                     )

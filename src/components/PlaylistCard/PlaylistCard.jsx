@@ -5,7 +5,7 @@ import { DEFAULT_IMAGES } from '../../consts/path.consts'
 
 const PlaylistCard = ({ _id, owner, cover, name, tracks }) => {
 
-    const imageSrc = cover || DEFAULT_IMAGES[Math.floor(Math.random() * DEFAULT_IMAGES.length)]
+    const image = cover || DEFAULT_IMAGES[Math.floor(Math.random() * DEFAULT_IMAGES.length)]
 
     return (
         <article className="playlist-card mb-3">
@@ -14,7 +14,7 @@ const PlaylistCard = ({ _id, owner, cover, name, tracks }) => {
                     <Card className="playlist-card">
                         <Card.Img
                             variant="top"
-                            src={imageSrc}
+                            src={image}
                             className="playlist-card-img"
                         />
                     </Card>

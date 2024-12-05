@@ -9,11 +9,10 @@ class FilterServices {
 
     }
 
-    fetchAll() {
-        return (
-            this.axiosApp.get('/search')
-        )
+    fetchAll(query) {
+        return this.axiosApp.get('/search', { params: { name: query } });
     }
+
 }
 
 export default new FilterServices()

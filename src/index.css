@@ -12,6 +12,7 @@ body {
 
 .link {
   text-decoration: none;
+  color: #e1e1e1;
 }
 
 h1,
@@ -31,7 +32,7 @@ h6 {
 
 /* Bentobox CSS */
 .page-container {
-  background-color: #1a1a1a;
+  background-color: #131313;
   height: 95vh;
   border-radius: 10px;
   margin-top: 2.5vh;
@@ -40,7 +41,6 @@ h6 {
   padding: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   overflow-y: auto;
   overflow-x: hidden;

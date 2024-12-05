@@ -3,11 +3,11 @@ import AlbumCard from "../AlbumCard/AlbumCard"
 
 const AlbumList = ({ albums }) => {
     return (
-        <Row className="g-0">
+        <Row className="my-5 gap-4 album-list">
             {
                 albums.map(elm => {
                     return (
-                        <Col lg={{ span: 3 }} md={{ span: 6 }} key={elm._id}>
+                        <Col lg="2" sm="6" key={elm._id}>
                             <AlbumCard {...elm} />
                         </Col>
                     )

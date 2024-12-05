@@ -1,5 +1,5 @@
 .sidebar {
-    background-color: #101010cc;
+    background-color: #171717bb;
     backdrop-filter: blur(10px);
     border-radius: 10px;
     height: 95vh;
@@ -53,6 +53,7 @@
 .sidebar .nav-link>img {
     width: 1em;
     border-radius: 50%;
+    display: block;
 }
 
 .button-title {
@@ -83,6 +84,10 @@
 @media (max-width: 576px) {
     .sidebar {
         display: none !important;
+    }
+
+    .sidebar .nav-link>img {
+        display: none;
     }
 
     .page-container.container {
