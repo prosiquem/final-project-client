@@ -50,6 +50,11 @@
     gap: 16px;
 }
 
+.sidebar .nav-link>img {
+    width: 1em;
+    border-radius: 50%;
+}
+
 .button-title {
     opacity: 0;
     color: #495057;
