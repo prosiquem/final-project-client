@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-class AlbumServices {
+class UserServices {
     constructor() {
 
         this.axiosApp = axios.create({
@@ -9,11 +9,11 @@ class AlbumServices {
 
     }
 
-    fetchLastAlbums() {
+    fetchArtists() {
         return (
-            this.axiosApp.get('/albums/last')
+            this.axiosApp.get('/artists')
         )
     }
 }
 
-export default new AlbumServices()
+export default new UserServices()

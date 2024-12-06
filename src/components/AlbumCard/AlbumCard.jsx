@@ -1,15 +1,15 @@
 import { Card } from 'react-bootstrap'
-import './AlbumCard.css'
 import { Link } from 'react-router-dom'
 import { DEFAULT_IMAGES } from '../../consts/path.consts'
+import './AlbumCard.css'
 
-const AlbumCard = ({ id, author, cover, title, tracks }) => {
+const AlbumCard = ({ _id, author, cover, title, tracks }) => {
 
     const image = cover || DEFAULT_IMAGES[Math.floor(Math.random() * DEFAULT_IMAGES.length)]
 
     return (
         <article className="album-card mb-3">
-            <Link to={`/albums/${id}`} className="link">
+            <Link to={`/album/${_id}`} className="link">
                 <div className="album-card-container">
                     <Card className="album-card">
                         <Card.Img

@@ -1,6 +1,9 @@
-import { FastForwardFill, PlayFill, RewindFill } from 'react-bootstrap-icons'
+import { Button } from 'react-bootstrap'
+import { FastForwardFill, PauseFill, PlayFill, RewindFill } from 'react-bootstrap-icons'
+import './MusicPlayer.css'
 
 const MusicPlayer = () => {
+
 
     return (
         <div className="music-player-container">
@@ -11,12 +14,17 @@ const MusicPlayer = () => {
                 </div>
 
                 <div className="controls">
-                    <button className="control-btn prev-btn"><RewindFill /></button>
-                    <button className="control-btn play-btn"><PlayFill /></button>
-                    <button className="control-btn next-btn"><FastForwardFill /></button>
+                    <Button variant='custom-secondary'>
+                        <RewindFill />
+                    </Button>
+                    <Button variant='custom-secondary'>
+                        <PlayFill />
+                    </Button>
+                    <Button variant='custom-secondary'>
+                        <FastForwardFill />
+                    </Button>
                 </div>
             </div>
-
         </div>
     )
 }

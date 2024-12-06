@@ -1,4 +1,4 @@
-.album-card .album-card-container {
+.artist-card .artist-card-container {
     position: relative;
     width: 200px;
     display: flex;
@@ -9,23 +9,23 @@
     transition: transform 0.3s ease;
 }
 
-.album-card .album-card-container:hover {
+.artist-card .artist-card-container:hover {
     transform: scale(0.99);
     transition: transform 0.3s ease;
 }
 
-.album-card .album-card {
+.artist-card .artist-card {
     position: relative;
     background-color: #121212;
     border: none;
-    border-radius: 8px;
+    border-radius: 50%;
     overflow: hidden;
     width: 100%;
     position: relative;
     padding-top: 100%;
 }
 
-.album-card-img {
+.artist-card-img {
     position: absolute;
     top: 0;
     left: 0;
@@ -38,24 +38,28 @@
     transition: filter 0.3s ease;
 }
 
-.album-card:hover .album-card-img {
+.artist-card:hover .artist-card-img {
     filter: brightness(50%);
     transition: filter 0.3s ease;
 }
 
-.album-card-text {
+.artist-card-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
     text-align: left;
     color: #fff;
     width: 100%;
 }
 
-.album-card-title {
+.artist-card-title {
     font-size: 1rem;
     font-weight: 600;
     margin: 0;
 }
 
-.album-card-subtitle {
+.artist-card-subtitle {
     font-size: 0.8rem;
     color: #b3b3b3;
     margin-top: 4px;

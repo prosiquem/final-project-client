@@ -28,6 +28,7 @@ const ExpandingSearchBar = ({ _id }) => {
     const handleClickOutside = (e) => {
         if (searchRef.current && !searchRef.current.contains(e.target)) {
             setIsExpanded(false)
+            setFilterValue("")
         }
     }
 
@@ -42,10 +43,12 @@ const ExpandingSearchBar = ({ _id }) => {
         if (filterValue.trim()) {
             FilterServices.fetchAll(filterValue)
                 .then(({ data }) => {
+
                     setPlaylists(data.playlists)
                     setAlbums(data.albums)
                     setTracks(data.tracks)
                     setArtists(data.artists)
+                    console.log('Datos recibidos:', data)
                 })
                 .catch(err => console.error(err))
         } else {
@@ -81,28 +84,30 @@ const ExpandingSearchBar = ({ _id }) => {
                             {playlists.map(playlist => (
                                 <ListGroup.Item key={playlist._id}>
                                     <Link to={`/playlist/${playlist._id}`} className="link">
-                                        {playlist.name}
+                                        {playlist.name} · <span className="search-subtitle">{playlist.owner.username}</span>
                                     </Link>
                                 </ListGroup.Item>
                             ))}
                             {albums.map(album => (
                                 <ListGroup.Item key={album._id}>
                                     <Link to={`/album/${album._id}`} className="link">
-                                        {album.title}
+                                        {album.title} · <span className="search-subtitle">{album.author.username}</span>
                                     </Link>
                                 </ListGroup.Item>
                             ))}
                             {tracks.map(track => (
                                 <ListGroup.Item key={track._id}>
 
-                                    {track.title}
+                                    <Link to={`/album/${track.album._id}`} className="link">
+                                        {track.title} · <span className="search-subtitle">{track.author.artistName}</span>
+                                    </Link>
 
                                 </ListGroup.Item>
                             ))}
                             {artists.map(artist => (
                                 <ListGroup.Item key={artist._id}>
                                     <Link to={`/artists/${artist._id}`} className="link">
-                                        {artist.artistName}
+                                        {artist.artistName} · <span className="search-subtitle"> Artista</span>
                                     </Link>
                                 </ListGroup.Item>
                             ))}

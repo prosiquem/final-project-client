@@ -1,17 +1,17 @@
 .searcher {
-    position: absolute;
     width: 50px;
     height: 50px;
     background-color: #0a0a0a;
+    border: .5px solid #e1e1e125;
     border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    top: 30px;
-    right: 60px;
     overflow: visible;
     transition: transform 0.4s ease-in-out, width 0.3s ease-in-out;
+    z-index: 1000;
+    position: relative;
 }
 
 .searcher.expanded {
@@ -50,7 +50,6 @@
 }
 
 .search-icon {
-    position: absolute;
     pointer-events: none;
     color: #606266;
     font-size: 25px;
@@ -70,21 +69,25 @@
     position: absolute;
     top: calc(100% + 5px);
     width: 100%;
-    background-color: #0a0a0a;
+    background-color: #0a0a0ad2;
+    backdrop-filter: blur(10px);
     border: none;
     border-radius: 5px;
-    z-index: 10;
 }
 
 .list-filtered .list-group-item {
-    color: #e1e1e1;
     background-color: transparent;
     border: none;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .list-filtered .list-group-item:hover {
-    background-color: #161719;
+    background-color: #2a2c30a8;
+
     cursor: pointer;
-    color: #ffffff;
+
+}
+
+.list-filtered .search-subtitle {
+    color: #606266;
 }

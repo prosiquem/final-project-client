@@ -6,10 +6,11 @@ import { Link } from 'react-router-dom'
 import Loader from '../../components/Loader/Loader'
 import PlaylistList from '../../components/PlaylistList/PlaylistList'
 import PlaylistServices from "../../services/playlist.services"
-import AlbumServices from "../../services/albums.services"
+import AlbumServices from "../../services/album.services"
 import ExpandingSearchBar from '../../components/ExpandingSearchBar/ExpandingSearchBar'
 import AlbumList from '../../components/AlbumList/AlbumList'
 import './Homepage.css'
+import MusicPlayer from '../../components/MusicPlayer/MusicPlayer'
 
 const Homepage = () => {
 
@@ -27,15 +28,15 @@ const Homepage = () => {
     }, [loggedUser])
 
     const fetchHomeData = () => {
-        const requiredData = [
+        const homeData = [
             PlaylistServices.fetchPlaylists(),
             PlaylistServices.fetchLastPlaylists(),
-            AlbumServices.fetchLastAlbums()
+            AlbumServices.fetchLastAlbums(),
         ]
 
         setIsLoading(true)
 
-        Promise.all(requiredData)
+        Promise.all(homeData)
             .then(([playlistsResponse, lastPlaylistsResponse, albumsResponse]) => {
                 const filteredPlaylists = playlistsResponse.data.filter(playlist => playlist.owner._id === loggedUser._id)
                 setPlaylists(filteredPlaylists)
@@ -45,13 +46,13 @@ const Homepage = () => {
             })
             .catch(err => {
                 console.error(err)
-                setIsLoading(false)
             })
     }
 
     return (
         <div className="home-page">
             <Container className="page-container">
+
                 {isLoading ? (
                     <div className="loader-container">
                         <Loader />
@@ -63,7 +64,7 @@ const Homepage = () => {
                             <ExpandingSearchBar />
                         </Container>
 
-                        <Container className="my-5 homepage-playlists">
+                        <Container className="homepage-playlists">
                             <Row>
                                 <Col>
                                     <Link className="link" to="/playlists">
@@ -97,6 +98,7 @@ const Homepage = () => {
                         </Container>
                     </>
                 )}
+
             </Container>
         </div>
     )
