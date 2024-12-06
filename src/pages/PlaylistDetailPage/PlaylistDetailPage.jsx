@@ -1,16 +1,18 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
+import { useNavigate, useParams } from "react-router-dom"
+
+import { AuthContext } from "../../contexts/auth.context"
 import playlistServices from "../../services/playlist.services"
 
-import { Col, Container, Row, Button, Image, Table } from "react-bootstrap"
-import { Clock, ThreeDotsVertical } from "react-bootstrap-icons"
+import { Col, Container, Row, Button, Image, Table, Dropdown, Modal } from "react-bootstrap"
+import { Clock, PlayFill, PlusLg, ThreeDotsVertical } from "react-bootstrap-icons"
 import Loader from "../../components/Loader/Loader"
-import { useParams } from "react-router-dom"
-
-import { PLAYLIST_COVER } from "../../consts/path.consts"
 import TrackElement from "../../components/TrackElement/TrackElement"
-import { formatingMonthYear } from "../../utils/date.utils"
 
 import '../../general-css/DetailPage.css'
+import TrackSearchBar from "../../components/TrackSearchBar/TrackSearchBar"
+import DetailsHeader from "../../components/DetailsHeader/DetailsHeader"
+import DetailsControler from "../../components/DetailsControler/DetailsControler"
 
 const PaylistDetailPage = () => {
 
@@ -18,6 +20,11 @@ const PaylistDetailPage = () => {
 
     const [playlist, setPlaylist] = useState()
     const [isLoading, setIsLoading] = useState(true)
+    const [addTrack, setAddTrack] = useState(false)
+
+    const { loggedUser } = useContext(AuthContext)
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         fetchPlaylist()
@@ -33,38 +40,39 @@ const PaylistDetailPage = () => {
             .catch(err => console.log(err))
     }
 
+    const deletePlaylist = () => {
+
+        playlistServices
+            .deletePlaylist(playlistId)
+            .then(() => {
+                navigate('/home')
+            })
+
+    }
+
     return (isLoading ? <Loader /> :
         <div className="PaylistDetailPage">
             <Container className="page-container gap-4">
 
-                <Row className="details-info w-100 gap-4">
-                    <Col md="2" className="p-0"><Image src={playlist.cover ? playlist.cover : PLAYLIST_COVER} fluid /></Col>
-                    <Col className="p-0 column-between">
-                        <Row className="details-info-header">
-                            <Col md="10" ><label>Playlist</label></Col>
-                            <Col md="2" className="text-end" >
-                                <Button variant="custom-transparent">
-                                    <ThreeDotsVertical />
-                                </Button>
-                            </Col>
-                        </Row>
-                        <Row className="details-info-description align-items-end">
-                            <Col>
-                                <h1>{playlist.name}</h1>
-                                <h5> {playlist.owner.username} · {formatingMonthYear(playlist.createdAt)} · {playlist.tracks.length} canciones </h5>
-                            </Col>
-                        </Row>
-                    </Col>
-                </Row>
+                <DetailsHeader data={playlist} loggedUser={loggedUser} deleteElm={deletePlaylist} />
 
-                <Row className="list h-100 w-100 p-3 align-items-center">
+                <DetailsControler data={playlist} />
+
+                <Row className="content h-100 w-100 p-3 align-items-center">
                     {playlist.tracks.length === 0 ?
                         <Col md={{ span: 4, offset: 4 }} className="text-center">
-                            <p>Aun no tienes añadido ninguna canción. ¿Empezamos?</p>
-                            <Button variant="custom-primary">Añadir canción</Button>
+
+                            {playlist.owner._id === loggedUser._id ?
+                                <p>Aun no tienes añadido ninguna canción. ¿Empezamos?</p> :
+                                <p>{playlist.owner.username} aun no ha añadido ninguna canción</p>}
+
+                            {playlist.owner._id === loggedUser._id &&
+                                <Button variant="custom-primary" onClick={() => setAddTrack(true)}>Añadir canción</Button>}
+
                         </Col>
                         :
-                        <Col md="12" className="p-0">
+
+                        <Col md="12" className="p-0 h-100">
                             {playlist.description && playlist.description.length > 1 && <p>{playlist.description}</p>}
                             <Table >
                                 <thead>
@@ -86,12 +94,28 @@ const PaylistDetailPage = () => {
                                     }
                                 </tbody>
                             </Table>
+
                         </Col>
                     }
 
                 </Row>
 
             </Container>
+
+            <Modal
+                show={addTrack}
+                onHide={() => setAddTrack(true)}
+                size="lg"
+                centered
+                className="h-60"
+            >
+
+                <Modal.Header closeButton />
+                <Modal.Body>
+                    <TrackSearchBar />
+                </Modal.Body>
+
+            </Modal>
         </div>
     )
 }

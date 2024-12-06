@@ -39,8 +39,20 @@ class PlaylistServices {
     }
 
     postPlaylist(playlistData) {
-        return(
+        return (
             this.axiosApp.post('/playlists', playlistData)
+        )
+    }
+
+    deletePlaylist(id) {
+        return (
+            this.axiosApp.delete(`/playlists/${id}`)
+        )
+    }
+
+    editPlaylist(id, playlistData) {
+        return (
+            this.axiosApp.put(`/playlists/${id}`, playlistData)
         )
     }
 }
