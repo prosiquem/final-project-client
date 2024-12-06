@@ -191,7 +191,8 @@ button.custom-focus-button:hover {
   color: #a8a8a8;
 }
 
-.form-check-input, .form-check-input:checked{
+.form-check-input,
+.form-check-input:checked {
   background-color: #a65982;
   border: none;
 }
@@ -220,7 +221,8 @@ button.custom-focus-button:hover {
   background-color: #494949 !important;
 }
 
-.form-floating>.form-control:not(:placeholder-shown)~label, .form-floating>.form-control:focus~label {
+.form-floating>.form-control:not(:placeholder-shown)~label,
+.form-floating>.form-control:focus~label {
   color: #a8a8a89c;
   font-size: 14px;
 }

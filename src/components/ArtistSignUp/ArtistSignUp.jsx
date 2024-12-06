@@ -21,7 +21,9 @@ const ArtistSignUp = ({
 
     handleArtistGalleryChange,
     addArtistPhoto,
-    deleteArtistPhoto
+    deleteArtistPhoto,
+
+    handleSingleFileUpload
 }) => {
 
     const animatedComponents = makeAnimated()
@@ -100,17 +102,11 @@ const ArtistSignUp = ({
             </Row>
 
             <Form.Group className="mb-3">
-                <FloatingLabel
-                    controlId="avatar"
-                    label="Imagen de perfil"
-                >
-                    <Form.Control
-                        type="text"
-                        name="avatar"
-                        placeholder="Imagen de perfil"
-                        value={signupData.avatar}
-                        onChange={handleInputChange} />
-                </FloatingLabel>
+                <Form.Control
+                    type="file"
+                    name="avatar"
+                    placeholder="Imagen de perfil"
+                    onChange={handleSingleFileUpload} />
             </Form.Group>
 
             <h5>Rellena tus datos de artista</h5>
@@ -160,9 +156,9 @@ const ArtistSignUp = ({
                                     id={`formGallery-${idx}`} />
                             </Col>
                             <Col md="1">
-                                <Button 
-                                variant="custom-transparent"
-                                onClick={() => deleteArtistPhoto(idx)}>
+                                <Button
+                                    variant="custom-transparent"
+                                    onClick={() => deleteArtistPhoto(idx)}>
                                     <XLg />
                                 </Button>
                             </Col>

@@ -2,7 +2,8 @@ import { Form, Row, Col, FloatingLabel } from "react-bootstrap"
 
 import { GENRES } from "../../consts/user.consts"
 
-const UserSignUp = ({ signupData, handleInputChange, handleSingleSelectChange }) => {
+const UserSignUp = ({ signupData, handleInputChange, handleSingleSelectChange, handleSingleFileUpload }) => {
+
 
     return (
         <div className="UserSignUp my-4">
@@ -51,12 +52,12 @@ const UserSignUp = ({ signupData, handleInputChange, handleSingleSelectChange })
             <Row className="g-3">
                 <Col md={6}>
                     <Form.Group className="mb-3">
-                            <Form.Control
-                                type="date"
-                                name="birth"
-                                placeholder="Año de nacimiento"
-                                value={signupData.birth}
-                                onChange={handleInputChange} />
+                        <Form.Control
+                            type="date"
+                            name="birth"
+                            placeholder="Año de nacimiento"
+                            value={signupData.birth}
+                            onChange={handleInputChange} />
                     </Form.Group>
                 </Col>
 
@@ -73,17 +74,13 @@ const UserSignUp = ({ signupData, handleInputChange, handleSingleSelectChange })
             </Row>
 
             <Form.Group className="mb-3">
-                <FloatingLabel
-                    controlId="avatar"
-                    label="Imagen de perfil"
-                >
-                    <Form.Control
-                        type="text"
-                        name="avatar"
-                        placeholder="Imagen de perfil"
-                        value={signupData.avatar}
-                        onChange={handleInputChange} />
-                </FloatingLabel>
+
+                <Form.Control
+                    type="file"
+                    name="avatar"
+                    placeholder="Imagen de perfil"
+                    onChange={handleSingleFileUpload} />
+
             </Form.Group>
         </div>
     )
