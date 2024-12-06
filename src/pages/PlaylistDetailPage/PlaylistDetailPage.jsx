@@ -5,7 +5,7 @@ import { AuthContext } from "../../contexts/auth.context"
 import playlistServices from "../../services/playlist.services"
 
 import { Col, Container, Row, Button, Image, Table, Dropdown, Modal } from "react-bootstrap"
-import { Clock, PlayFill, PlusLg, ThreeDotsVertical } from "react-bootstrap-icons"
+import { Clock, PlayFill, PlusCircle, PlusCircleFill, PlusLg, ThreeDotsVertical } from "react-bootstrap-icons"
 import Loader from "../../components/Loader/Loader"
 import TrackElement from "../../components/TrackElement/TrackElement"
 
@@ -13,6 +13,7 @@ import '../../general-css/DetailPage.css'
 import TrackSearchBar from "../../components/TrackSearchBar/TrackSearchBar"
 import DetailsHeader from "../../components/DetailsHeader/DetailsHeader"
 import DetailsControler from "../../components/DetailsControler/DetailsControler"
+import { UserMessageContext } from "../../contexts/userMessage.context"
 
 const PaylistDetailPage = () => {
 
@@ -21,8 +22,11 @@ const PaylistDetailPage = () => {
     const [playlist, setPlaylist] = useState()
     const [isLoading, setIsLoading] = useState(true)
     const [addTrack, setAddTrack] = useState(false)
+    const [searchResults, setSearchResults] = useState()
 
     const { loggedUser } = useContext(AuthContext)
+    const { createAlert } = useContext(UserMessageContext)
+
 
     const navigate = useNavigate()
 
@@ -50,13 +54,52 @@ const PaylistDetailPage = () => {
 
     }
 
+    const addToPlaylist = (trackId) => {
+
+        const newTracksArr = [...playlist.tracks]
+        newTracksArr.push(trackId)
+
+        const updatedPlaylist = { ...playlist, tracks: newTracksArr }
+
+        setPlaylist(updatedPlaylist)
+
+        editPlaylist(updatedPlaylist)
+
+    }
+
+    const deleteFromPlaylist = (idx) => {
+
+        const newTracksArr = [...playlist.tracks]
+        newTracksArr.splice(idx, 1)
+
+        const updatedPlaylist = { ...playlist, tracks: newTracksArr }
+
+        setPlaylist(updatedPlaylist)
+
+        editPlaylist(updatedPlaylist)
+
+
+    }
+
+    const editPlaylist = (data) => {
+
+        playlistServices
+            .editPlaylist(playlistId, data)
+            .then(() => {
+                createAlert(`${playlist.name} playlist editada`, false)
+                fetchPlaylist()
+            })
+            .catch(err => console.log(err))
+
+    }
+
     return (isLoading ? <Loader /> :
         <div className="PaylistDetailPage">
             <Container className="page-container gap-4">
 
                 <DetailsHeader data={playlist} loggedUser={loggedUser} deleteElm={deletePlaylist} />
 
-                <DetailsControler data={playlist} />
+                <DetailsControler data={playlist} loggedUser={loggedUser} setAddTrack={setAddTrack} />
 
                 <Row className="content h-100 w-100 p-3 align-items-center">
                     {playlist.tracks.length === 0 ?
@@ -81,14 +124,24 @@ const PaylistDetailPage = () => {
                                         <th>Nombre de canción</th>
                                         <th>Artista</th>
                                         <th>Album</th>
-                                        <th><Clock /></th>
+                                        {/* <th><Clock /></th> */}
+                                        {playlist.owner._id === loggedUser._id && <th>Eliminar</th>}
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {
+                                    {playlist.tracks.length > 0 &&
                                         playlist.tracks.map((elm, idx) => {
                                             return (
-                                                <TrackElement key={elm._id} {...elm} idx={idx} />
+                                                <TrackElement
+                                                    key={elm._id}
+                                                    {...elm}
+                                                    idx={idx}
+                                                    isCreateElm={false}
+                                                    addToPlaylist={addToPlaylist}
+                                                    deleteFromPlaylist={deleteFromPlaylist}
+                                                    user={loggedUser}
+                                                    playlistOwner={playlist.owner}
+                                                />
                                             )
                                         })
                                     }
@@ -104,7 +157,7 @@ const PaylistDetailPage = () => {
 
             <Modal
                 show={addTrack}
-                onHide={() => setAddTrack(true)}
+                onHide={() => setAddTrack(false)}
                 size="lg"
                 centered
                 className="h-60"
@@ -112,7 +165,29 @@ const PaylistDetailPage = () => {
 
                 <Modal.Header closeButton />
                 <Modal.Body>
-                    <TrackSearchBar />
+                    <TrackSearchBar setSearchResults={setSearchResults} />
+                    {searchResults &&
+                        <Table>
+
+                            <tbody>
+                                {searchResults.map((elm, idx) => {
+
+                                    return (
+                                        <TrackElement
+                                            key={elm._id}
+                                            isCreateElm={true}
+                                            idx={idx}
+                                            {...elm}
+                                            addToPlaylist={addToPlaylist}
+                                            deleteFromPlaylist={deleteFromPlaylist}
+                                        />
+                                    )
+
+                                })}
+                            </tbody>
+
+                        </Table>
+                    }
                 </Modal.Body>
 
             </Modal>

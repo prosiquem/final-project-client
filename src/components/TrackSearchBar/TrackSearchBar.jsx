@@ -1,32 +1,33 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState } from 'react'
 import './TrackSearchBar.css'
 
-import FilterServices from '../../services/filter.services'
 import tracksServices from '../../services/tracks.services'
 
-import { Button, Form, ListGroup, Col, Row } from 'react-bootstrap'
+import { Form, Col, Row } from 'react-bootstrap'
 import { Search } from 'react-bootstrap-icons'
 
-const TrackSearchBar = () => {
+const TrackSearchBar = ({ setSearchResults }) => {
 
     const [searchTerm, setSearchTerm] = useState({
         title: ""
     })
-    const [searchResults, setSearchResults] = useState()
 
     const handleInputChange = (e) => {
-
         const { name, value } = e.target
         setSearchTerm({ ...searchTerm, [name]: value })
         fetchTracks(searchTerm)
-
     }
 
     const fetchTracks = (searchTerm) => {
+
         tracksServices
             .searchSongs(searchTerm)
-            .then(res)
+            .then(({ data }) => {
+                setSearchResults(data)
+            })
+            .catch(err => console.log(err))
     }
+
 
     return (
         <div className="TrackSearchBar">
@@ -50,6 +51,8 @@ const TrackSearchBar = () => {
                 </Col>
 
             </Row>
+
+
         </div>
     )
 }

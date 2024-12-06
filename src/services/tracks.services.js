@@ -23,9 +23,8 @@ class TracksServices {
 
     searchSongs(query) {
 
-        console.log(query)
         return (
-            this.axiosApp.get(`/tracks/search?${query}`)
+            this.axiosApp.get(`/tracks/search`, { params: query })
         )
 
     }
