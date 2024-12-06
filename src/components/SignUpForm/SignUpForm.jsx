@@ -11,6 +11,7 @@ import ArtistSignUp from "../ArtistSignUp/ArtistSignUp"
 import uploadServices from "../../services/upload.services"
 
 const SignUpForm = () => {
+
     const navigate = useNavigate()
 
     const [signupData, setSignupData] = useState({

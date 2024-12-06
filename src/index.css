@@ -1,5 +1,5 @@
 * {
-  /* color: #999999; */
+  color: #999999;
   margin: 0px;
   padding: 0px;
 }
@@ -304,4 +304,63 @@ button.custom-focus-button:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.353);
 }
 
-/* Details Page */
+/* Toast */
+
+.toast {
+  position: absolute;
+  bottom: 5vh;
+  left: 5vh;
+  background-color: #454545;
+  max-width: 30vw;
+  z-index: 10002;
+}
+
+.toast-header {
+  background-color: transparent;
+}
+
+.toast-header .btn-close {
+  background-color: transparent;
+  background: url("https://res.cloudinary.com/dt9pviq34/image/upload/v1733488091/x-lg_cik0rl.svg") center no-repeat;
+}
+
+.toast-body {
+  color: #e1e1e1;
+}
+
+/* Dropdown */
+
+.dropdown .btn.show {
+  border: none;
+  background-color: #1f1f1f;
+}
+
+.dropdown .btn.show:focus,
+.dropdown .btn.show:focus-visible,
+.dropdown .btn:first-child:active {
+  border: none;
+  background-color: hsl(0, 0%, 12%);
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+.dropdown-menu {
+  background-color: #1f1f1f;
+}
+
+.dropdown-menu>a {
+  color: #e1e1e1;
+}
+
+.dropdown-menu>a:hover {
+  background-color: #454545;
+  color: #e1e1e1;
+}
+
+.dropdown-menu>a:focus,
+.dropdown-menu>a:focus-visible {
+  background-color: #454545;
+  color: #e1e1e1;
+}

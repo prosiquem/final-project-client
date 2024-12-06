@@ -22,6 +22,8 @@ function AuthProviderWrapper(props) {
 
         const token = localStorage.getItem('authToken')
 
+        setIsFetchingUser(true)
+
         if (token) {
             authServices
                 .verifyUser(token)
