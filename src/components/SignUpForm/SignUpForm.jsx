@@ -1,13 +1,14 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 import authServices from "../../services/auth.services"
 import "./SignUpForm.css"
 
-import { Button, Form, Tab, Tabs } from "react-bootstrap"
+import { Button, Container, Form, Spinner, Tab, Tabs } from "react-bootstrap"
 
 import UserSignUp from "../UserSignUp/UserSignUp"
 import ArtistSignUp from "../ArtistSignUp/ArtistSignUp"
+import uploadServices from "../../services/upload.services"
 
 const SignUpForm = () => {
     const navigate = useNavigate()
@@ -33,6 +34,8 @@ const SignUpForm = () => {
             icon: "Youtube"
         }
     ])
+
+    const [loadingImage, setLoadingImage] = useState(false)
 
     const handleRoleChange = (value) => {
         setSignupData({ ...signupData, ['role']: value })
@@ -112,6 +115,27 @@ const SignUpForm = () => {
         }
     }
 
+    const handleSingleFileUpload = (e) => {
+        const formData = new FormData()
+
+        formData.append("imageData", e.target.files[0])
+
+        setLoadingImage(true)
+
+        uploadServices
+
+            .uploadImage(formData)
+            .then(({ data }) => {
+
+                setSignupData({ ...signupData, avatar: data.cloudinary_url })
+                setLoadingImage(false)
+            })
+            .catch(err => {
+                setLoadingImage(false)
+                console.log(err)
+            })
+    }
+
     const handleFormSubmit = (e) => {
         e.preventDefault()
 
@@ -139,6 +163,7 @@ const SignUpForm = () => {
                         signupData={signupData}
                         handleInputChange={handleInputChange}
                         handleSingleSelectChange={handleSingleSelectChange}
+                        handleSingleFileUpload={handleSingleFileUpload}
                     />
                 </Tab>
                 <Tab eventKey="ARTIST" title="Artista">
@@ -157,10 +182,21 @@ const SignUpForm = () => {
                         handleArtistGalleryChange={handleArtistGalleryChange}
                         addArtistPhoto={addArtistPhoto}
                         deleteArtistPhoto={deleteArtistPhoto}
+
+                        handleSingleFileUpload={handleSingleFileUpload}
                     />
                 </Tab>
             </Tabs>
-            <Button onClick={handleFormSubmit} variant="custom-primary">Registrarme</Button>
+            <Button
+                onClick={handleFormSubmit}
+                variant="custom-primary"
+                disabled={loadingImage}>
+                {loadingImage ? <Spinner animation="border" variant="primary" /> : "Registrarme"}
+            </Button>
+
+            <Container className="my-4 d-flex justify-content-center signup-message">
+                <h3>¿Ya tienes una cuenta? <Link to="/login" className="signup-link">Inicia sesión</Link></h3>
+            </Container>
         </Form>
     )
 }

@@ -9,9 +9,9 @@ const Launchpage = () => {
             <Container className="page-container">
                 {/* TODO */}
                 <video className="launchpage-video" src="src/assets/2.mp4" autoPlay loop muted></video>
-                <Row>
+                <Row className="h-100 align-items-center">
                     <Col>
-                        <h1 className="launchpage-text">Regístrate o inicia sesión para comenzar la experiencia.</h1>
+                        <h1 className="launchpage-text">Escucha a tus artistas preferidos y crea las mejores playlists de la comunidad.</h1>
 
                         <Container className="launchpage-buttons-container">
                             <Link to="/signup"><Button className="custom-primary-button">Regístrate</Button></Link>

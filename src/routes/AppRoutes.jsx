@@ -6,6 +6,7 @@ import PaylistDetailPage from '../pages/PlaylistDetailPage/PlaylistDetailPage'
 import PrivateRoutes from './PrivateRoutes'
 import NewPlaylistPage from '../pages/NewPlaylistPage/NewPlaylistPage'
 import Homepage from '../pages/HomePage/Homepage'
+import ExplorePage from '../pages/ExplorePage/ExplorePage'
 
 
 const AppRoutes = () => {
@@ -25,6 +26,7 @@ const AppRoutes = () => {
                     <Route path={'/home'} element={<Homepage />} />
                     <Route path={'/profile/:id'} element={<h1>--------------------Seré un perfil</h1>} />
 
+                    <Route path={'/explore'} element={<ExplorePage />} />
 
                     <Route path={'/mylibrary'} element={<h1>--------------------My library</h1>} />
                     <Route path={'/playlist/:id'} element={<PaylistDetailPage />} />
@@ -34,7 +36,7 @@ const AppRoutes = () => {
                     <Route path={'/artists'} element={<h1>--------------------Artists page</h1>} />
                     <Route path={'/artists/:id'} element={<h1>--------------------Artist detail page</h1>} />
 
-                    <Route path={'/playlist/new'} element={<NewPlaylistPage/>} />
+                    <Route path={'/playlist/new'} element={<NewPlaylistPage />} />
                     <Route path={'/playlist/edit'} element={<h1>--------------------Edit playlist</h1>} />
                     <Route path={'/album/new'} element={<h1>--------------------Form album</h1>} />
                     <Route path={'/album/edit'} element={<h1>--------------------Edit album</h1>} />

@@ -2,3 +2,12 @@
     display: flex;
     justify-content: center;
 }
+
+.signup-message h3 {
+    font-size: 0.8em;
+    color: #e1e1e1;
+}
+
+.signup-link {
+    color: #aa2b6fd5;
+}

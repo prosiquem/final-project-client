@@ -1,12 +1,12 @@
-import { Card } from 'react-bootstrap'
+import { Card, Container } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import './AddPlaylistCard.css'
 import { Plus } from 'react-bootstrap-icons'
+import './AddPlaylistCard.css'
 
 const AddPlaylistCard = () => {
 
     return (
-        <article className="add-card mb-3">
+        <Container className="add-card mb-3">
             <Link className="link">
                 <div className="add-card-container">
                     <Card className="add-card">
@@ -16,7 +16,7 @@ const AddPlaylistCard = () => {
                     </Card>
                 </div>
             </Link>
-        </article>
+        </Container>
     )
 }
 

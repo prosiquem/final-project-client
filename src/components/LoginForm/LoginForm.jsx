@@ -1,5 +1,5 @@
 import { useContext, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Button, Form, Container } from "react-bootstrap"
 import { AuthContext } from './../../contexts/auth.context'
 import authServices from "../../services/auth.services"
@@ -37,30 +37,38 @@ const LoginForm = () => {
     }
 
     return (
-        <Form className="form" onSubmit={handleFormSubmit}>
-            <Form.Group className="mb-3" controlId="email">
-                <Form.Control
-                    type="email"
-                    value={loginData.email}
-                    onChange={handleInputChange}
-                    name="email"
-                    placeholder="Email" />
-            </Form.Group>
 
-            <Form.Group className="mb-3" controlId="password">
-                <Form.Control
-                    type="password"
-                    value={loginData.password}
-                    onChange={handleInputChange}
-                    name="password"
-                    placeholder="Password" />
-            </Form.Group>
-            <Container className="submit-button-container">
-                <Button className="custom-primary-button" type="submit">
-                    Iniciar sesión
-                </Button>
-            </Container>
-        </Form>
+        <Container className="login-form">
+            <Form className="form" onSubmit={handleFormSubmit}>
+                <Form.Group className="mb-3" controlId="email">
+                    <Form.Control
+                        type="email"
+                        value={loginData.email}
+                        onChange={handleInputChange}
+                        name="email"
+                        placeholder="Email" />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="password">
+                    <Form.Control
+                        type="password"
+                        value={loginData.password}
+                        onChange={handleInputChange}
+                        name="password"
+                        placeholder="Password" />
+                </Form.Group>
+
+                <Container className="submit-button-container">
+                    <Button className="custom-primary-button" type="submit">
+                        Iniciar sesión
+                    </Button>
+                </Container>
+
+                <Container className="my-4 d-flex justify-content-center signup-message">
+                    <h3>¿No tienes cuenta? <Link to="/signup" className="signup-link">Regístrate</Link></h3>
+                </Container>
+            </Form>
+        </Container>
     )
 }
 
