@@ -7,6 +7,17 @@ class PlaylistServices {
             baseURL: `${import.meta.env.VITE_APP_API_URL}/api`
         })
 
+        this.axiosApp.interceptors.request.use(config => {
+
+            const storedToken = localStorage.getItem('authToken');
+
+            if (storedToken) {
+                config.headers = { Authorization: `Bearer ${storedToken}` };
+            }
+
+            return config
+        })
+
     }
 
     fetchPlaylists() {
@@ -24,6 +35,12 @@ class PlaylistServices {
     fetchLastPlaylists() {
         return (
             this.axiosApp.get('/playlists/last')
+        )
+    }
+
+    postPlaylist(playlistData) {
+        return(
+            this.axiosApp.post('/playlists', playlistData)
         )
     }
 }

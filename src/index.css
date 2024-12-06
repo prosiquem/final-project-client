@@ -182,8 +182,22 @@ button.custom-focus-button:hover {
   width: 100%;
 }
 
+.form-control.text-area {
+  border-radius: 20px;
+  height: auto;
+}
+
 .form input::placeholder {
   color: #a8a8a8;
+}
+
+.form-check-input, .form-check-input:checked{
+  background-color: #a65982;
+  border: none;
+}
+
+.form-check-input:focus {
+  box-shadow: none;
 }
 
 .form-control:focus {
@@ -203,7 +217,16 @@ button.custom-focus-button:hover {
 }
 
 .form-floating>.form-control:not(:placeholder-shown)~label::after {
-  background-color: #454545 !important
+  background-color: #494949 !important;
+}
+
+.form-floating>.form-control:not(:placeholder-shown)~label, .form-floating>.form-control:focus~label {
+  color: #a8a8a89c;
+  font-size: 14px;
+}
+
+.form-floating>.form-control:focus~label::after {
+  background-color: transparent;
 }
 
 /*Select CSS*/
