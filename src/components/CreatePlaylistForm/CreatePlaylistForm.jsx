@@ -34,8 +34,7 @@ const CreatePlaylistForm = () => {
         playlistServices
             .postPlaylist(playlistData)
             .then(({data}) => {
-                console.log(data)
-                navigate(`/playlist/${data._id}`)})
+                navigate(`/playlist/${data}`)})
             .catch((err) => console.log(err))
     }
 
