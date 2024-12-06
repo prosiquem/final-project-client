@@ -5,6 +5,13 @@
     flex-direction: column;
     align-items: center;
     gap: 8px;
+    transform: scale(1);
+    transition: transform 0.3s ease;
+}
+
+.playlist-card .playlist-card-container:hover {
+    transform: scale(0.99);
+    transition: transform 0.3s ease;
 }
 
 .playlist-card .playlist-card {
@@ -27,11 +34,19 @@
     object-fit: cover;
     width: 100%;
     height: 100%;
+    filter: brightness(100%);
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.playlist-card:hover .playlist-card-img {
+    filter: brightness(50%);
+    transform: scale(1.05);
+    transition: filter 0.3s ease, transform 0.3s ease;
 }
 
 .playlist-card-text {
     text-align: left;
-    color: #fff;
+    color: #e1e1e1;
     width: 100%;
 }
 

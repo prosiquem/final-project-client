@@ -10,6 +10,7 @@ import AlbumServices from "../../services/albums.services"
 import ExpandingSearchBar from '../../components/ExpandingSearchBar/ExpandingSearchBar'
 import AlbumList from '../../components/AlbumList/AlbumList'
 import './Homepage.css'
+import MusicPlayer from '../../components/MusicPlayer/MusicPlayer'
 
 const Homepage = () => {
 
@@ -107,6 +108,8 @@ const Homepage = () => {
                             )}
                         </Col>
                     </Row>
+
+                    <MusicPlayer />
                 </Container>
             </Container>
         </div>

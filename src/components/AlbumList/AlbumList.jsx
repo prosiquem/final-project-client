@@ -7,7 +7,7 @@ const AlbumList = ({ albums }) => {
             {
                 albums.map(elm => {
                     return (
-                        <Col lg="2" sm="6" key={elm._id}>
+                        <Col lg="2" md="3" sm="4" key={elm._id}>
                             <AlbumCard {...elm} />
                         </Col>
                     )

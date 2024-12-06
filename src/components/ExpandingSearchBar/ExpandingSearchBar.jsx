@@ -80,14 +80,14 @@ const ExpandingSearchBar = ({ _id }) => {
                         <ListGroup>
                             {playlists.map(playlist => (
                                 <ListGroup.Item key={playlist._id}>
-                                    <Link to={`/playlist/${playlist._id}`}>
+                                    <Link to={`/playlist/${playlist._id}`} className="link">
                                         {playlist.name}
                                     </Link>
                                 </ListGroup.Item>
                             ))}
                             {albums.map(album => (
                                 <ListGroup.Item key={album._id}>
-                                    <Link to={`/album/${album._id}`}>
+                                    <Link to={`/album/${album._id}`} className="link">
                                         {album.title}
                                     </Link>
                                 </ListGroup.Item>
@@ -101,7 +101,7 @@ const ExpandingSearchBar = ({ _id }) => {
                             ))}
                             {artists.map(artist => (
                                 <ListGroup.Item key={artist._id}>
-                                    <Link to={`/artists/${artist._id}`}>
+                                    <Link to={`/artists/${artist._id}`} className="link">
                                         {artist.artistName}
                                     </Link>
                                 </ListGroup.Item>

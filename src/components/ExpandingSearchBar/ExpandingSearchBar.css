@@ -52,7 +52,7 @@
 .search-icon {
     position: absolute;
     pointer-events: none;
-    color: #495057;
+    color: #606266;
     font-size: 25px;
     transition: opacity 0.1s ease-in-out;
 }
