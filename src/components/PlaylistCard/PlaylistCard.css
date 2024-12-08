@@ -10,7 +10,7 @@
 }
 
 .playlist-card .playlist-card-container:hover {
-    transform: scale(0.99);
+    transform: scale(0.97);
     transition: transform 0.3s ease;
 }
 
@@ -39,7 +39,7 @@
 }
 
 .playlist-card:hover .playlist-card-img {
-    filter: brightness(50%);
+    filter: brightness(70%);
     transition: filter 0.3s ease;
 }
 

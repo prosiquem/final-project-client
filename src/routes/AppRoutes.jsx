@@ -5,7 +5,7 @@ import SignUpPage from '../pages/SignUpPage/SignUpPage'
 import PaylistDetailPage from '../pages/PlaylistDetailPage/PlaylistDetailPage'
 import PrivateRoutes from './PrivateRoutes'
 import NewPlaylistPage from '../pages/NewPlaylistPage/NewPlaylistPage'
-import Homepage from '../pages/HomePage/Homepage'
+import Homepage from '../pages/Homepage/Homepage'
 import ExplorePage from '../pages/ExplorePage/ExplorePage'
 import EditPlaylistPage from '../pages/EditPlaylistPage/EditPlaylistPage'
 

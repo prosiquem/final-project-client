@@ -1,13 +1,13 @@
 .sidebar {
-    background-color: #171717bb;
+    background-color: #191919bb;
     backdrop-filter: blur(10px);
     border-radius: 10px;
     height: 95vh;
-    width: 5vw;
+    width: 70px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-left: 30px;
+    margin-left: 25px;
     margin-top: 2.5vh;
     position: fixed;
     transition: width 0.3s ease-in-out;
@@ -26,7 +26,7 @@
 }
 
 .sidebar.expanded {
-    width: 12vw;
+    width: 200px;
 }
 
 .navbar-brand {
@@ -91,8 +91,9 @@
     }
 
     .page-container.container {
-        width: calc(100vw - 60px);
-        margin: 0px 30px;
+        width: calc(100vw - 60px) !important;
+        height: 90vh;
+        margin: 2.5vh 30px;
         left: 0;
     }
 }

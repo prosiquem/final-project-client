@@ -4,7 +4,7 @@ import FilterServices from '../../services/filter.services'
 import { Link } from 'react-router-dom'
 import './ExpandingSearchBar.css'
 
-const ExpandingSearchBar = ({ _id }) => {
+const ExpandingSearchBar = () => {
 
     const [isExpanded, setIsExpanded] = useState(false)
     const [filterValue, setFilterValue] = useState("")
@@ -43,12 +43,11 @@ const ExpandingSearchBar = ({ _id }) => {
         if (filterValue.trim()) {
             FilterServices.fetchAll(filterValue)
                 .then(({ data }) => {
-
                     setPlaylists(data.playlists)
                     setAlbums(data.albums)
                     setTracks(data.tracks)
                     setArtists(data.artists)
-                    console.log('Datos recibidos:', data)
+                    console.log(data)
                 })
                 .catch(err => console.error(err))
         } else {

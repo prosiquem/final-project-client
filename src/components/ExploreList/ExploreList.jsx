@@ -5,32 +5,33 @@ import AlbumCard from "../AlbumCard/AlbumCard"
 
 const ExploreList = ({ artists, playlists, albums }) => {
 
-    const exploreItems = [...artists, ...playlists, ...albums]
+    const randomExplore = [
+        ...artists.map((artist) => ({
+            ...artist,
+            type: "artist"
+        })),
+        ...playlists.map((playlist) => ({
+            ...playlist,
+            type: "playlist"
+        })),
+        ...albums.map((album) => ({
+            ...album,
+            type: "album"
+        }))
+    ]
+
+    const randomizeCards = randomExplore.sort(() => Math.random() - 0.5)
 
     return (
-        <Row className="my-5 gap-4 explore-list">
+        <Row className="my-5 pt-4 pb-5 explore-list">
             {
-                exploreItems.map(elm => {
-                    if (elm.username) {
-                        return (
-                            <Col lg="2" md="3" sm="4" key={elm._id}>
-                                <ArtistCard {...elm} />
-                            </Col>
-                        )
-                    } else if (elm.name) {
-                        return (
-                            <Col lg="2" md="3" sm="4" key={elm._id}>
-                                <PlaylistCard {...elm} />
-                            </Col>
-                        )
-                    } else {
-                        return (
-                            <Col lg="2" md="3" sm="4" key={elm._id}>
-                                <AlbumCard {...elm} />
-                            </Col>
-                        )
-                    }
-                })
+                randomizeCards.map((elm) => (
+                    <Col key={elm._id} xs={12} sm={6} md={4} lg={3}>
+                        {elm.type === "artist" && <ArtistCard {...elm} />}
+                        {elm.type === "playlist" && <PlaylistCard {...elm} />}
+                        {elm.type === "album" && <AlbumCard {...elm} />}
+                    </Col>
+                ))
             }
         </Row>
     )

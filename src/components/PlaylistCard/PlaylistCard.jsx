@@ -1,7 +1,7 @@
 import { Card } from 'react-bootstrap'
-import './PlaylistCard.css'
 import { Link } from 'react-router-dom'
 import { DEFAULT_IMAGES } from '../../consts/path.consts'
+import './PlaylistCard.css'
 
 const PlaylistCard = ({ _id, owner, cover, name, tracks }) => {
 
@@ -9,25 +9,32 @@ const PlaylistCard = ({ _id, owner, cover, name, tracks }) => {
 
     return (
         <article className="playlist-card mb-3">
-            <Link to={`/playlist/${_id}`} className="link">
-                <div className="playlist-card-container">
-                    <Card className="playlist-card">
+
+            <div className="playlist-card-container">
+
+                <Card className="playlist-card mb-2">
+
+                    <Link to={`/playlist/${_id}`} className="link">
                         <Card.Img
                             variant="top"
                             src={image}
                             className="playlist-card-img"
                         />
-                    </Card>
+                    </Link>
+                </Card>
 
-                    <div className="playlist-card-text">
+                <div className="playlist-card-text">
+                    <Link to={`/playlist/${_id}`} className="link">
                         <h5 className="playlist-card-title">{name}</h5>
                         <p className="playlist-card-subtitle">
-                            {tracks.length === 1 ? `${tracks.length} pista` : `${tracks.length} pistas`} · {owner.username}
+                            Playlist  · {owner.username} · {tracks.length === 1 ? `${tracks.length} pista` : `${tracks.length} pistas`}
                         </p>
-                    </div>
+                    </Link>
                 </div>
-            </Link>
-        </article>
+
+            </div>
+
+        </article >
     )
 }
 

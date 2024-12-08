@@ -1,10 +1,17 @@
+import { Col, Row } from "react-bootstrap"
 
 const Loader = () => {
 
     return (
+
         <div className="Loader">
-            <h2>ESTOY CARGANDO</h2>
-        </div>
+
+            <Row className="h-100 align-items-center">
+                <Col>
+                    <h2>. . .</h2>
+                </Col>
+            </Row>
+        </div >
     )
 }
 

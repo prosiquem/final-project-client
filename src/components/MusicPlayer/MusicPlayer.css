@@ -1,27 +1,54 @@
 .music-player-container {
     position: fixed;
     bottom: 40px;
-    left: 3vw;
+    left: 2.6vw;
     width: 100%;
-    z-index: 1000;
+    z-index: 99;
     display: flex;
     justify-content: center;
-
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .music-player {
     width: 90%;
-    max-width: 1180px;
-    background: rgba(0, 0, 0, 0.732);
+    max-width: 88vw;
+    background: rgba(0, 0, 0, 0.6);
+    /* Fallback color */
+    background-size: cover;
+    background-position: center;
     backdrop-filter: blur(10px);
-    border-radius: 10px;
-    border: .5px solid #e1e1e134;
-    box-shadow: 0 0 40px 20px rgba(0, 0, 0, 0.8);
+    /* Blur effect on the image */
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
     color: #e1e1e1;
+    border-radius: 10px;
+    border: .5px solid #e1e1e124;
+    background-image: url('');
+    /* Added default empty URL, will be set dynamically */
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('');
+    /* Adding a gradient overlay */
+}
+
+.music-player .music-player-info {
+    display: flex;
+    align-items: end;
+}
+
+.music-player .album-cover {
+    width: 90px;
+    height: 90px;
+    overflow: hidden;
+    border-radius: 8px;
+    margin-right: 20px;
+}
+
+.music-player .album-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .music-info {
@@ -47,21 +74,13 @@
     gap: 15px;
 }
 
+@media (max-width: 576px) {
+    .music-player-container {
+        bottom: 70px;
+        left: .3vw;
+    }
 
-@media (max-width: 600px) {
     .music-player {
-        width: 100%;
-        border-radius: 0;
-        padding: 10px;
-    }
-
-    .control-btn {
-        width: 40px;
-        height: 40px;
-    }
-
-    .play-btn {
-        width: 50px;
-        height: 50px;
+        width: 400px;
     }
 }

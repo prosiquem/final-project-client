@@ -15,7 +15,7 @@ const AlbumCard = ({ _id, author, cover, title, tracks }) => {
                         <Card.Img
                             variant="top"
                             src={image}
-                            className="playlist-card-img"
+                            className="album-card-img"
                         />
                     </Card>
 

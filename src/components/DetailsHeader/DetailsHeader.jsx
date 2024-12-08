@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import { PLAYLIST_COVER } from "../../consts/path.consts"
+import { DEFAULT_IMAGES, PLAYLIST_COVER } from "../../consts/path.consts"
 import { formatingMonthYear } from "../../utils/date.utils"
 
 import { Col, Dropdown, Image, Row } from "react-bootstrap"
@@ -10,10 +10,12 @@ const DetailsHeader = ({ data, loggedUser, deleteElm }) => {
 
     const navigate = useNavigate()
 
+    const image = data.cover || DEFAULT_IMAGES[1]
+
     return (
 
         <Row className="DetailsHeader details-info w-100 gap-4">
-            <Col md="2" className="p-0"><Image src={data.cover ? data.cover : PLAYLIST_COVER} fluid /></Col>
+            <Col md="2" className="p-0"><Image src={data.cover ? data.cover : image} fluid /></Col>
             <Col className="p-0 column-between">
 
 

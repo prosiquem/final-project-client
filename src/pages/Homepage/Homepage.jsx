@@ -66,8 +66,8 @@ const Homepage = () => {
 
                         <Container className="homepage-playlists">
                             <Row>
-                                <Col>
-                                    <Link className="link" to="/playlists">
+                                <Col className='my-5'>
+                                    <Link className="link" to="/mylibrary">
                                         <h2>Mis playlists <ArrowRightShort /></h2>
                                     </Link>
                                     <PlaylistList playlists={playlists} />
@@ -86,7 +86,7 @@ const Homepage = () => {
                             </Row>
                         </Container>
 
-                        <Container className="homepage-recent-added">
+                        <Container className="homepage-recent-added mb-5">
                             <Row>
                                 <Col>
                                     <Link className="link">

@@ -7,14 +7,17 @@ import './index.css'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { AuthProviderWrapper } from './contexts/auth.context.jsx'
 import { UserMessageProviderWrapper } from './contexts/userMessage.context.jsx'
+import { MusicPlayerProvider } from './contexts/musicplayer.context.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <UserMessageProviderWrapper>
       <AuthProviderWrapper>
-        <Router>
-          <App />
-        </Router>
+        <MusicPlayerProvider>
+          <Router>
+            <App />
+          </Router>
+        </MusicPlayerProvider>
       </AuthProviderWrapper>
     </UserMessageProviderWrapper>
   </StrictMode>
