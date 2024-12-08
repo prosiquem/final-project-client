@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Button, Col, Container, Row } from "react-bootstrap"
 import './Launchpage.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../contexts/auth.context'
 
 const Launchpage = () => {
-    return (
+
+    const { loggedUser } = useContext(AuthContext)
+
+    const navigate = useNavigate()
+
+    return (loggedUser ? navigate('/home') :
         <div className="launch-page">
             <Container className="page-container">
                 {/* TODO */}

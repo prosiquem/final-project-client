@@ -6,13 +6,13 @@ import { Col, Dropdown, Image, Row } from "react-bootstrap"
 import { ThreeDotsVertical } from "react-bootstrap-icons"
 
 
-const DetailsHeader = ({ data, loggedUser, deleteElm }) => {
+const PlaylistDetailsHeader = ({ data, loggedUser, deleteElm }) => {
 
     const navigate = useNavigate()
 
     return (
 
-        <Row className="DetailsHeader details-info w-100 gap-4">
+        <Row className="PlaylistDetailsHeader details-info w-100 gap-4">
             <Col md="2" className="p-0"><Image src={data.cover ? data.cover : PLAYLIST_COVER} fluid /></Col>
             <Col className="p-0 column-between">
 
@@ -54,4 +54,4 @@ const DetailsHeader = ({ data, loggedUser, deleteElm }) => {
 
 }
 
-export default DetailsHeader
+export default PlaylistDetailsHeader

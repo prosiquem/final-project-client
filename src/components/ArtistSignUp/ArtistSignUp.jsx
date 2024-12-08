@@ -19,15 +19,11 @@ const ArtistSignUp = ({
     socialMediaData,
     handleSocialMediaSelectChange,
 
-    handleArtistGalleryChange,
-    addArtistPhoto,
-    deleteArtistPhoto,
-
-    handleSingleFileUpload
+    handleSingleFileUpload,
+    handleGalleryUpload
 }) => {
 
     const animatedComponents = makeAnimated()
-
 
     return (
         <div className="ArtistSignUp my-4">
@@ -140,38 +136,16 @@ const ArtistSignUp = ({
                 />
             </Form.Group>
 
-            <h5>Sube algunas fotos</h5>
+            <h5>Galería de fotos</h5>
             <hr />
 
             <Form.Group className="mb-3">
-                {signupData.artistGallery.map((elm, idx) => {
-                    return (
-                        <Row className="my-1">
-                            <Col md="11">
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Galería de fotos"
-                                    value={elm}
-                                    onChange={e => handleArtistGalleryChange(e, idx)}
-                                    id={`formGallery-${idx}`} />
-                            </Col>
-                            <Col md="1">
-                                <Button
-                                    variant="custom-transparent"
-                                    onClick={() => deleteArtistPhoto(idx)}>
-                                    <XLg />
-                                </Button>
-                            </Col>
-                        </Row>
-                    )
-                })
-                }
-
-                <Button
-                    variant="custom-transparent"
-                    onClick={addArtistPhoto}>
-                    Añadir foto
-                </Button>
+                <Form.Control
+                    type="file"
+                    placeholder="Galería de fotos"
+                    onChange={handleGalleryUpload}
+                    id={`formGallery`}
+                    multiple />
 
             </Form.Group>
 

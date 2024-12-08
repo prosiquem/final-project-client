@@ -4,15 +4,14 @@ import { useNavigate, useParams } from "react-router-dom"
 import { AuthContext } from "../../contexts/auth.context"
 import playlistServices from "../../services/playlist.services"
 
-import { Col, Container, Row, Button, Image, Table, Dropdown, Modal } from "react-bootstrap"
-import { Clock, PlayFill, PlusCircle, PlusCircleFill, PlusLg, ThreeDotsVertical } from "react-bootstrap-icons"
+import { Col, Container, Row, Button, Table, Modal } from "react-bootstrap"
 import Loader from "../../components/Loader/Loader"
 import TrackElement from "../../components/TrackElement/TrackElement"
 
 import '../../general-css/DetailPage.css'
 import TrackSearchBar from "../../components/TrackSearchBar/TrackSearchBar"
-import DetailsHeader from "../../components/DetailsHeader/DetailsHeader"
-import DetailsControler from "../../components/DetailsControler/DetailsControler"
+import PlaylistDetailsHeader from "../../components/Playlist_DetailsHeader/PlaylistDetailsHeader"
+import DetailsControler from "../../components/Playlist_DetailsControler/PlaylistDetailsControler"
 import { UserMessageContext } from "../../contexts/userMessage.context"
 
 const PaylistDetailPage = () => {
@@ -64,6 +63,7 @@ const PaylistDetailPage = () => {
         setPlaylist(updatedPlaylist)
 
         editPlaylist(updatedPlaylist)
+        setAddTrack(false)
 
     }
 
@@ -86,8 +86,8 @@ const PaylistDetailPage = () => {
         playlistServices
             .editPlaylist(playlistId, data)
             .then(() => {
-                createAlert(`${playlist.name} playlist editada`, false)
                 fetchPlaylist()
+                createAlert(`${playlist.name} playlist editada`, false)
             })
             .catch(err => console.log(err))
 
@@ -97,11 +97,11 @@ const PaylistDetailPage = () => {
         <div className="PaylistDetailPage">
             <Container className="page-container gap-4">
 
-                <DetailsHeader data={playlist} loggedUser={loggedUser} deleteElm={deletePlaylist} />
+                <PlaylistDetailsHeader data={playlist} loggedUser={loggedUser} deleteElm={deletePlaylist} />
 
                 <DetailsControler data={playlist} loggedUser={loggedUser} setAddTrack={setAddTrack} />
 
-                <Row className="content h-100 w-100 p-3 align-items-center">
+                <Row className="content h-100 w-100 py-3 align-items-center">
                     {playlist.tracks.length === 0 ?
                         <Col md={{ span: 4, offset: 4 }} className="text-center">
 
@@ -117,7 +117,7 @@ const PaylistDetailPage = () => {
 
                         <Col md="12" className="p-0 h-100">
                             {playlist.description && playlist.description.length > 1 && <p>{playlist.description}</p>}
-                            <Table >
+                            <Table variant="custom-dark">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -133,7 +133,7 @@ const PaylistDetailPage = () => {
                                         playlist.tracks.map((elm, idx) => {
                                             return (
                                                 <TrackElement
-                                                    key={elm._id}
+                                                    key={idx}
                                                     {...elm}
                                                     idx={idx}
                                                     isCreateElm={false}
@@ -161,20 +161,21 @@ const PaylistDetailPage = () => {
                 size="lg"
                 centered
                 className="h-60"
+                scrollable
             >
 
                 <Modal.Header closeButton />
                 <Modal.Body>
                     <TrackSearchBar setSearchResults={setSearchResults} />
                     {searchResults &&
-                        <Table>
+                        <Table variant="custom-dark">
 
                             <tbody>
                                 {searchResults.map((elm, idx) => {
 
                                     return (
                                         <TrackElement
-                                            key={elm._id}
+                                            key={idx}
                                             isCreateElm={true}
                                             idx={idx}
                                             {...elm}
