@@ -6,7 +6,7 @@ import { Col, Dropdown, Image, Row } from "react-bootstrap"
 import { ThreeDotsVertical } from "react-bootstrap-icons"
 
 
-const DetailsHeader = ({ data, loggedUser, deleteElm }) => {
+const PlaylistDetailsHeader = ({ data, loggedUser, deleteElm }) => {
 
     const navigate = useNavigate()
 
@@ -56,4 +56,4 @@ const DetailsHeader = ({ data, loggedUser, deleteElm }) => {
 
 }
 
-export default DetailsHeader
+export default PlaylistDetailsHeader

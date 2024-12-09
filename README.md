@@ -8,29 +8,29 @@ By Pedro Rosique & Elena Frontiñán
 |---------|-----------------|------------|
 |    /login     |        Login page         |            |
 |    /signup     |        Signup page      |           |
-|    /     |        Landing page         |            |
+<!-- |    /     |        Landing page         |            | -->
 |    /home     |        Initial page      |     ✅      |
-|    /profile/:id    |        Profile page         |     ✅       |
+<!-- |    /profile/:id    |        Profile page         |     ✅       | -->
 
 **Playlist pages**
 
 | **URL** | **Description** | **Protected** |
 |---------|-----------------|------------|
-|     /mylibrary    |       User playlists          |      ✅      |
+<!-- |     /mylibrary    |       User playlists          |      ✅      | -->
 |    /playlist/:id     |         Playlist detail        |       ✅     |
 
 **Album pages**
 
 | **URL** | **Description** | **Protected** |
 |---------|-----------------|------------|
-|    /album/id     |       Album detail          |      ✅      |
+<!-- |    /album/id     |       Album detail          |      ✅      | -->
 
 **Artists pages**
 
 | **URL** | **Description** | **Protected** |
 |---------|-----------------|------------|
-|     /artists    |         Artists page        |      ✅      |
-|    /artists/:id     |       Artist detail         |      ✅      |
+<!-- |     /artists    |         Artists page        |      ✅      | -->
+<!-- |    /artists/:id     |       Artist detail         |      ✅      | -->
 
 **Explore pages**
 | **URL** | **Description** | **Protected** |
@@ -44,9 +44,9 @@ By Pedro Rosique & Elena Frontiñán
 |     /playlist/new    |      Create playlist           |      ✅      |
 |    /playlist/edit     |      Edit playlist           |     ✅       |
 |    /album/new     |        Create Album         |      ✅      |
-|     /album/edit    |       Edit Album          |      ✅      |
-|     /track/new   |        Create Track         |      ✅      |
-|     /track/edit    |        Edit track         |      ✅      |
+<!-- |     /album/edit    |       Edit Album          |      ✅      | -->
+<!-- |     /track/new   |        Create Track         |      ✅      | -->
+<!-- |     /track/edit    |        Edit track         |      ✅      | -->
 
 
 

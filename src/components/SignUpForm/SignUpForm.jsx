@@ -95,28 +95,8 @@ const SignUpForm = () => {
         setSocialMediaData(socialMediaCopy)
     }
 
-    const handleArtistGalleryChange = (e, idx) => {
-        const { value } = e.target
-        const artistGalleryCopy = [...signupData.artistGallery]
-        artistGalleryCopy[idx] = value
-        setSignupData({ ...signupData, artistGallery: artistGalleryCopy })
-    }
-
-    const addArtistPhoto = () => {
-        const artistGalleryCopy = [...signupData.artistGallery]
-        artistGalleryCopy.push("")
-        setSignupData({ ...signupData, artistGallery: artistGalleryCopy })
-    }
-
-    const deleteArtistPhoto = (idx) => {
-        const artistGalleryCopy = [...signupData.artistGallery]
-        if (artistGalleryCopy.length > 1) {
-            artistGalleryCopy.splice(idx, 1)
-            setSignupData({ ...signupData, artistGallery: artistGalleryCopy })
-        }
-    }
-
     const handleSingleFileUpload = (e) => {
+
         const formData = new FormData()
 
         formData.append("imageData", e.target.files[0])
@@ -135,6 +115,31 @@ const SignUpForm = () => {
                 setLoadingImage(false)
                 console.log(err)
             })
+    }
+
+    const handleGalleryUpload = (e) => {
+
+        const formData = new FormData()
+
+        Array.from(e.target.files).forEach((file) => {
+            formData.append("galleryData", file)
+        })
+
+        setLoadingImage(true)
+
+        uploadServices
+
+            .uploadGallery(formData)
+            .then(({ data }) => {
+
+                setSignupData({ ...signupData, artistGallery: data.cloudinary_url })
+                setLoadingImage(false)
+            })
+            .catch(err => {
+                setLoadingImage(false)
+                console.log(err)
+            })
+
     }
 
     const handleFormSubmit = (e) => {
@@ -180,11 +185,8 @@ const SignUpForm = () => {
                         addSocialMedia={addSocialMedia}
                         handleSocialMediaSelectChange={handleSocialMediaSelectChange}
 
-                        handleArtistGalleryChange={handleArtistGalleryChange}
-                        addArtistPhoto={addArtistPhoto}
-                        deleteArtistPhoto={deleteArtistPhoto}
-
                         handleSingleFileUpload={handleSingleFileUpload}
+                        handleGalleryUpload={handleGalleryUpload}
                     />
                 </Tab>
             </Tabs>

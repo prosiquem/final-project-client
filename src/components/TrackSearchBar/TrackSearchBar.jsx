@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './TrackSearchBar.css'
 
 import tracksServices from '../../services/tracks.services'
@@ -12,10 +12,16 @@ const TrackSearchBar = ({ setSearchResults }) => {
         title: ""
     })
 
+    useEffect(() => {
+
+        fetchTracks(searchTerm)
+
+    }, [searchTerm])
+
     const handleInputChange = (e) => {
         const { name, value } = e.target
         setSearchTerm({ ...searchTerm, [name]: value })
-        fetchTracks(searchTerm)
+
     }
 
     const fetchTracks = (searchTerm) => {
@@ -31,9 +37,8 @@ const TrackSearchBar = ({ setSearchResults }) => {
 
     return (
         <div className="TrackSearchBar">
-            <Row>
-
-                <Col>
+            <Row className='align-items-center'>
+                <Col md={{ span: "1" }} className='text-center'>
                     <Search />
                 </Col>
 

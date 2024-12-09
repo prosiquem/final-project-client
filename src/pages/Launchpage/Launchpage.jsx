@@ -1,21 +1,16 @@
-import React, { useContext, useEffect } from 'react'
-import { Button, Col, Container, Row } from 'react-bootstrap'
+import React, { useContext } from 'react'
+import { Button, Col, Container, Row } from "react-bootstrap"
 import './Launchpage.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../contexts/auth.context'
 
-
 const Launchpage = () => {
-    const { loggedUser, isFetchingUser } = useContext(AuthContext)
+
+    const { loggedUser } = useContext(AuthContext)
+
     const navigate = useNavigate()
 
-    useEffect(() => {
-        if (!isFetchingUser && loggedUser) {
-            navigate('/home')
-        }
-    }, [loggedUser, isFetchingUser, navigate])
-
-    return (
+    return (loggedUser ? navigate('/home') :
         <div className="launch-page">
             <Container className="page-container">
                 {/* TODO */}

@@ -6,11 +6,11 @@ const DetailsControler = ({ data, loggedUser, setAddTrack }) => {
 
     return (
         <Row className="DetailsControler w-100">
-            <Col>
-                <Button variant="custom-primary me-4"> <PlayFill /> </Button>
-                <Button variant="custom-secondary">Guardarme la playlist</Button>
+            <Col className="p-0">
+                <Button variant="custom-primary me-2"> <PlayFill /> </Button>
+                <Button variant="custom-secondary me-2">Guardarme la playlist</Button>
                 {data.tracks.length > 0 && data.owner._id === loggedUser._id &&
-                    <Button variant="custom-secondary" onClick={() => setAddTrack(true)}>
+                    <Button variant="custom-secondary me-2" onClick={() => setAddTrack(true)}>
                         <PlusLg />
                     </Button>
                 }

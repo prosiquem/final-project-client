@@ -14,6 +14,18 @@ class UploadServices {
         )
     }
 
+    uploadGallery(galleryForm) {
+        return (
+            this.axiosApp.post('/gallery', galleryForm)
+        )
+    }
+
+    uploadSongs(tracksForm) {
+        return (
+            this.axiosApp.post('/audio', tracksForm)
+        )
+    }
+
 }
 
 export default new UploadServices()

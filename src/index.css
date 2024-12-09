@@ -160,6 +160,11 @@ button.custom-focus-button:hover {
   background-color: #1d1d1dcc;
 }
 
+.btn-close {
+  background-color: transparent;
+  background: url("https://res.cloudinary.com/dt9pviq34/image/upload/v1733488091/x-lg_cik0rl.svg") center no-repeat;
+}
+
 /* Tabs CSS */
 
 .nav-tabs {
@@ -200,7 +205,8 @@ button.custom-focus-button:hover {
 
 /* Form CSS */
 .form-control,
-.form-select {
+.form-select,
+.form-control:autofill {
   border-radius: 50px;
   background-color: #e2e2e243;
   backdrop-filter: blur(10px);
@@ -369,11 +375,6 @@ textarea:autofill {
   background-color: transparent;
 }
 
-.toast-header .btn-close {
-  background-color: transparent;
-  background: url("https://res.cloudinary.com/dt9pviq34/image/upload/v1733488091/x-lg_cik0rl.svg") center no-repeat;
-}
-
 .toast-body {
   color: #e1e1e1;
 }
@@ -413,4 +414,44 @@ textarea:autofill {
 .dropdown-menu>a:focus-visible {
   background-color: #454545;
   color: #e1e1e1;
+}
+
+/* Table*/
+
+.table-custom-dark {
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: transparent;
+  border: none;
+}
+
+.table-custom-dark tr {
+  background-color: transparent;
+  border-bottom: 1px #454545 solid;
+}
+
+.table-custom-dark tr:last-child {
+  border-bottom: none;
+}
+
+.table-custom-dark tbody tr:hover {
+  background-color: #454545;
+  border: none;
+}
+
+.table-custom-dark tr>* {
+  background-color: transparent;
+  color: #999999;
+  border: none;
+  vertical-align: middle;
+}
+
+/* Modal */
+
+.modal-content {
+  background-color: #1f1f1f;
+}
+
+.modal-header {
+  border-bottom: none;
 }
