@@ -10,10 +10,10 @@ import AlbumServices from "../../services/album.services"
 import ExpandingSearchBar from '../../components/ExpandingSearchBar/ExpandingSearchBar'
 import AlbumList from '../../components/AlbumList/AlbumList'
 import './Homepage.css'
-import MusicPlayer from '../../components/MusicPlayer/MusicPlayer'
 
 const Homepage = () => {
 
+    const [artistAlbum, setArtistAlbum] = useState([])
     const [playlists, setPlaylists] = useState([])
     const [lastPlaylists, setLastPlaylists] = useState([])
     const [albums, setAlbums] = useState([])
@@ -29,6 +29,7 @@ const Homepage = () => {
 
     const fetchHomeData = () => {
         const homeData = [
+            AlbumServices.fetchArtistAlbum(loggedUser._id),
             PlaylistServices.fetchPlaylists(),
             PlaylistServices.fetchLastPlaylists(),
             AlbumServices.fetchLastAlbums(),
@@ -37,8 +38,9 @@ const Homepage = () => {
         setIsLoading(true)
 
         Promise.all(homeData)
-            .then(([playlistsResponse, lastPlaylistsResponse, albumsResponse]) => {
+            .then(([artistAlbumResponse, playlistsResponse, lastPlaylistsResponse, albumsResponse]) => {
                 const filteredPlaylists = playlistsResponse.data.filter(playlist => playlist.owner._id === loggedUser._id)
+                setArtistAlbum(artistAlbumResponse.data)
                 setPlaylists(filteredPlaylists)
                 setLastPlaylists(lastPlaylistsResponse.data)
                 setAlbums(albumsResponse.data)
@@ -48,6 +50,7 @@ const Homepage = () => {
                 console.error(err)
             })
     }
+
 
     return (
         <div className="home-page">
@@ -59,14 +62,28 @@ const Homepage = () => {
                     </div>
                 ) : (
                     <>
-                        <Container className="homepage-greeting-container">
+
+                        <Container className="homepage-greeting-container mb-5">
                             <h2>Hola, <span className="username">{loggedUser?.username}</span></h2>
                             <ExpandingSearchBar />
                         </Container>
 
+                        {loggedUser.role === "ARTIST" && (
+                            <Container className="homepage-artist-albums">
+                                <Row>
+                                    <Col>
+                                        <Link className="link" to="/mylibrary">
+                                            <h2>Mis álbumes <ArrowRightShort /></h2>
+                                        </Link>
+                                        <AlbumList albums={artistAlbum} />
+                                    </Col>
+                                </Row>
+                            </Container>
+                        )}
+
                         <Container className="homepage-playlists">
                             <Row>
-                                <Col className='my-5'>
+                                <Col>
                                     <Link className="link" to="/mylibrary">
                                         <h2>Mis playlists <ArrowRightShort /></h2>
                                     </Link>

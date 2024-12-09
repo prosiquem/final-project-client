@@ -120,7 +120,17 @@ export const MusicPlayerProvider = (props) => {
     }
 
     return (
-        <MusicPlayerContext.Provider value={{ currentTrack, isPlaying, playTrack, togglePlayPause, nextTrack, prevTrack, currentTime, duration, seek, setPlaylist }}>
+        <MusicPlayerContext.Provider value={{
+            currentTrack,
+            isPlaying,
+            playTrack,
+            togglePlayPause,
+            nextTrack, prevTrack,
+            currentTime,
+            duration,
+            seek,
+            setPlaylist
+        }}>
             {props.children}
         </MusicPlayerContext.Provider>
     )

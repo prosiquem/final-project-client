@@ -39,6 +39,12 @@ class AlbumServices {
         )
     }
 
+    fetchArtistAlbum(id) {
+        return (
+            this.axiosApp.get(`/albums/search/${id}`)
+        )
+    }
+
     postAlbum(albumData) {
         return (
             this.axiosApp.post('/albums', albumData)

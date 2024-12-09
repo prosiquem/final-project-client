@@ -53,6 +53,7 @@ label {
   margin-top: 2.5vh;
   margin-left: 105px;
   padding: 20px;
+  padding-bottom: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -210,7 +211,7 @@ button.custom-focus-button:hover {
   border-radius: 50px;
   background-color: #e2e2e243;
   backdrop-filter: blur(10px);
-  color: #a8a8a8;
+  color: #e1e1e1;
   border: none;
   min-height: 40px;
   width: 100%;
@@ -236,7 +237,7 @@ button.custom-focus-button:hover {
 }
 
 .form-control:focus {
-  color: #a8a8a8;
+  color: #e1e1e1;
   background-color: #e2e2e243;
   backdrop-filter: blur(10px);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.353)
@@ -244,7 +245,7 @@ button.custom-focus-button:hover {
 
 .form-select:focus {
   border-radius: 50px;
-  color: #a8a8a8;
+  color: #e1e1e1;
   background-color: #454545;
   outline: 0;
   border: none;
@@ -274,16 +275,16 @@ textarea:-webkit-autofill:focus {
   border-radius: 50px;
   background-color: #e2e2e243;
   backdrop-filter: blur(10px);
-  color: #a8a8a8;
-  -webkit-text-fill-color: #a8a8a8;
+  color: #e1e1e1;
+  -webkit-text-fill-color: #e1e1e1;
   -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.353) inset;
   transition: background-color 5000s ease-in-out 0s;
 }
 
 input:autofill,
 textarea:autofill {
-  color: #a8a8a8;
-  -webkit-text-fill-color: #a8a8a8;
+  color: #e1e1e1;
+  -webkit-text-fill-color: #e1e1e1;
   background-color: #e2e2e243;
 }
 

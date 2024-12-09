@@ -39,7 +39,7 @@
 }
 
 .searcher .search-input::placeholder {
-    color: #e1e1e1;
+    color: #999999;
     transition: color 0.3s ease-in-out;
 }
 
