@@ -11,6 +11,7 @@ import EditPlaylistPage from '../pages/EditPlaylistPage/EditPlaylistPage'
 import AlbumDetailPage from '../pages/AlbumDetailPage/AlbumDetailPage'
 import NewAlbumPage from '../pages/NewAlbumPage/NewAlbumPage'
 import EditAlbumPage from '../pages/EditAlbumPage/EditAlbumPage'
+import MyLibraryPage from '../pages/MyLibraryPage/MyLibraryPage'
 
 
 const AppRoutes = () => {
@@ -32,7 +33,7 @@ const AppRoutes = () => {
 
                     <Route path={'/explore'} element={<ExplorePage />} />
 
-                    <Route path={'/mylibrary'} element={<h1>--------------------My library</h1>} />
+                    <Route path={'/mylibrary'} element={<MyLibraryPage />} />
                     <Route path={'/playlist/:id'} element={<PaylistDetailPage />} />
 
                     <Route path={'/album/:id'} element={<AlbumDetailPage />} />

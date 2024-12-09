@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Form, ListGroup } from 'react-bootstrap'
-import FilterServices from '../../services/filter.services'
 import { Link } from 'react-router-dom'
+import FilterServices from '../../services/filter.services'
 import './ExpandingSearchBar.css'
 
 const ExpandingSearchBar = () => {
@@ -67,7 +67,7 @@ const ExpandingSearchBar = () => {
             >
                 <Form.Control
                     type="text"
-                    placeholder="Buscar..."
+                    placeholder="¿Qué quieres escuchar?"
                     value={filterValue}
                     onChange={handleFilterChange}
                     className="search-input"
@@ -83,22 +83,22 @@ const ExpandingSearchBar = () => {
                             {playlists.map(playlist => (
                                 <ListGroup.Item key={playlist._id}>
                                     <Link to={`/playlist/${playlist._id}`} className="link">
-                                        {playlist.name} · <span className="search-subtitle">{playlist.owner.username}</span>
+                                        {playlist.name} <br /> <span className="search-subtitle">Playlist · {playlist.owner.username}</span>
                                     </Link>
                                 </ListGroup.Item>
                             ))}
                             {albums.map(album => (
                                 <ListGroup.Item key={album._id}>
                                     <Link to={`/album/${album._id}`} className="link">
-                                        {album.title} · <span className="search-subtitle">{album.author.username}</span>
+                                        {album.title} <br /> <span className="search-subtitle">Álbum · {album.author.artistName}</span>
                                     </Link>
                                 </ListGroup.Item>
                             ))}
                             {tracks.map(track => (
                                 <ListGroup.Item key={track._id}>
 
-                                    <Link to={`/album/${track.album._id}`} className="link">
-                                        {track.title} · <span className="search-subtitle">{track.author.artistName}</span>
+                                    <Link to={`/album/${track.album}`} className="link">
+                                        {track.title} <br /> <span className="search-subtitle">Canción · {track.author.artistName}</span>
                                     </Link>
 
                                 </ListGroup.Item>
@@ -106,7 +106,7 @@ const ExpandingSearchBar = () => {
                             {artists.map(artist => (
                                 <ListGroup.Item key={artist._id}>
                                     <Link to={`/artists/${artist._id}`} className="link">
-                                        {artist.artistName} · <span className="search-subtitle"> Artista</span>
+                                        {artist.artistName} <br /> <span className="search-subtitle"> Artista</span>
                                     </Link>
                                 </ListGroup.Item>
                             ))}

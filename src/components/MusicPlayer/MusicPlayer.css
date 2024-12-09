@@ -14,11 +14,7 @@
     width: 90%;
     max-width: 88vw;
     background: rgba(0, 0, 0, 0.6);
-    /* Fallback color */
-    background-size: cover;
-    background-position: center;
     backdrop-filter: blur(10px);
-    /* Blur effect on the image */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -26,10 +22,6 @@
     color: #e1e1e1;
     border-radius: 10px;
     border: .5px solid #e1e1e124;
-    background-image: url('');
-    /* Added default empty URL, will be set dynamically */
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('');
-    /* Adding a gradient overlay */
 }
 
 .music-player .music-player-info {
@@ -38,8 +30,8 @@
 }
 
 .music-player .album-cover {
-    width: 90px;
-    height: 90px;
+    width: 70px;
+    height: 70px;
     overflow: hidden;
     border-radius: 8px;
     margin-right: 20px;

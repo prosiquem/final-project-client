@@ -1,4 +1,4 @@
-import { Col, Row } from "react-bootstrap"
+import { Col, Row, Spinner } from "react-bootstrap"
 
 const Loader = () => {
 
@@ -8,7 +8,7 @@ const Loader = () => {
 
             <Row className="h-100 align-items-center">
                 <Col>
-                    <h2>. . .</h2>
+                    <Spinner animation="grow" />
                 </Col>
             </Row>
         </div >

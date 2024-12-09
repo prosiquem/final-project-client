@@ -15,18 +15,6 @@
     color: #e1e1e1;
 }
 
-.home-page .homepage-playlists h2 {
-    color: #e1e1e1;
-    user-select: none;
-
-}
-
-.home-page .homepage-recent-added h2 {
-    color: #e1e1e1;
-    user-select: none;
-
-}
-
 .top-bar {
     position: fixed;
     border-radius: 10px;
