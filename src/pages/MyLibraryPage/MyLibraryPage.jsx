@@ -8,7 +8,9 @@ import { AuthContext } from "../../contexts/auth.context"
 const MyLibraryPage = () => {
 
     const [playlists, setPlaylists] = useState([])
+    const [filteredPlaylists, setFilteredPlaylists] = useState([])
     const [isLoading, setIsLoading] = useState(true)
+    const [search, setSearch] = useState("")
 
     const { loggedUser } = useContext(AuthContext)
 
@@ -16,14 +18,24 @@ const MyLibraryPage = () => {
         PlaylistServices
             .fetchPlaylists()
             .then(({ data }) => {
-                const filteredPlaylists = data.filter(playlist => playlist.owner._id === loggedUser._id)
-                setPlaylists(filteredPlaylists)
+                const userPlaylists = data.filter(playlist => playlist.owner._id === loggedUser._id)
+                setPlaylists(userPlaylists)
+                setFilteredPlaylists(userPlaylists)
                 setIsLoading(false)
             })
             .catch(err => {
                 console.log(err)
                 setIsLoading(false)
             })
+    }
+
+    const handleSearch = (e) => {
+        const value = e.target.value.toLowerCase()
+        setSearch(value)
+        const filtered = playlists.filter(playlist =>
+            playlist.name.toLowerCase().includes(value)
+        )
+        setFilteredPlaylists(filtered)
     }
 
     useEffect(() => {
@@ -39,11 +51,19 @@ const MyLibraryPage = () => {
                 ) : (
                     <>
                         <Container>
-                            <h2>Mis Playlists</h2>
+
+                            <input
+                                type="text"
+                                placeholder="Buscar en mi biblioteca..."
+                                value={search}
+                                onChange={handleSearch}
+                                className="form-control my-3"
+                            />
                         </Container>
 
-                        <Container className="library-playlists">
-                            <PlaylistList playlists={playlists} />
+                        <Container className="library-playlists mt-5">
+                            <h2>Mi biblioteca</h2>
+                            <PlaylistList playlists={filteredPlaylists} />
                         </Container>
                     </>
                 )}
