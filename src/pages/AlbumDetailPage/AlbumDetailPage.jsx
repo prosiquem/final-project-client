@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
-import { Col, Container, Row, Button, Table } from "react-bootstrap"
+import { useNavigate, useParams } from "react-router-dom"
+import { Col, Container, Row, Button, Table, Form, Modal, Image } from "react-bootstrap"
 import albumServices from "../../services/album.services"
 import Loader from "../../components/Loader/Loader"
 import { AuthContext } from "../../contexts/auth.context"
@@ -11,6 +11,7 @@ import TrackElement from "../../components/TrackElement/TrackElement"
 import { UserMessageContext } from "../../contexts/userMessage.context"
 
 const AlbumDetailPage = () => {
+
     const { id: albumId } = useParams()
     const [album, setAlbum] = useState()
     const [isLoading, setIsLoading] = useState(true)
@@ -25,12 +26,12 @@ const AlbumDetailPage = () => {
         fetchAlbum(albumId)
     }, [albumId])
 
+
     const fetchAlbum = (id) => {
         albumServices
             .fetchOneAlbum(id)
             .then(({ data }) => {
                 setAlbum(data)
-                console.log(data)
                 setPlaylist(data.tracks)
                 setIsLoading(false)
             })
@@ -49,6 +50,7 @@ const AlbumDetailPage = () => {
 
     }
 
+
     return (isLoading ? <Loader /> :
 
         <div className="AlbumDetailPage">
@@ -57,6 +59,8 @@ const AlbumDetailPage = () => {
                 <AlbumDetailsHeader data={album} loggedUser={loggedUser} deleteElm={deleteAlbum} />
 
                 <AlbumDetailsControler data={album} loggedUser={loggedUser} />
+
+                <Button onClick={() => setTrackModals(true)}>Añadir tracks</Button>
 
                 <Row className="content h-100 w-100 py-3 align-items-center">
                     {album.tracks.length === 0 ?
@@ -98,6 +102,7 @@ const AlbumDetailPage = () => {
                     }
                 </Row>
             </Container>
+
         </div>
     )
 }

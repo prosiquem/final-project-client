@@ -28,6 +28,27 @@ class TracksServices {
         )
 
     }
+
+    postTrack(trackData) {
+
+        return (
+            this.axiosApp.post('/track', trackData)
+        )
+    }
+
+    postTracks(tracksData) {
+
+        return (
+            this.axiosApp.post('/tracks', tracksData)
+        )
+    }
+
+    editTrack(trackData) {
+
+        return (
+            this.axiosApp.put(`/tracks/${id}`, trackData)
+        )
+    }
 }
 
 export default new TracksServices()
