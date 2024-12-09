@@ -60,8 +60,6 @@ const AlbumDetailPage = () => {
 
                 <AlbumDetailsControler data={album} loggedUser={loggedUser} />
 
-                <Button onClick={() => setTrackModals(true)}>Añadir tracks</Button>
-
                 <Row className="content h-100 w-100 py-3 align-items-center">
                     {album.tracks.length === 0 ?
                         <Col md={{ span: 4, offset: 4 }} className="text-center">

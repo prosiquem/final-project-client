@@ -5,22 +5,21 @@ import { Check } from "react-bootstrap-icons"
 import { AuthContext } from "../../contexts/auth.context"
 import { useNavigate, useParams } from "react-router-dom"
 import tracksServices from "../../services/tracks.services"
+import { TracksUploaderContext } from "../../contexts/tracksUploader.context"
 
 const TracksUpload = () => {
 
     const { loggedUser } = useContext(AuthContext)
-    const { _id: albumId } = useParams()
+    const { id: albumId } = useParams()
 
     const [loadingImage, setLoadingImage] = useState()
     const [audios, setAudios] = useState([])
     const [isExpanded, setIsExpanded] = useState(true)
     const [tracks, setTracks] = useState([])
 
-    const navigate = useNavigate()
+    const { closeTrackUploader, showTrackUploader } = useContext(TracksUploaderContext)
 
-    useEffect(() => {
-        trackCreation(audios)
-    }, [audios])
+    const navigate = useNavigate()
 
     const handleTracksUpload = (e) => {
 
@@ -34,7 +33,6 @@ const TracksUpload = () => {
         setLoadingImage(true)
 
         uploadServices
-
             .uploadSongs(formData)
             .then(({ data }) => {
 
@@ -42,6 +40,7 @@ const TracksUpload = () => {
                 updatedAudios.push(...data)
                 setAudios(updatedAudios)
                 setLoadingImage(false)
+                trackCreation(updatedAudios)
 
             })
             .catch(err => {
@@ -57,7 +56,7 @@ const TracksUpload = () => {
         audios.forEach((elm, idx) => {
             tracksCopy.push({
                 author: loggedUser._id,
-                album: "675626eb7e9aa60f875c342c",
+                album: albumId,
                 file: elm.path,
                 title: elm.originalName,
                 order: idx,
@@ -74,19 +73,24 @@ const TracksUpload = () => {
             .postTracks(tracksCopy)
     }
 
-    return (
+    return (showTrackUploader &&
 
         <div className="TracksUpload">
 
             {!isExpanded &&
                 <Button
                     variant="custom-secondary"
-                    onClick={() => !loadingImage && navigate(`/album/675626eb7e9aa60f875c342c`)}
+                    onClick={() => {
+                        navigate(`/album/${albumId}`)
+                        setIsExpanded(true)
+                        setLoadingImage()
+                        closeTrackUploader()
+                    }}
                     disabled={loadingImage}>
                     {loadingImage ?
                         <Spinner />
                         :
-                        <><Check /><p>Terminar subida</p></>
+                        <><Check /><p>Ver tracks subidos</p></>
                     }
                 </Button>}
 
@@ -103,10 +107,7 @@ const TracksUpload = () => {
                     </Form.Group>
                 </Form>}
 
-
-
         </div>
-
 
     )
 
