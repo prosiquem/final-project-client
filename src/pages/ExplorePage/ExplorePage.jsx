@@ -27,7 +27,6 @@ const ExplorePage = () => {
             })
             .catch(err => {
                 console.log(err)
-                setIsLoading(false)
             })
     }
 

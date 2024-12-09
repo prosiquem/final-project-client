@@ -17,8 +17,8 @@ const Homepage = () => {
     const [playlists, setPlaylists] = useState([])
     const [lastPlaylists, setLastPlaylists] = useState([])
     const [albums, setAlbums] = useState([])
-
     const [isLoading, setIsLoading] = useState(true)
+
     const { loggedUser } = useContext(AuthContext)
 
     useEffect(() => {
@@ -98,10 +98,11 @@ const Homepage = () => {
                                     <Link className="link">
                                         <h2>Últimas playlists <ArrowRightShort /></h2>
                                     </Link>
-                                    <PlaylistList playlists={lastPlaylists} />
+                                    <PlaylistList playlists={lastPlaylists} showAddButton={false} />
                                 </Col>
                             </Row>
                         </Container>
+
 
                         <Container className="homepage-recent-added mb-5">
                             <Row>

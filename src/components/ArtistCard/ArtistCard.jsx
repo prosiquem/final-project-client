@@ -17,10 +17,14 @@ const ArtistCard = ({ _id, avatar, verified, artistName }) => {
                         />
                     </Card>
 
-                    <div className="artist-card-text">
-                        <h5 className="artist-card-title">{artistName}</h5>
+                    <div className="artist-card-text d-flex d-flex justify-content-start">
+                        <div className="artist-card-title-container">
+                            <h5 className="artist-card-title">{artistName}</h5>
+                            <p className="artist-card-subtitle">Artista</p>
+                        </div>
                         {verified && <PatchCheckFill className="verified-icon" />}
                     </div>
+
                 </div>
             </Link>
         </article>

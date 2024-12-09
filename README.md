@@ -8,7 +8,7 @@ By Pedro Rosique & Elena Frontiñán
 |---------|-----------------|------------|
 |    /login     |        Login page         |            |
 |    /signup     |        Signup page      |           |
-<!-- |    /     |        Landing page         |            | -->
+|    /     |        Landing page         |            |
 |    /home     |        Initial page      |     ✅      |
 <!-- |    /profile/:id    |        Profile page         |     ✅       | -->
 
@@ -23,13 +23,12 @@ By Pedro Rosique & Elena Frontiñán
 
 | **URL** | **Description** | **Protected** |
 |---------|-----------------|------------|
-<!-- |    /album/id     |       Album detail          |      ✅      | -->
+|    /album/id     |       Album detail          |      ✅      |
 
 **Artists pages**
 
 | **URL** | **Description** | **Protected** |
 |---------|-----------------|------------|
-<!-- |     /artists    |         Artists page        |      ✅      | -->
 <!-- |    /artists/:id     |       Artist detail         |      ✅      | -->
 
 **Explore pages**
@@ -44,8 +43,7 @@ By Pedro Rosique & Elena Frontiñán
 |     /playlist/new    |      Create playlist           |      ✅      |
 |    /playlist/edit     |      Edit playlist           |     ✅       |
 |    /album/new     |        Create Album         |      ✅      |
-<!-- |     /album/edit    |       Edit Album          |      ✅      | -->
-<!-- |     /track/new   |        Create Track         |      ✅      | -->
+|     /album/edit    |       Edit Album          |      ✅      |
 <!-- |     /track/edit    |        Edit track         |      ✅      | -->
 
 

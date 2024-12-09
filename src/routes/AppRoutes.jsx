@@ -38,14 +38,12 @@ const AppRoutes = () => {
 
                     <Route path={'/album/:id'} element={<AlbumDetailPage />} />
 
-                    <Route path={'/artists'} element={<h1>--------------------Artists page</h1>} />
                     <Route path={'/artists/:id'} element={<h1>--------------------Artist detail page</h1>} />
 
                     <Route path={'/playlist/new'} element={<NewPlaylistPage />} />
                     <Route path={'/playlist/edit/:id'} element={<EditPlaylistPage />} />
                     <Route path={'/album/new'} element={<NewAlbumPage />} />
                     <Route path={'/album/edit/:id'} element={<EditAlbumPage />} />
-                    <Route path={'/track/new'} element={<h1>--------------------Form track</h1>} />
                     <Route path={'/track/edit'} element={<h1>--------------------Edit track</h1>} />
 
                 </Route>
