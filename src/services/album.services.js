@@ -47,7 +47,7 @@ class AlbumServices {
 
     editAlbum(id, albumData) {
         return (
-            this.axiosApp.post(`/albums/${id}`, albumData)
+            this.axiosApp.put(`/albums/${id}`, albumData)
         )
     }
 

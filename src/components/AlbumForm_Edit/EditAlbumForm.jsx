@@ -1,57 +1,64 @@
-import { Button, FloatingLabel, Form, Spinner } from "react-bootstrap"
-import makeAnimated from "react-select/animated"
 import Select from "react-select"
+import makeAnimated from "react-select/animated"
 
 import { MUSIC_GENRES } from "../../consts/music.consts"
-import { useContext, useState } from "react"
-import uploadServices from "../../services/upload.services"
+
+import { Badge, Button, FloatingLabel, Form, Image, Spinner } from "react-bootstrap"
+import { useContext, useEffect, useState } from "react"
 import albumServices from "../../services/album.services"
-import { AuthContext } from "../../contexts/auth.context"
+import Loader from "../Loader/Loader"
+import uploadServices from "../../services/upload.services"
+import { formatDateInput } from "../../utils/date.utils"
 import { UserMessageContext } from "../../contexts/userMessage.context"
 import { useNavigate } from "react-router-dom"
 
-
-const CreateAlbumForm = () => {
-
-    const { loggedUser } = useContext(AuthContext)
-    const { createAlert } = useContext(UserMessageContext)
-
-    const [newAlbumData, setNewAlbumData] = useState({
-        author: loggedUser._id,
-        title: "",
-        releaseDate: "",
-        musicGenres: [""],
-        cover: "",
-        description: "",
-        credits: {}
-    })
-    const [creditsData, setCreditsData] = useState({
-        producers: "",
-        colabArtists: [],
-        recordLabel: ""
-    })
-    const [loadingImage, setLoadingImage] = useState(false)
+const EditAlbumForm = ({ albumId }) => {
 
     const animatedComponents = makeAnimated()
+
+    const { createAlert } = useContext(UserMessageContext)
+
+    const [loadingImage, setLoadingImage] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
+    const [albumData, setAlbumData] = useState()
+    const [creditsData, setCreditsData] = useState()
+
     const navigate = useNavigate()
 
-    const handleInputChange = e => {
+    useEffect(() => {
+        fetchAlbum()
+    }, [])
 
-        const { name, value } = e.target
-        setNewAlbumData({ ...newAlbumData, [name]: value })
+    const fetchAlbum = () => {
+        albumServices
+            .fetchOneAlbum(albumId)
+            .then(({ data }) => {
+                setAlbumData(data)
+                setCreditsData(data.credits)
+                setIsLoading(false)
+            })
+            .catch(err => console.log(err))
     }
 
-    const handleCreditsChange = e => {
+    const handleInputChange = (e) => {
 
-        const { name, value } = e.target
+        const { value, name } = e.target
+        setAlbumData({ ...albumData, [name]: value })
+
+    }
+
+    const handleCreditsChange = (e) => {
+
+        const { value, name } = e.target
         setCreditsData({ ...creditsData, [name]: value })
+
     }
 
     const handleMultiSelectChange = (name, selectedOption) => {
         const values = selectedOption
             ? selectedOption.map((option) => option.value)
             : []
-        setNewAlbumData({ ...newAlbumData, [name]: values })
+        setAlbumData({ ...albumData, [name]: values })
     }
 
     const handleSingleFileUpload = (e) => {
@@ -67,7 +74,7 @@ const CreateAlbumForm = () => {
             .uploadImage(formData)
             .then(({ data }) => {
 
-                setNewAlbumData({ ...newAlbumData, cover: data.cloudinary_url })
+                setAlbumData({ ...albumData, cover: data.cloudinary_url })
                 setLoadingImage(false)
             })
             .catch(err => {
@@ -80,19 +87,16 @@ const CreateAlbumForm = () => {
 
         e.preventDefault()
 
-        setNewAlbumData({ ...newAlbumData, credits: creditsData })
-
         albumServices
-            .postAlbum(newAlbumData)
-            .then(({ data }) => {
-                createAlert('Album creado', false)
-                navigate(`/album/${data}`)
+            .editAlbum(albumId, albumData)
+            .then(() => {
+                createAlert(`${albumData.title} editado`, false)
+                navigate(`/album/${albumId}`)
             })
-            .catch((err) => console.log(err))
 
     }
 
-    return (
+    return (isLoading ? <Loader /> :
         <Form className="CreateAlbumForm my-5" onSubmit={handleFormSubmit}>
 
             <Form.Group className="mb-3">
@@ -104,7 +108,7 @@ const CreateAlbumForm = () => {
                         type="text"
                         name="title"
                         placeholder="Nombre del album"
-                        value={newAlbumData.title}
+                        value={albumData.title}
                         onChange={handleInputChange} />
                 </FloatingLabel>
             </Form.Group>
@@ -118,7 +122,7 @@ const CreateAlbumForm = () => {
                         type="date"
                         name="releaseDate"
                         placeholder="Fecha de lanzamiento"
-                        value={newAlbumData.releaseDate}
+                        value={formatDateInput(albumData.releaseDate)}
                         onChange={handleInputChange} />
                 </FloatingLabel>
             </Form.Group>
@@ -131,13 +135,15 @@ const CreateAlbumForm = () => {
                     placeholder="Género musical"
                     name="musicGenres"
                     options={MUSIC_GENRES}
-                    value={MUSIC_GENRES.filter(option => newAlbumData.musicGenres.includes(option.value))}
+                    value={MUSIC_GENRES.filter(option => albumData.musicGenres.includes(option.value))}
                     onChange={(selectedOptions) => handleMultiSelectChange('musicGenres', selectedOptions)}
                     isMulti
                 />
             </Form.Group>
 
             <Form.Group className="mb-3">
+                <Image src={albumData.cover} width={"50%"} />
+                <br />
                 <Form.Label>Portada</Form.Label>
                 <Form.Control
                     type="file"
@@ -158,7 +164,7 @@ const CreateAlbumForm = () => {
                         name="description"
                         className="text-area"
                         placeholder="Descripción"
-                        value={newAlbumData.description}
+                        value={albumData.description}
                         onChange={handleInputChange} />
                 </FloatingLabel>
             </Form.Group>
@@ -195,14 +201,15 @@ const CreateAlbumForm = () => {
             </Form.Group>
 
             <Button
-                onClick={handleFormSubmit}
                 variant="custom-primary"
-                disabled={loadingImage}>
-                {loadingImage ? <Spinner animation="border" variant="primary" /> : "Crear album"}
+                disabled={loadingImage}
+                onClick={handleFormSubmit}>
+                {loadingImage ? <Spinner animation="border" variant="primary" /> : "Guardar cambios"}
             </Button>
 
         </Form>
     )
+
 }
 
-export default CreateAlbumForm
+export default EditAlbumForm

@@ -8,6 +8,7 @@ import { AuthContext } from "../../contexts/auth.context"
 import AlbumDetailsHeader from "../../components/Album_DetailsHeader/AlbumDetailsHeader"
 import AlbumDetailsControler from "../../components/Album_DetailsControler/AlbumDetailsControler"
 import TrackElement from "../../components/TrackElement/TrackElement"
+import { UserMessageContext } from "../../contexts/userMessage.context"
 
 const AlbumDetailPage = () => {
 
@@ -17,6 +18,9 @@ const AlbumDetailPage = () => {
     const [isLoading, setIsLoading] = useState(true)
 
     const { loggedUser } = useContext(AuthContext)
+    const { createAlert } = useContext(UserMessageContext)
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         fetchAlbum(albumId)
@@ -34,13 +38,25 @@ const AlbumDetailPage = () => {
 
     }
 
+    const deleteAlbum = () => {
+
+        albumServices
+            .deleteAlbum(albumId)
+            .then(() => {
+                navigate('/mylibrary')
+                createAlert(`Tu album ${album.title} ha sido eliminado`, false)
+            })
+            .catch(err => console.log(err))
+
+    }
+
     return (isLoading ? <Loader /> :
 
         <div className="AlbumDetailPage">
 
             <Container className="page-container gap-4">
 
-                <AlbumDetailsHeader data={album} loggedUser={loggedUser} />
+                <AlbumDetailsHeader data={album} loggedUser={loggedUser} deleteElm={deleteAlbum} />
 
                 <AlbumDetailsControler data={album} loggedUser={loggedUser} />
 
