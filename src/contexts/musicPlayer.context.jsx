@@ -3,6 +3,7 @@ import { createContext, useContext, useState, useEffect } from "react"
 const MusicPlayerContext = createContext()
 
 export const MusicPlayerProvider = (props) => {
+
     const [currentTrack, setCurrentTrack] = useState(null)
     const [isPlaying, setIsPlaying] = useState(false)
     const [audio, setAudio] = useState(null)
