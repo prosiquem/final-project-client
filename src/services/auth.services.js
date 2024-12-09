@@ -30,11 +30,7 @@ class AuthServices {
     }
 
     verifyUser(token) {
-        return this.axiosApp.get('/verify', {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        })
+        return this.axiosApp.get('/verify')
     }
 }
 
