@@ -44,10 +44,6 @@ By Pedro Rosique & Elena Frontiñán
 |    /playlist/edit     |      Edit playlist           |     ✅       |
 |    /album/new     |        Create Album         |      ✅      |
 |     /album/edit    |       Edit Album          |      ✅      |
-<!-- |     /track/edit    |        Edit track         |      ✅      | -->
-
-
-
 
 **Admin pages**
 

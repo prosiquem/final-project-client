@@ -1,0 +1,9 @@
+.TracksUpload {
+    position: absolute;
+    background-color: hsla(0, 0%, 10%, 0.85);
+    backdrop-filter: blur(10px);
+    top: 4vh;
+    right: 5vw;
+    padding: 8px 16px;
+    border-radius: 20px;
+}

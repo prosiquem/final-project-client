@@ -21,6 +21,14 @@ class TracksServices {
 
     }
 
+    getTrack(id) {
+
+        return (
+            this.axiosApp.get(`/tracks/${id}`)
+        )
+
+    }
+
     searchSongs(query) {
 
         return (
@@ -43,10 +51,16 @@ class TracksServices {
         )
     }
 
-    editTrack(trackData) {
+    editTrack(id, trackData) {
 
         return (
             this.axiosApp.put(`/tracks/${id}`, trackData)
+        )
+    }
+
+    deleteTrack(id) {
+        return (
+            this.axiosApp.delete(`/tracks/${id}`)
         )
     }
 }

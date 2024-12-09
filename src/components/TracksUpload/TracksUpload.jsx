@@ -1,11 +1,15 @@
 import { useContext, useEffect, useState } from "react"
-import uploadServices from "../../services/upload.services"
-import { Button, Form, Spinner } from "react-bootstrap"
-import { Check } from "react-bootstrap-icons"
-import { AuthContext } from "../../contexts/auth.context"
 import { useNavigate, useParams } from "react-router-dom"
+
 import tracksServices from "../../services/tracks.services"
+import uploadServices from "../../services/upload.services"
+import { AuthContext } from "../../contexts/auth.context"
 import { TracksUploaderContext } from "../../contexts/tracksUploader.context"
+
+import { Button, Form, Spinner } from "react-bootstrap"
+import { Check, XLg } from "react-bootstrap-icons"
+
+import './TracksUpload.css'
 
 const TracksUpload = () => {
 
@@ -97,13 +101,19 @@ const TracksUpload = () => {
             {isExpanded &&
                 <Form>
                     <Form.Group className="mb-3">
-                        <Form.Label>Tracks</Form.Label>
+                        <Form.Label className="py-2 d-flex justify-content-between align-items-center">
+                            <label>Sube las canciones del album </label>
+                            <Button variant="custom-transparent">
+                                <XLg onClick={closeTrackUploader} />
+                            </Button>
+                        </Form.Label>
                         <Form.Control
                             type="file"
                             name="cover"
                             placeholder="Portada"
                             onChange={handleTracksUpload}
-                            multiple />
+                            multiple
+                            className="file-controler" />
                     </Form.Group>
                 </Form>}
 

@@ -47,6 +47,7 @@ label {
 }
 
 /* Bentobox CSS */
+
 .page-container {
   background-color: #121212;
   height: 95vh;
@@ -113,18 +114,15 @@ button.custom-primary-button:active {
 }
 
 .btn-custom-secondary {
-  /* display: flex; */
   align-items: center;
   justify-content: center;
-  /* width: 60px;
-  height: 60px; */
   background-color: #2d2d2d36;
   border-radius: 50px;
   border: .5px solid #e1e1e124;
   color: #e1e1e1;
   transition: background-color 0.3s ease;
   padding: 10px 30px;
-  /* font-size: 1.8em; */
+
 }
 
 .btn-custom-secondary:hover {
@@ -133,12 +131,6 @@ button.custom-primary-button:active {
   background: #41414145;
   color: #e1e1e1;
 }
-
-/* .btn-custom-secondary:focus {
-  border: .5px solid #e1e1e124;
-  background: #65656545;
-  color: #e1e1e1;
-} */
 
 .btn-custom-secondary:active {
   border: .5px solid #e1e1e124 !important;
@@ -216,6 +208,33 @@ button.custom-focus-button:hover {
   border: none;
   min-height: 40px;
   width: 100%;
+}
+
+input[type="file"] {
+  background-color: #e2e2e243;
+  color: #e1e1e1;
+  border: none;
+  border-radius: 50px;
+  min-height: 50px;
+  width: 100%;
+  backdrop-filter: blur(10px);
+  padding-left: 35%;
+}
+
+input[type="file"]::file-selector-button {
+  position: absolute;
+  top: 16%;
+  left: 3%;
+  background-color: #1d1d1dcc;
+  height: 90%;
+  color: white;
+  border: none;
+  border-radius: 50px;
+}
+
+input[type=file]::file-selector-button:hover {
+  background-color: #81ecec;
+  border: 2px solid #00cec9;
 }
 
 .form-control.text-area {
@@ -456,4 +475,10 @@ textarea:autofill {
 
 .modal-header {
   border-bottom: none;
+}
+
+/* Offcanvas */
+
+.offcanvas {
+  background-color: #1f1f1f;
 }
