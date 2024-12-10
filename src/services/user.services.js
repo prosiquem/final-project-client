@@ -9,10 +9,10 @@ class UserServices {
 
         this.axiosApp.interceptors.request.use(config => {
 
-            const storedToken = localStorage.getItem('authToken');
+            const storedToken = localStorage.getItem('authToken')
 
             if (storedToken) {
-                config.headers = { Authorization: `Bearer ${storedToken}` };
+                config.headers = { Authorization: `Bearer ${storedToken}` }
             }
 
             return config
@@ -29,6 +29,12 @@ class UserServices {
     fetchArtists() {
         return (
             this.axiosApp.get('/artists')
+        )
+    }
+
+    editUser(id, editUser) {
+        return (
+            this.axiosApp.put(`/users/${id}`, editUser)
         )
     }
 }
