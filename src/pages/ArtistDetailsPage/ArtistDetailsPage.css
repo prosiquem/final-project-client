@@ -6,10 +6,25 @@
     width: 100%;
     overflow: hidden;
     opacity: 50%;
+    z-index: -1;
+}
+
+.coverCarousel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to bottom, #12121200 0%, #121212 95%);
+    z-index: 1;
+    pointer-events: none;
 }
 
 .coverCarousel .carousel-inner {
     height: 100%;
+    position: relative;
+    z-index: 0;
 }
 
 .coverCarouselItem {

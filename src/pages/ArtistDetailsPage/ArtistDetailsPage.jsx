@@ -7,6 +7,7 @@ import ArtistDetailsHeader from "../../components/Artist_DetailsHeader/ArtistDet
 import { AuthContext } from "../../contexts/auth.context"
 
 import './ArtistDetailsPage.css'
+import ArtistDetailsDescription from "../../components/Artist_DetailDescription/ArtistDetailDescription"
 
 const ArtistDetailsPage = () => {
 
@@ -16,6 +17,7 @@ const ArtistDetailsPage = () => {
 
     const [artist, setArtist] = useState()
     const [isLoading, setIsLoading] = useState(true)
+    const [isEditing, setIsEditing] = useState(false)
 
     useEffect(() => {
 
@@ -37,7 +39,7 @@ const ArtistDetailsPage = () => {
         <div className="ArtistDetailsPage">
             <Container className="page-container gap-4">
 
-                <Carousel fade controls={false} interval={4000} className="coverCarousel">
+                <Carousel fade controls={false} indicators={false} interval={4000} className="coverCarousel">
                     {artist.artistGallery.map(elm => {
                         return (
                             <Carousel.Item className="coverCarouselItem">
@@ -47,7 +49,17 @@ const ArtistDetailsPage = () => {
                     })}
                 </Carousel>
 
-                <ArtistDetailsHeader data={artist} loggedUser={loggedUser} />
+                <ArtistDetailsHeader
+                    data={artist}
+                    loggedUser={loggedUser}
+                    isEditing={isEditing}
+                    setIsEditing={setIsEditing} />
+
+                <ArtistDetailsDescription
+                    data={artist}
+                    loggedUser={loggedUser}
+                    isEditing={isEditing}
+                    setIsEditing={setIsEditing} />
 
             </Container>
         </div>
