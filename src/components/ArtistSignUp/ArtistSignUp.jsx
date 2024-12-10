@@ -149,6 +149,26 @@ const ArtistSignUp = ({
 
             </Form.Group>
 
+            <h5>Cuéntanos un poco más sobre ti</h5>
+            <hr />
+
+            <Form.Group className="mb-3">
+                <FloatingLabel
+                    controlId="description"
+                    label="Sobre ti"
+                >
+                    <Form.Control
+                        as="textarea"
+                        rows={6}
+                        className="text-area"
+                        type="text"
+                        name="description"
+                        placeholder="Sobre ti"
+                        value={signupData.description}
+                        onChange={handleInputChange} />
+                </FloatingLabel>
+            </Form.Group>
+
             <h5>Indica tus redes sociales</h5>
             <hr />
 

@@ -5,6 +5,8 @@ const TracksUploaderContext = createContext()
 function TracksUploaderWrapper(props) {
 
     const [showTrackUploader, setTrackUploader] = useState(false)
+    const [albumId, setAlbumId] = useState()
+    const [isLoadingTracks, setIsLoading] = useState()
 
     const closeTrackUploader = () => {
 
@@ -19,7 +21,7 @@ function TracksUploaderWrapper(props) {
     }
 
     return (
-        <TracksUploaderContext.Provider value={{ openTrackUploader, closeTrackUploader, showTrackUploader }}>
+        <TracksUploaderContext.Provider value={{ openTrackUploader, closeTrackUploader, showTrackUploader, albumId, setAlbumId, isLoadingTracks, setIsLoading }}>
             {props.children}
         </TracksUploaderContext.Provider>
     )

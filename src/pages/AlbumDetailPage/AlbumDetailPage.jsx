@@ -25,14 +25,14 @@ const AlbumDetailPage = () => {
 
     const { loggedUser } = useContext(AuthContext)
     const { createAlert } = useContext(UserMessageContext)
-    const { openTrackUploader } = useContext(TracksUploaderContext)
+    const { openTrackUploader, setAlbumId, isLoadingTracks } = useContext(TracksUploaderContext)
 
     const navigate = useNavigate()
     const { playTrack, setPlaylist } = useMusicPlayer()
 
     useEffect(() => {
         fetchAlbum((albumId))
-    }, [albumId])
+    }, [albumId, isLoadingTracks])
 
 
     const fetchAlbum = (id) => {
@@ -76,7 +76,7 @@ const AlbumDetailPage = () => {
 
                 <AlbumDetailsHeader data={album} loggedUser={loggedUser} deleteElm={deleteAlbum} />
 
-                <AlbumDetailsControler data={album} loggedUser={loggedUser} />
+                <AlbumDetailsControler data={album} loggedUser={loggedUser} isLoadingTracks={isLoadingTracks} />
 
                 <Row className="content h-100 w-100 py-3 align-items-center">
                     {album.tracks.length === 0 ?
@@ -85,7 +85,11 @@ const AlbumDetailPage = () => {
                                 <p>Aun no tienes añadido ninguna canción. ¿Empezamos?</p> :
                                 <p>{album.author.artistName} aun no ha añadido ninguna canción</p>}
                             {album.author._id === loggedUser._id &&
-                                <Button variant="custom-primary" onClick={openTrackUploader}>Añadir canción</Button>}
+                                <Button
+                                    variant="custom-primary"
+                                    onClick={() => { openTrackUploader(), setAlbumId(albumId) }}
+                                    disabled={isLoadingTracks}>
+                                    Añadir canción</Button>}
                         </Col>
                         :
                         <Col md="12" className="p-0 h-100">

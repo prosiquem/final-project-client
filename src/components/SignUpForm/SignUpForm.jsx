@@ -26,6 +26,7 @@ const SignUpForm = () => {
         artistGallery: [""],
         relatedArtists: [],
         artistName: "",
+        description: ""
     })
 
     const [socialMediaData, setSocialMediaData] = useState([
@@ -100,6 +101,8 @@ const SignUpForm = () => {
         const formData = new FormData()
 
         formData.append("imageData", e.target.files[0])
+
+        console.log(e.target.files[0])
 
         setLoadingImage(true)
 

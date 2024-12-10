@@ -14,14 +14,16 @@ import './TracksUpload.css'
 const TracksUpload = () => {
 
     const { loggedUser } = useContext(AuthContext)
-    const { id: albumId } = useParams()
+    const { closeTrackUploader, showTrackUploader, albumId, setIsLoading, isLoadingTracks } = useContext(TracksUploaderContext)
 
     const [loadingImage, setLoadingImage] = useState()
     const [audios, setAudios] = useState([])
+    const [upload, setUpload] = useState({
+        isCorrect: false,
+        message: "Ha habido un error durante la subida, intentalo de nuevo"
+    })
     const [isExpanded, setIsExpanded] = useState(true)
     const [tracks, setTracks] = useState([])
-
-    const { closeTrackUploader, showTrackUploader } = useContext(TracksUploaderContext)
 
     const navigate = useNavigate()
 
@@ -33,8 +35,8 @@ const TracksUpload = () => {
             formData.append("tracksData", file)
         })
 
+        setIsLoading(true)
         setIsExpanded(false)
-        setLoadingImage(true)
 
         uploadServices
             .uploadSongs(formData)
@@ -43,13 +45,14 @@ const TracksUpload = () => {
                 const updatedAudios = [...audios]
                 updatedAudios.push(...data)
                 setAudios(updatedAudios)
-                setLoadingImage(false)
                 trackCreation(updatedAudios)
+                setUpload({ isCorrect: true })
 
             })
             .catch(err => {
-                setLoadingImage(false)
+                setIsLoading(false)
                 console.log(err)
+                setUpload({ isCorrect: false })
             })
     }
 
@@ -75,6 +78,14 @@ const TracksUpload = () => {
 
         tracksServices
             .postTracks(tracksCopy)
+            .then(() => {
+                setIsLoading(false)
+            })
+            .catch(err => {
+                setIsLoading(false)
+                console.log(err)
+                setUpload({ isCorrect: false })
+            })
     }
 
     return (showTrackUploader &&
@@ -87,14 +98,16 @@ const TracksUpload = () => {
                     onClick={() => {
                         navigate(`/album/${albumId}`)
                         setIsExpanded(true)
-                        setLoadingImage()
+                        setIsLoading()
                         closeTrackUploader()
                     }}
-                    disabled={loadingImage}>
-                    {loadingImage ?
+                    disabled={isLoadingTracks}>
+                    {isLoadingTracks ?
                         <Spinner />
                         :
-                        <><Check /><p>Ver tracks subidos</p></>
+                        upload.isCorrect ? <><Check /><p>Ver tracks subidos</p></> :
+                            <><XLg /><p>{upload.message}</p></>
+
                     }
                 </Button>}
 

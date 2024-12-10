@@ -1,0 +1,25 @@
+.coverCarousel {
+    position: absolute !important;
+    top: 0;
+    left: o;
+    height: 40vh;
+    width: 100%;
+    overflow: hidden;
+    opacity: 50%;
+}
+
+.coverCarousel .carousel-inner {
+    height: 100%;
+}
+
+.coverCarouselItem {
+    width: 100%;
+    height: 100%;
+}
+
+.coverCarouselImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
