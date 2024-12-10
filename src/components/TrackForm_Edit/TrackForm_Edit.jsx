@@ -14,7 +14,7 @@ const EditTrackForm = ({ trackId, setEditTrackModal, fetchAlbum, albumId }) => {
 
     useEffect(() => {
         fetchTrack(trackId)
-    }, [])
+    }, [trackId])
 
     const fetchTrack = (trackId) => {
 
@@ -59,7 +59,7 @@ const EditTrackForm = ({ trackId, setEditTrackModal, fetchAlbum, albumId }) => {
 
         <Form className="EditTrackForm" onSubmit={handleFormSubmit}>
 
-            <audio src={trackData.file} />
+            <audio src={trackData.file} controls />
 
             <Form.Group className="mb-3">
                 <FloatingLabel

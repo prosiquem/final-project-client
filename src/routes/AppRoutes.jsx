@@ -13,6 +13,7 @@ import NewAlbumPage from '../pages/NewAlbumPage/NewAlbumPage'
 import EditAlbumPage from '../pages/EditAlbumPage/EditAlbumPage'
 import MyLibraryPage from '../pages/MyLibraryPage/MyLibraryPage'
 import ProfilePage from '../pages/ProfilePage/ProfilePage'
+import ArtistDetailsPage from '../pages/ArtistDetailsPage/ArtistDetailsPage'
 
 const AppRoutes = () => {
 
@@ -38,7 +39,7 @@ const AppRoutes = () => {
 
                     <Route path={'/album/:id'} element={<AlbumDetailPage />} />
 
-                    <Route path={'/artists/:id'} element={<h1>--------------------Artist detail page</h1>} />
+                    <Route path={'/artists/:id'} element={<ArtistDetailsPage />} />
 
                     <Route path={'/playlist/new'} element={<NewPlaylistPage />} />
                     <Route path={'/playlist/edit/:id'} element={<EditPlaylistPage />} />
