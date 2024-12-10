@@ -1,13 +1,25 @@
 import { Button, Col, Row } from "react-bootstrap"
 import { PlayFill, PlusLg } from "react-bootstrap-icons"
-import TrackSearchBar from "../TrackSearchBar/TrackSearchBar"
 
-const DetailsControler = ({ data, loggedUser, setAddTrack }) => {
+const DetailsControler = ({ data, loggedUser, setAddTrack, playTrack }) => {
+
+    const handlePlayClick = () => {
+        if (data.tracks.length > 0) {
+            const firstTrack = data.tracks[0]
+            const trackData = {
+                file: firstTrack.file,
+                title: firstTrack.title,
+                artistName: firstTrack.author.artistName,
+                cover: firstTrack.album.cover,
+            }
+            playTrack(trackData)
+        }
+    }
 
     return (
         <Row className="DetailsControler w-100">
             <Col className="p-0">
-                <Button variant="custom-primary me-2"> <PlayFill /> </Button>
+                <Button variant="custom-primary me-2" onClick={handlePlayClick}> <PlayFill /> </Button>
                 <Button variant="custom-secondary me-2">Guardarme la playlist</Button>
                 {data.tracks.length > 0 && data.owner._id === loggedUser._id &&
                     <Button variant="custom-secondary me-2" onClick={() => setAddTrack(true)}>

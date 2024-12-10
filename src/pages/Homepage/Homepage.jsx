@@ -66,7 +66,7 @@ const Homepage = () => {
                     <>
 
                         <Container className="homepage-greeting-container mb-5 d-flex justify-content-between">
-                            <h2>Hola, <span className="username">{loggedUser?.username}</span></h2>
+                            <h2>Hola, <span className="username">{loggedUser.role === "ARTIST" ? loggedUser.artistName : loggedUser.username}</span></h2>
                             <GlobalSearchBar />
                         </Container>
 

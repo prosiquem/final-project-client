@@ -7,7 +7,7 @@ const AddButton = () => {
     return (
         <article className="add-card mb-3">
 
-            <div className="add-card-container">
+            <div className="add-card-container d-flex">
                 <Card className="add-card">
 
                     <Plus className="custom-add-card-plus" />

@@ -18,7 +18,7 @@ const AlbumDetailsHeader = ({ data, loggedUser, deleteElm }) => {
 
 
                 <Row className="details-info-header">
-                    <Col md="10" ><label>Album</label></Col>
+                    <Col md="10" ><label>Álbum</label></Col>
 
                     {data.author._id === loggedUser._id &&
                         <Col md="2" className="text-end" >

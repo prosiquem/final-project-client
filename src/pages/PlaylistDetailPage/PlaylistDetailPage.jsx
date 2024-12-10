@@ -97,9 +97,9 @@ const PaylistDetailPage = () => {
 
                 <PlaylistDetailsHeader data={playlist} loggedUser={loggedUser} deleteElm={deletePlaylist} />
 
-                <DetailsControler data={playlist} loggedUser={loggedUser} setAddTrack={setAddTrack} />
+                <DetailsControler data={playlist} loggedUser={loggedUser} setAddTrack={setAddTrack} playTrack={playTrack} />
 
-                <Row className="content h-100 w-100 py-3 align-items-center">
+                <Row className="content w-100 py-3 align-items-center">
                     {playlist.tracks.length === 0 ?
 
                         <Col md={{ span: 4, offset: 4 }} className="text-center">
