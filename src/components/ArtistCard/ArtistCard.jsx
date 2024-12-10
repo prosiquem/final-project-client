@@ -6,7 +6,7 @@ import './ArtistCard.css'
 const ArtistCard = ({ _id, avatar, verified, artistName }) => {
 
     return (
-        <article className="artist-card mb-3">
+        <article className="artist-card">
             <Link to={`/artists/${_id}`} className="link">
                 <div className="artist-card-container">
                     <Card className="artist-card">
@@ -17,7 +17,7 @@ const ArtistCard = ({ _id, avatar, verified, artistName }) => {
                         />
                     </Card>
 
-                    <div className="artist-card-text d-flex d-flex justify-content-start">
+                    <div className="artist-card-text d-flex justify-content-start mt-2">
                         <div className="artist-card-title-container">
                             <h5 className="artist-card-title">{artistName}</h5>
                             <p className="artist-card-subtitle">Artista</p>

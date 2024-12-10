@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Button, Col, Container, Row } from "react-bootstrap"
-import './Launchpage.css'
+import './LaunchPage.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../contexts/auth.context'
 

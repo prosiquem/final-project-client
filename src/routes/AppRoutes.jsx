@@ -1,18 +1,18 @@
 import { Routes, Route } from 'react-router-dom'
 import LoginPage from '../pages/LoginPage/LoginPage'
-import Launchpage from '../pages/Launchpage/Launchpage'
+import Launchpage from '../pages/LaunchPage/Launchpage'
 import SignUpPage from '../pages/SignUpPage/SignUpPage'
 import PaylistDetailPage from '../pages/PlaylistDetailPage/PlaylistDetailPage'
 import PrivateRoutes from './PrivateRoutes'
 import NewPlaylistPage from '../pages/NewPlaylistPage/NewPlaylistPage'
-import Homepage from '../pages/Homepage/Homepage'
+import HomePage from '../pages/Homepage/Homepage'
 import ExplorePage from '../pages/ExplorePage/ExplorePage'
 import EditPlaylistPage from '../pages/EditPlaylistPage/EditPlaylistPage'
 import AlbumDetailPage from '../pages/AlbumDetailPage/AlbumDetailPage'
 import NewAlbumPage from '../pages/NewAlbumPage/NewAlbumPage'
 import EditAlbumPage from '../pages/EditAlbumPage/EditAlbumPage'
 import MyLibraryPage from '../pages/MyLibraryPage/MyLibraryPage'
-
+import ProfilePage from '../pages/ProfilePage/ProfilePage'
 
 const AppRoutes = () => {
 
@@ -28,8 +28,8 @@ const AppRoutes = () => {
 
                 <Route element={<PrivateRoutes />}>
 
-                    <Route path={'/home'} element={<Homepage />} />
-                    <Route path={'/profile/:id'} element={<h1>--------------------Seré un perfil</h1>} />
+                    <Route path={'/home'} element={<HomePage />} />
+                    <Route path={'/profile/:id'} element={<ProfilePage />} />
 
                     <Route path={'/explore'} element={<ExplorePage />} />
 

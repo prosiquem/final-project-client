@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import { Form, ListGroup } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import FilterServices from '../../services/filter.services'
-import './ExpandingSearchBar.css'
+import './GlobalSearchBar.css'
 
 const ExpandingSearchBar = () => {
 
