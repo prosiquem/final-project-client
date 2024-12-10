@@ -1,15 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Col, Container, Row } from "react-bootstrap"
-import { AuthContext } from './../../contexts/auth.context'
+import { AuthContext } from '../../contexts/auth.context'
 import { ArrowRightShort } from 'react-bootstrap-icons'
 import { Link } from 'react-router-dom'
 import Loader from '../../components/Loader/Loader'
 import PlaylistList from '../../components/PlaylistList/PlaylistList'
 import PlaylistServices from "../../services/playlist.services"
 import AlbumServices from "../../services/album.services"
-import ExpandingSearchBar from '../../components/ExpandingSearchBar/ExpandingSearchBar'
+import GlobalSearchBar from '../../components/GlobalSearchBar/GlobalSearchBar'
 import AlbumList from '../../components/AlbumList/AlbumList'
-import './Homepage.css'
+import './HomePage.css'
 
 const Homepage = () => {
 
@@ -63,9 +63,9 @@ const Homepage = () => {
                 ) : (
                     <>
 
-                        <Container className="homepage-greeting-container mb-5">
+                        <Container className="homepage-greeting-container mb-5 d-flex justify-content-between">
                             <h2>Hola, <span className="username">{loggedUser?.username}</span></h2>
-                            <ExpandingSearchBar />
+                            <GlobalSearchBar />
                         </Container>
 
                         {loggedUser.role === "ARTIST" && (

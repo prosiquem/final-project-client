@@ -67,7 +67,7 @@ const Navigation = () => {
                         </NavLink>
 
                         <NavLink
-                            to="/profile/:id"
+                            to={`/profile/${loggedUser._id}`}
                             className={({ isActive }) => isActive ? "nav-link selected" : "nav-link"}
                         >
                             {loggedUser?.avatar ? (
