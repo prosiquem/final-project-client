@@ -1,20 +1,31 @@
 import { useEffect, useState, useRef } from "react"
-import { Container, Form } from "react-bootstrap"
+import { Form } from "react-bootstrap"
 
-const SpecificSearcher = ({ playlists, setFilteredPlaylists }) => {
-
+const SpecificSearcher = ({ playlists, artists, albums, setFilteredResults }) => {
     const [search, setSearch] = useState("")
     const [isExpanded, setIsExpanded] = useState(false)
-
     const searchRef = useRef(null)
 
     const handleSearch = (e) => {
+
         const value = e.target.value.toLowerCase()
         setSearch(value)
-        const filtered = playlists.filter(playlist =>
-            playlist.name.toLowerCase().includes(value)
+
+        const filteredPlaylists = playlists.filter(playlist =>
+            playlist.name && playlist.name.toLowerCase().includes(value)
         )
-        setFilteredPlaylists(filtered)
+        const filteredArtists = artists.filter(artist =>
+            artist.artistName && artist.artistName.toLowerCase().includes(value)
+        )
+        const filteredAlbums = albums.filter(album =>
+            album.title && album.title.toLowerCase().includes(value)
+        )
+
+        setFilteredResults({
+            playlists: filteredPlaylists,
+            artists: filteredArtists,
+            albums: filteredAlbums
+        })
     }
 
     const toggleExpand = () => {
@@ -35,7 +46,6 @@ const SpecificSearcher = ({ playlists, setFilteredPlaylists }) => {
     }, [])
 
     return (
-
         <div
             className={`searcher ${isExpanded ? "expanded" : ""}`}
             onClick={toggleExpand}
@@ -53,7 +63,6 @@ const SpecificSearcher = ({ playlists, setFilteredPlaylists }) => {
                 <i className="fa-solid fa-search"></i>
             </div>
         </div>
-
     )
 }
 

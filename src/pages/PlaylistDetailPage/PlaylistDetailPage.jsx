@@ -72,6 +72,7 @@ const PaylistDetailPage = () => {
     }
 
     const deleteFromPlaylist = (idx) => {
+
         const newTracksArr = [...playlist.tracks]
         newTracksArr.splice(idx, 1)
 
@@ -125,6 +126,7 @@ const PaylistDetailPage = () => {
                                         <th>Nombre de canción</th>
                                         <th>Artista</th>
                                         <th>Álbum</th>
+                                        <th>Eliminar</th>
                                     </tr>
                                 </thead>
 

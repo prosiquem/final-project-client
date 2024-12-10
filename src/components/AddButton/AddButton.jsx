@@ -1,8 +1,8 @@
 import { Card, Container } from 'react-bootstrap'
 import { Plus } from 'react-bootstrap-icons'
-import './AddPlaylistButton.css'
+import './AddButton.css'
 
-const AddPlaylistButton = () => {
+const AddButton = () => {
 
     return (
         <article className="add-card mb-3">
@@ -19,4 +19,4 @@ const AddPlaylistButton = () => {
     )
 }
 
-export default AddPlaylistButton
+export default AddButton

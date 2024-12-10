@@ -1,9 +1,11 @@
 import { Col, Row } from "react-bootstrap"
 import ArtistCard from "../ArtistCard/ArtistCard"
+import AddButton from "../AddButton/AddButton"
 
 const ArtistList = ({ artists }) => {
     return (
         <Row className="my-5 gap-4 artist-list">
+
             {
                 artists.map(elm => {
                     return (

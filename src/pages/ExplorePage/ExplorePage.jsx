@@ -11,15 +11,25 @@ const ExplorePage = () => {
         playlists: [],
         albums: []
     })
+    const [filteredResults, setFilteredResults] = useState({
+        artists: [],
+        playlists: [],
+        albums: []
+    })
     const [isLoading, setIsLoading] = useState(true)
     const [filter, setFilter] = useState("all")
 
     const fetchExplore = () => {
         setIsLoading(true)
-        ExploreServices
-            .fetchExplore()
+        ExploreServices.fetchExplore()
             .then(({ data }) => {
+                console.log(data)
                 setExplore({
+                    artists: data.artists,
+                    playlists: data.playlists,
+                    albums: data.albums
+                })
+                setFilteredResults({
                     artists: data.artists,
                     playlists: data.playlists,
                     albums: data.albums
@@ -39,10 +49,10 @@ const ExplorePage = () => {
         setFilter(filterType)
     }
 
-    const filterByType = {
-        artists: filter === "all" || filter === "artists" ? explore.artists : [],
-        playlists: filter === "all" || filter === "playlists" ? explore.playlists : [],
-        albums: filter === "all" || filter === "albums" ? explore.albums : []
+    const filteredData = {
+        artists: filter === "all" || filter === "artists" ? filteredResults.artists : [],
+        playlists: filter === "all" || filter === "playlists" ? filteredResults.playlists : [],
+        albums: filter === "all" || filter === "albums" ? filteredResults.albums : []
     }
 
     return (
@@ -54,10 +64,8 @@ const ExplorePage = () => {
                     </div>
                 ) : (
                     <Container className="explore-items">
-
                         <Row className="mt-3">
-
-                            <Container className="explore-buttons  d-flex justify-content-between">
+                            <Container className="explore-buttons d-flex justify-content-between">
                                 <Col xs="auto" className="mb-2">
                                     <Button
                                         className="px-4"
@@ -96,20 +104,22 @@ const ExplorePage = () => {
                                 </Col>
 
                                 <Container className="explore-searcher">
-
                                     <Col xs="auto" className="mb-2">
-                                        <SpecificSearcher />
+                                        <SpecificSearcher
+                                            playlists={explore.playlists}
+                                            artists={explore.artists}
+                                            albums={explore.albums}
+                                            setFilteredResults={setFilteredResults}
+                                        />
                                     </Col>
                                 </Container>
                             </Container>
-
                         </Row>
 
-
                         <ExploreList
-                            artists={filterByType.artists}
-                            playlists={filterByType.playlists}
-                            albums={filterByType.albums}
+                            artists={filteredData.artists}
+                            playlists={filteredData.playlists}
+                            albums={filteredData.albums}
                         />
                     </Container>
                 )}

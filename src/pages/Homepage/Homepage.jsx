@@ -41,6 +41,7 @@ const Homepage = () => {
             .then(([artistAlbumResponse, playlistsResponse, lastPlaylistsResponse, albumsResponse]) => {
                 const filteredPlaylists = playlistsResponse.data.filter(playlist => playlist.owner._id === loggedUser._id)
                 setArtistAlbum(artistAlbumResponse.data)
+                console.log(artistAlbumResponse.data)
                 setPlaylists(filteredPlaylists)
                 setLastPlaylists(lastPlaylistsResponse.data)
                 setAlbums(albumsResponse.data)
@@ -49,6 +50,7 @@ const Homepage = () => {
             .catch(err => {
                 console.error(err)
             })
+
     }
 
 
@@ -110,7 +112,7 @@ const Homepage = () => {
                                     <Link className="link">
                                         <h2>Últimos álbumes <ArrowRightShort /></h2>
                                     </Link>
-                                    <AlbumList albums={albums} />
+                                    <AlbumList albums={albums} showAddButton={false} />
                                 </Col>
                             </Row>
                         </Container>

@@ -7,6 +7,7 @@
     object-fit: cover;
     height: 100%;
     width: 100%;
+    aspect-ratio: 1;
 }
 
 .details-info h1 {
@@ -17,4 +18,17 @@
 .list {
     background-color: hsl(0, 0%, 8%);
     border-radius: 16px;
+}
+
+.profile-info img {
+    border-radius: 50%;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    aspect-ratio: 1;
+}
+
+.profile-info h1 {
+    color: hsl(328deg 48.34% 58.29% / 83.5%);
+    line-height: 150%;
 }
