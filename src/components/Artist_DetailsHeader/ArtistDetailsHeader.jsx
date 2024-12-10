@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom"
 
-import { Button, Col, Dropdown, Image, Row } from "react-bootstrap"
+import { Button, Col, Dropdown, FloatingLabel, Image, Row, Form } from "react-bootstrap"
 import { ArrowLeft, ThreeDotsVertical } from "react-bootstrap-icons"
 
-const ArtistDetailsHeader = ({ data, loggedUser, isEditing, setIsEditing }) => {
+const ArtistDetailsHeader = ({ data, loggedUser, isEditing, setIsEditing, editArtist }) => {
 
     const navigate = useNavigate()
 
@@ -22,27 +22,51 @@ const ArtistDetailsHeader = ({ data, loggedUser, isEditing, setIsEditing }) => {
 
             <Col className="p-0 align-content-end pb-5">
 
-                <Col md="10" ><label>{data.role === "ARTIST" ? "Artista" : "Usuario"}</label></Col>
-                <h1>{data.artistName}</h1>
+
+                {isEditing ?
+                    <Form>
+                        <Form.Group className="mb-3">
+                            <FloatingLabel
+                                controlId="artistName"
+                                label="Nombre"
+                            >
+                                <Form.Control
+                                    type="text"
+                                    name="artistName"
+                                    placeholder="Nombre"
+                                    value={data.artistName} />
+                            </FloatingLabel>
+                        </Form.Group>
+                    </Form>
+                    :
+                    <>
+                        <Col><label>{data.role === "ARTIST" ? "Artista" : "Usuario"}</label></Col>
+                        <h1>{data.artistName}</h1>
+                    </>}
 
             </Col>
 
-            <Col sm="2" md="1">
-                <Dropdown
-                    align="end">
+            {data._id === loggedUser._id &&
+                < Col sm="4" md="2" lg="1">
+                    {!isEditing &&
+                        <Dropdown
+                            align="end">
 
-                    <Dropdown.Toggle variant="custom-transparent">
-                        <ThreeDotsVertical />
-                    </Dropdown.Toggle>
+                            <Dropdown.Toggle variant="custom-transparent">
+                                <ThreeDotsVertical />
+                            </Dropdown.Toggle>
 
-                    <Dropdown.Menu>
-                        <Dropdown.Item onClick={() => setIsEditing(true)}>Editar información</Dropdown.Item>
-                    </Dropdown.Menu>
+                            <Dropdown.Menu>
+                                <Dropdown.Item onClick={() => setIsEditing(true)}>Editar información</Dropdown.Item>
+                            </Dropdown.Menu>
 
-                </Dropdown>
-            </Col>
+                        </Dropdown>
 
-        </Row>
+                    }
+
+                </Col>}
+
+        </Row >
     )
 
 }
