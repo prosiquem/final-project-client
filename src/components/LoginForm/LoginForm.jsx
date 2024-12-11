@@ -1,9 +1,8 @@
 import { useContext, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { Button, Form, Container } from "react-bootstrap"
+import { Button, Form, Container, FloatingLabel } from "react-bootstrap"
 import { AuthContext } from './../../contexts/auth.context'
 import authServices from "../../services/auth.services"
-import './LoginForm.css'
 
 const LoginForm = () => {
 
@@ -38,34 +37,41 @@ const LoginForm = () => {
 
     return (
 
-        <Container className="login-form">
-            <Form className="form" onSubmit={handleFormSubmit}>
+        <Container className="login-form text-center">
+            <Form onSubmit={handleFormSubmit}>
                 <Form.Group className="mb-3" controlId="email">
-                    <Form.Control
-                        type="email"
-                        value={loginData.email}
-                        onChange={handleInputChange}
-                        name="email"
-                        placeholder="Email" />
+                    <FloatingLabel
+                        controlId="email"
+                        label="Email">
+                        <Form.Control
+                            type="email"
+                            value={loginData.email}
+                            onChange={handleInputChange}
+                            name="email"
+                            placeholder="Email" />
+                    </FloatingLabel>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="password">
-                    <Form.Control
-                        type="password"
-                        value={loginData.password}
-                        onChange={handleInputChange}
-                        name="password"
-                        placeholder="Password" />
+                    <FloatingLabel
+                        controlId="password"
+                        label="Contraseña">
+                        <Form.Control
+                            type="password"
+                            value={loginData.password}
+                            onChange={handleInputChange}
+                            name="password"
+                            placeholder="Password" />
+                    </FloatingLabel>
                 </Form.Group>
 
-                <Container className="submit-button-container">
-                    <Button className="custom-primary-button" type="submit">
-                        Iniciar sesión
-                    </Button>
-                </Container>
+                <Button className="custom-primary-button" type="submit">
+                    Iniciar sesión
+                </Button>
+
 
                 <Container className="my-4 d-flex justify-content-center signup-message">
-                    <h3>¿No tienes cuenta? <Link to="/signup" className="signup-link">Regístrate</Link></h3>
+                    <p>¿No tienes cuenta? <Link to="/signup" className="text-link">Regístrate</Link></p>
                 </Container>
             </Form>
         </Container>

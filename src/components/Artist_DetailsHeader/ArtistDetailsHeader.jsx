@@ -3,15 +3,12 @@ import { useNavigate } from "react-router-dom"
 import { Button, Col, Dropdown, FloatingLabel, Image, Row, Form } from "react-bootstrap"
 import { ArrowLeft, ThreeDotsVertical } from "react-bootstrap-icons"
 
-const ArtistDetailsHeader = ({ data, loggedUser, isEditing, setIsEditing, editArtist }) => {
+const ArtistDetailsHeader = ({ data, loggedUser, isEditing, setIsEditing, handleInputChange }) => {
 
     const navigate = useNavigate()
 
     return (
-        <Row className="ArtistDetailsHeader details-info w-100 gap-4 h-50">
-            {data.artistGallery.length === 0 && <Col sm="4" md="2" className="p-0">
-                <Image src={data.avatar} />
-            </Col>}
+        <Row className="ArtistDetailsHeader details-info w-100 gap-4 h-50 mb-5">
 
             <Col sm="2" md="1">
                 <Button variant="custom-secondary" onClick={() => navigate('/explore')} size="sm">
@@ -19,6 +16,9 @@ const ArtistDetailsHeader = ({ data, loggedUser, isEditing, setIsEditing, editAr
                 </Button>
             </Col>
 
+            {data.artistGallery.length === 0 && <Col sm="4" md="2" className="p-0">
+                <Image src={data.avatar} />
+            </Col>}
 
             <Col className="p-0 align-content-end pb-5">
 
@@ -34,7 +34,8 @@ const ArtistDetailsHeader = ({ data, loggedUser, isEditing, setIsEditing, editAr
                                     type="text"
                                     name="artistName"
                                     placeholder="Nombre"
-                                    value={data.artistName} />
+                                    value={data.artistName}
+                                    onChange={handleInputChange} />
                             </FloatingLabel>
                         </Form.Group>
                     </Form>

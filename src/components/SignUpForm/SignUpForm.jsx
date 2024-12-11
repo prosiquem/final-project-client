@@ -160,7 +160,7 @@ const SignUpForm = () => {
     }
 
     return (
-        <Form className="form text-center" onSubmit={handleFormSubmit}>
+        <Form className="text-center" onSubmit={handleFormSubmit}>
             <Tabs
                 defaultActiveKey="USER"
                 id="role-selection"
@@ -201,7 +201,7 @@ const SignUpForm = () => {
             </Button>
 
             <Container className="my-4 d-flex justify-content-center signup-message">
-                <h3>¿Ya tienes una cuenta? <Link to="/login" className="signup-link">Inicia sesión</Link></h3>
+                <p>¿Ya tienes una cuenta? <Link to="/login" className="text-link">Inicia sesión</Link></p>
             </Container>
         </Form>
     )

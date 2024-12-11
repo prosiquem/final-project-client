@@ -50,7 +50,7 @@ const AlbumDetailsHeader = ({ data, loggedUser, deleteElm }) => {
 
                 <Row className="">
                     <Col>
-                        <label> Productores: {data.credits.producers} | Derechos reservados {data.credits.recordLabel}®</label>
+                        <label> Productores: {data.credits.producers ? data.credits.producers : 'Desconocido'} | Derechos reservados {data.credits.recordLabel ? data.credits.recordLabel : 'Desconocido'}®</label>
                     </Col>
                 </Row>
             </Col>
