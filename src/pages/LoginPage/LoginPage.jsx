@@ -8,6 +8,8 @@ const LoginPage = () => {
         <div className="login-page">
             <Container className="page-container">
 
+                {/* <video className="login-video" src="src/assets/login.mp4" autoPlay loop muted></video> */}
+
                 <Row className="h-100 w-100 align-items-center">
                     <Col md={{ span: "6", offset: "3" }}>
                         <LoginForm />

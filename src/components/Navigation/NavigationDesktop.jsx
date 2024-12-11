@@ -23,9 +23,7 @@ const Navigation = () => {
                     <Navbar.Brand>
                         <Row className='align-items-center'>
                             <Col md={`${isExpanded ? '4' : '12'}`} className={`${!loggedUser ? 'text-center' : ''}`}>
-                                <img
-                                    src={ISOLOGO}
-                                    width="46" />
+
                             </Col>
 
                             {isExpanded && (
