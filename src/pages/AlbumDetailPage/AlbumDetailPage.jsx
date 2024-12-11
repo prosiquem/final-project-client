@@ -13,6 +13,7 @@ import { TracksUploaderContext } from "../../contexts/tracksUploader.context"
 import { PencilFill, Trash2, Trash2Fill } from "react-bootstrap-icons"
 import tracksServices from "../../services/tracks.services"
 import EditTrackForm from "../../components/TrackForm_Edit/TrackForm_Edit"
+import { DEFAULT_IMAGES } from "../../consts/path.consts"
 
 const AlbumDetailPage = () => {
 
@@ -73,6 +74,10 @@ const AlbumDetailPage = () => {
 
         <div className="AlbumDetailPage">
             <Container className="page-container gap-4">
+
+                <div className="cover-container">
+                    <img className="cover-image" src={album.cover ? album.cover : DEFAULT_IMAGES[1]} alt="Cover image" />
+                </div>
 
                 <AlbumDetailsHeader data={album} loggedUser={loggedUser} deleteElm={deleteAlbum} />
 

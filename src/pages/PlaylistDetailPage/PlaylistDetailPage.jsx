@@ -4,6 +4,7 @@ import { AuthContext } from "../../contexts/auth.context"
 import { UserMessageContext } from "../../contexts/userMessage.context"
 import { useMusicPlayer } from "../../contexts/musicplayer.context"
 import { Col, Container, Row, Button, Table, Modal } from "react-bootstrap"
+import { DEFAULT_IMAGES } from "../../consts/path.consts"
 import Loader from "../../components/Loader/Loader"
 import TrackElement from "../../components/TrackElement/TrackElement"
 import TrackSearchBar from "../../components/TrackSearchBar/TrackSearchBar"
@@ -11,6 +12,7 @@ import PlaylistDetailsHeader from "../../components/Playlist_DetailsHeader/Playl
 import DetailsControler from "../../components/Playlist_DetailsControler/PlaylistDetailsControler"
 import playlistServices from "../../services/playlist.services"
 import '../../general-css/DetailPage.css'
+
 
 
 const PaylistDetailPage = () => {
@@ -94,6 +96,10 @@ const PaylistDetailPage = () => {
     return isLoading ? <Loader /> :
         <div className="PaylistDetailPage">
             <Container className="page-container gap-4">
+
+                <div className="cover-container">
+                    <img className="cover-image" src={playlist.cover ? playlist.cover : DEFAULT_IMAGES[1]} alt="Cover image" />
+                </div>
 
                 <PlaylistDetailsHeader data={playlist} loggedUser={loggedUser} deleteElm={deletePlaylist} />
 

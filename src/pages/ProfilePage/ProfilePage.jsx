@@ -66,7 +66,9 @@ const ProfilePage = () => {
                     </div>
                 ) : (
                     <>
-                        <img className="cover-image" src={user.avatar} alt=""></img>
+                        <div className="cover-container">
+                            <img className="cover-image" src={user.avatar} alt="Cover image" />
+                        </div>
 
                         <Row className="ProfileHeader profile-info w-100 gap-4 mt-4">
                             <Col md="2">

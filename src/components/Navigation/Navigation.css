@@ -46,7 +46,7 @@
 }
 
 .sidebar .nav-link {
-    display: flex;
+    font-size: 1.4em;
     gap: 16px;
 }
 
