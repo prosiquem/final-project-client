@@ -3,7 +3,7 @@ import { AuthContext } from '../../contexts/auth.context'
 import { ISOLOGO } from '../../consts/path.consts'
 import { NavLink } from 'react-router-dom'
 
-import { Button, Nav, Navbar, Col, Row } from 'react-bootstrap'
+import { Button, Nav, Navbar, Col, Row, Image } from 'react-bootstrap'
 import { BoxArrowLeft, ChevronDoubleLeft, ChevronDoubleRight, CollectionFill, CompassFill, HouseFill, PersonFill, PlusCircleFill } from 'react-bootstrap-icons'
 
 
@@ -21,17 +21,11 @@ const Navigation = () => {
             <Row className='brand-expand align-items-center w-100'>
                 <Col md={`${loggedUser ? `${isExpanded ? '10' : '8'}` : ''}`}>
                     <Navbar.Brand>
-                        <Row className='align-items-center'>
-                            <Col md={`${isExpanded ? '4' : '12'}`} className={`${!loggedUser ? 'text-center' : ''}`}>
+                        <Image src={ISOLOGO} fluid />
+                        {isExpanded && (
 
-                            </Col>
-
-                            {isExpanded && (
-                                <Col >
-                                    <h4>Kōon</h4>
-                                </Col>
-                            )}
-                        </Row>
+                            <h4>Kōon</h4>
+                        )}
                     </Navbar.Brand>
                 </Col>
                 {loggedUser &&

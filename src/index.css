@@ -50,6 +50,15 @@ label {
   color: #aaf700;
 }
 
+
+.center {
+  text-align: center;
+}
+
+input {
+  color-scheme: dark;
+}
+
 /* Bentobox CSS */
 
 .page-container {
@@ -85,6 +94,17 @@ label {
 button.custom-primary-button {
   border-radius: 50px;
   padding: 10px 30px;
+  background-color: #aaf700;
+  backdrop-filter: blur(10px);
+  color: #121212;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-custom-primary-sm {
+  border-radius: 50px;
+  padding: 4px 8px;
   background-color: #aaf700;
   backdrop-filter: blur(10px);
   color: #121212;
@@ -220,20 +240,21 @@ input[type="file"] {
   min-height: 50px;
   width: 100%;
   backdrop-filter: blur(10px);
-  padding-left: 35%;
 }
 
 input[type="file"]::file-selector-button {
-  position: absolute;
-  top: 16%;
-  left: 3%;
   background-color: #1d1d1dcc;
-  height: 90%;
+  height: 100%;
   color: white;
   border: none;
   border-radius: 50px;
 }
 
+.form-floating>input[type="date"].form-control:not(:placeholder-shown),
+.form-floating>.form-select {
+  padding-top: 0;
+  padding-bottom: 0;
+}
 
 .form-control.text-area {
   border-radius: 20px;
@@ -394,25 +415,11 @@ textarea:autofill {
 
 .list-filtered .list-group-item:hover {
   background-color: #2a2c30a8;
-
   cursor: pointer;
-
 }
 
 .list-filtered .search-subtitle {
   color: #606266;
-}
-
-@media (max-width: 576px) {
-
-  .searcher.expanded {
-    width: 210px;
-    transform: scaleX(1) scaleY(1);
-  }
-
-  .list-filtered {
-    font-size: 1em;
-  }
 }
 
 /*Select CSS*/

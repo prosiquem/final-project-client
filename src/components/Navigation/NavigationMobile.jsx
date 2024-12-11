@@ -2,7 +2,7 @@ import { useState, useContext } from 'react'
 import { AuthContext } from '../../contexts/auth.context'
 import { NavLink } from 'react-router-dom'
 
-import { Button, Nav, Navbar } from 'react-bootstrap'
+import { Col, Image, Nav, Navbar, Row } from 'react-bootstrap'
 import { CollectionFill, CompassFill, HouseFill, PersonFill, PlusCircleFill } from 'react-bootstrap-icons'
 
 
@@ -16,62 +16,67 @@ const Navigation = () => {
     }
 
     return (
-        <Navbar className={`bottombar ${isExpanded ? 'expanded' : ''}`}>
-            {loggedUser &&
-                <>
-                    <Nav className='w-100 justify-content-between'>
+        <Navbar className="bottombar justify-content-evenly">
 
-                        <NavLink
-                            to="/home"
-                            className={({ isActive }) => isActive ? "nav-link selected" : "nav-link"}
-                        >
-                            <HouseFill />
-                            {isExpanded && <span className="button-title">Home</span>}
-                        </NavLink>
+            <Nav as={Row} className='w-100 justify-content-between'>
 
-                        <NavLink
-                            to="/profile/:id"
-                            className={({ isActive }) => isActive ? "nav-link selected" : "nav-link"}
-                        >
-                            {loggedUser?.avatar ? (
-                                <img
-                                    src={loggedUser.avatar}
-                                    alt="Avatar"
-                                    className="avatar-img" />
-                            ) : (
-                                <PersonFill />
-                            )}
-                            {isExpanded && <span className="button-title  ">Perfil</span>}
-                        </NavLink>
+                <Col className='text-center'>
+                    <NavLink
+                        to="/home"
+                        className={({ isActive }) => isActive ? "nav-link selected" : "nav-link"}>
+                        <HouseFill />
+                    </NavLink>
+                    <label>Home</label>
+                </Col>
 
-                        <NavLink
-                            to={loggedUser && loggedUser.role === 'ARTIST' ? "/album/new" : "/playlist/new"}
-                            className={({ isActive }) => isActive ? "nav-floating selected" : "nav-floating"}
-                        >
-                            <PlusCircleFill width="2em" height="2em" />
-                            {isExpanded && <span className="button-title ">{loggedUser && loggedUser.role === 'ARTIST' ? 'Crear album' : 'Crear playlist'}</span>}
-                        </NavLink>
 
-                        <NavLink
-                            to="/explore"
-                            className={({ isActive }) => isActive ? "nav-link selected" : "nav-link"}
-                        >
-                            <CompassFill />
-                            {isExpanded && <span className="button-title  ">Explorar</span>}
-                        </NavLink>
+                <Col className='text-center'>
+                    <NavLink
+                        to="/profile/:id"
+                        className={({ isActive }) => isActive ? "nav-link selected" : "nav-link"}
+                    >
+                        {loggedUser?.avatar ? (
+                            <Image fluid
+                                src={loggedUser.avatar}
+                                alt="Avatar" roundedCircle />
+                        ) : (
+                            <PersonFill />
+                        )}
+                    </NavLink>
+                    <label>Perfil</label>
+                </Col>
 
-                        <NavLink
-                            to="/mylibrary"
-                            className={({ isActive }) => isActive ? "nav-link selected" : "nav-link"}
-                        >
-                            <CollectionFill />
-                            {isExpanded && <span className="button-title ">Mi biblioteca</span>}
-                        </NavLink>
+                <Col className='text-center'>
+                    <NavLink
+                        to={loggedUser && loggedUser.role === 'ARTIST' ? "/album/new" : "/playlist/new"}
+                        className={({ isActive }) => isActive ? "nav-floating selected" : "nav-floating"}
+                    >
+                        <PlusCircleFill width="2em" height="2em" />
+                    </NavLink>
+                </Col>
 
-                    </Nav>
-                </>
+                <Col className='text-center'>
+                    <NavLink
+                        to="/explore"
+                        className={({ isActive }) => isActive ? "nav-link selected" : "nav-link"}
+                    >
+                        <CompassFill />
+                    </NavLink>
+                    <label >Explorar</label>
+                </Col>
 
-            }
+                <Col className='text-center'>
+                    <NavLink
+                        to="/mylibrary"
+                        className={({ isActive }) => isActive ? "nav-link selected" : "nav-link"}
+                    >
+                        <CollectionFill />
+                    </NavLink>
+                    <label >Biblioteca</label>
+                </Col>
+
+            </Nav>
+
         </Navbar >
     )
 }

@@ -1,23 +1,22 @@
-import { Col, Container, Row } from "react-bootstrap"
+import { Col, Container, Image, Row } from "react-bootstrap"
 import SignUpForm from "../../components/SignUpForm/SignUpForm"
-import './SignUpPage.css'
+import { ISOLOGO } from "../../consts/path.consts"
 
-const CreateAccountPage = () => {
+const SignUpPage = () => {
     return (
-        <div className="signup-page">
-            <Container className="page-container">
-                {/* <video className="signup-video" src="src/assets/login.mp4" autoPlay loop muted></video> */}
-                <Row className="w-100 h-100">
-                    <Col>
-                    </Col>
-                    <Col>
+        <div className="SignUpPage">
+            <Container className="page-container text-center align-content-center">
+
+                <Image src={ISOLOGO} width={"150px"} className="d-sm-none" />
+
+                <Row className="h-100 justify-content-center">
+                    <Col md={{ span: 8 }} lg={{ span: 6 }} >
                         <SignUpForm />
                     </Col>
                 </Row>
-
             </Container>
         </div>
     )
 }
 
-export default CreateAccountPage
+export default SignUpPage

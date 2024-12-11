@@ -1,16 +1,23 @@
 import LoginForm from "../../components/LoginForm/LoginForm"
-import { Col, Container, Row } from 'react-bootstrap'
-import './Loginpage.css'
+import { Col, Container, Image, Row } from 'react-bootstrap'
+import { ISOLOGO } from "../../consts/path.consts"
 
 const LoginPage = () => {
 
     return (
         <div className="login-page">
-            <Container className="page-container">
+            <Container className="page-container text-center align-content-center">
 
-                {/* <video className="login-video" src="src/assets/login.mp4" autoPlay loop muted></video> */}
+                <Image src={ISOLOGO} width={"200px"} className="d-sm-none" />
 
-                <Row className="h-100 w-100 align-items-center">
+                <Row className="mb-3">
+                    <Col>
+                        <h1 className="center">¡Bienvenido!</h1>
+                        <p>Disfruta de la música sin límites, crea las mejores playlist y sube tu propia música</p>
+                    </Col>
+                </Row>
+
+                <Row className="align-items-center">
                     <Col md={{ span: "6", offset: "3" }}>
                         <LoginForm />
                     </Col>

@@ -13,14 +13,8 @@
 
 .launchpage-text {
     font-size: 3.5em;
+    text-align: center;
     color: #e1e1e1;
-}
-
-.launchpage-buttons-container {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 40px;
 }
 
 @media (max-width: 767.98px) {

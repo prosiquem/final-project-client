@@ -1,0 +1,21 @@
+@media (max-width: 576px) {
+
+    h1 {
+        font-size: 2em;
+    }
+
+    .page-container {
+        height: 87vh;
+        margin: 5vw;
+        width: 90vw !important;
+    }
+
+    .searcher.expanded {
+        width: 210px;
+        transform: scaleX(1) scaleY(1);
+    }
+
+    .list-filtered {
+        font-size: 1em;
+    }
+}

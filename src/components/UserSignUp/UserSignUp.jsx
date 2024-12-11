@@ -1,6 +1,7 @@
 import { Form, Row, Col, FloatingLabel } from "react-bootstrap"
 
 import { GENRES } from "../../consts/user.consts"
+import { Calendar } from "react-bootstrap-icons"
 
 const UserSignUp = ({ signupData, handleInputChange, handleSingleSelectChange, handleSingleFileUpload }) => {
 
@@ -51,7 +52,7 @@ const UserSignUp = ({ signupData, handleInputChange, handleSingleSelectChange, h
 
             <Row className="g-3">
                 <Col md={6}>
-                    <Form.Group className="mb-3">
+                    <Form.Group className="form-floating" >
                         <Form.Control
                             type="date"
                             name="birth"
@@ -61,7 +62,7 @@ const UserSignUp = ({ signupData, handleInputChange, handleSingleSelectChange, h
                     </Form.Group>
                 </Col>
 
-                <Col md={6}>
+                <Col md={6} className="form-floating">
                     <Form.Select className="mb-3" onChange={(e) => handleSingleSelectChange('gender', e)}>
                         <option>Selecciona un género</option>
                         {GENRES.map((elm, idx) => {

@@ -25,6 +25,14 @@
     left: 0px;
 }
 
+.bottombar label {
+    font-size: 10px;
+}
+
+.bottombar .nav-link {
+    padding: 0px;
+}
+
 .sidebar.expanded {
     width: 200px;
 }
@@ -84,17 +92,6 @@
 @media (max-width: 576px) {
     .sidebar {
         display: none !important;
-    }
-
-    .sidebar .nav-link>img {
-        display: none;
-    }
-
-    .page-container.container {
-        width: calc(100vw - 60px) !important;
-        height: 90vh;
-        margin: 2.5vh 30px;
-        left: 0;
     }
 }
 

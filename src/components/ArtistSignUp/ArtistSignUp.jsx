@@ -6,6 +6,8 @@ import makeAnimated from "react-select/animated"
 import { MUSIC_GENRES } from "../../consts/music.consts"
 import { XLg } from 'react-bootstrap-icons'
 
+import './ArtistSignUp.css'
+
 
 const ArtistSignUp = ({
     signupData,
@@ -27,10 +29,6 @@ const ArtistSignUp = ({
 
     return (
         <div className="ArtistSignUp my-4">
-
-            <h3>Introduce los datos de usuario</h3>
-            <hr />
-
             <Form.Group className="mb-3">
                 <FloatingLabel
                     controlId="email"
@@ -75,7 +73,7 @@ const ArtistSignUp = ({
 
             <Row className="g-3">
                 <Col md={6}>
-                    <Form.Group className="mb-3">
+                    <Form.Group className="form-floating">
                         <Form.Control
                             type="date"
                             name="birth"
@@ -85,7 +83,7 @@ const ArtistSignUp = ({
                     </Form.Group>
                 </Col>
 
-                <Col md={6}>
+                <Col md={6} className="form-floating">
                     <Form.Select className="mb-3" onChange={(e) => handleSingleSelectChange('gender', e)}>
                         <option>Selecciona un género</option>
                         {GENRES.map((elm, idx) => {
@@ -105,7 +103,7 @@ const ArtistSignUp = ({
                     onChange={handleSingleFileUpload} />
             </Form.Group>
 
-            <h5>Rellena tus datos de artista</h5>
+            <h5 className="pt-4">Rellena tus datos de artista</h5>
             <hr />
 
             <Form.Group className="mb-3">
@@ -136,7 +134,7 @@ const ArtistSignUp = ({
                 />
             </Form.Group>
 
-            <h5>Galería de fotos</h5>
+            <h5 className="pt-4">Galería de fotos</h5>
             <hr />
 
             <Form.Group className="mb-3">
@@ -149,7 +147,7 @@ const ArtistSignUp = ({
 
             </Form.Group>
 
-            <h5>Cuéntanos un poco más sobre ti</h5>
+            <h5 className="pt-4">Cuéntanos un poco más sobre ti</h5>
             <hr />
 
             <Form.Group className="mb-3">
@@ -169,15 +167,15 @@ const ArtistSignUp = ({
                 </FloatingLabel>
             </Form.Group>
 
-            <h5>Indica tus redes sociales</h5>
+            <h5 className="pt-4">Indica tus redes sociales</h5>
             <hr />
 
             <Form.Group>
                 {socialMediaData.map((elm, idx) => {
                     return (
-                        <Row className="gap-2" key={`musicGenre-${idx}`}>
-                            <Col md="3" className="p-0">
-                                <Form.Select className="mb-3" onChange={(e) => handleSocialMediaSelectChange(idx, e)}>
+                        <Row className=" w-100 gap-2 align-items-center " key={`musicGenre-${idx}`}>
+                            <Col md={{ span: 3 }} className="p-0 form-floating">
+                                <Form.Select onChange={(e) => handleSocialMediaSelectChange(idx, e)}>
                                     {SOCIAL_MEDIA.map((elm, idx) => {
                                         return (
                                             <option key={idx} value={[elm.value, elm.icon]}>{elm.label}</option>
@@ -185,27 +183,32 @@ const ArtistSignUp = ({
                                     })}
                                 </Form.Select>
                             </Col>
-                            <Col className="p-0">
-                                <Form.Group className="mb-3">
-                                    <Form.Control
-                                        type="text"
-                                        name="social-media-input"
-                                        placeholder="URL"
-                                        onChange={e => handleSocialMediaChange(e, idx)}
-                                        value={elm.url}
-                                        id={`formSocialMedia-${idx}`}
-                                    />
+                            <Col className="p-0" md={{ span: 7 }} xs={{ span: 10 }}>
+                                <Form.Group >
+                                    <FloatingLabel
+                                        controlId="url"
+                                        label="Enlace"
+                                    >
+                                        <Form.Control
+                                            type="text"
+                                            name="social-media-input"
+                                            onChange={e => handleSocialMediaChange(e, idx)}
+                                            value={elm.url}
+                                            id={`formSocialMedia-${idx}`}
+                                        />
+                                    </FloatingLabel>
                                 </Form.Group>
                             </Col>
-                            <Col md="1" className="p-0">
+                            <Col md={{ span: 1 }} xs={{ span: 1 }} className="p-0">
                                 <Button
-                                    variant="custom-transparent"
+                                    variant="custom-primary-sm"
                                     onClick={() => deleteSocialMedia(idx)}
                                     disabled={socialMediaData.length <= 1}
                                     size="sm">
                                     <XLg color="#a8a8a8" />
                                 </Button>
                             </Col>
+                            <hr className="my-3" />
                         </Row>
                     )
                 })
