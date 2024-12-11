@@ -77,13 +77,12 @@ const ProfilePage = () => {
                             <Col className="p-0 column-between">
                                 <Row className="details-info-header">
                                     <Col md="10">
-                                        <h5></h5>
+                                        <label>Mi perfil</label>
                                     </Col>
                                 </Row>
 
                                 <Row className="details-info-description align-items-end">
                                     <Col>
-                                        <h5>Mi perfil</h5>
                                         <h1>{user.username}</h1>
                                         <h5>{user.playlists.length === 1 ? "playlist creada" : `${user.playlists.length} playlists creadas`}</h5>
                                     </Col>

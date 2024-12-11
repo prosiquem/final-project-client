@@ -1,69 +1,68 @@
 .music-player-container {
     position: fixed;
     bottom: 40px;
-    left: 2.6vw;
-    width: 100%;
+    left: 115px;
+    width: calc(100vw - 115px - 2.5vw) !important;
     z-index: 99;
-    display: flex;
-    justify-content: center;
     border-radius: 10px;
     overflow: hidden;
 }
 
 .music-player {
-    width: 90%;
-    max-width: 88vw;
     background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(10px);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     padding: 15px 20px;
     color: #e1e1e1;
     border-radius: 10px;
     border: .5px solid #e1e1e124;
 }
 
-.music-player .music-player-info {
-    display: flex;
-    align-items: end;
-}
-
 .music-player .album-cover {
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    aspect-ratio: 1;
     overflow: hidden;
     border-radius: 8px;
-    margin-right: 20px;
-}
-
-.music-player .album-cover img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.music-info {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
 }
 
 .song-title {
-    font-size: 16px;
+    font-size: .95em;
     font-weight: bold;
     color: #e1e1e1;
 }
 
 .artist-name {
-    font-size: 14px;
+    font-size: .85em;
     color: #c3c3c3;
 }
 
 .controls {
-    display: flex;
-    align-items: center;
+
     gap: 15px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #e1e1e1;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    background: #2c292946;
+    height: 8px;
+    border-radius: 10px;
+}
+
+input[type=range] {
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 10px;
+}
+
+input:hover {
+    cursor: pointer;
 }
 
 @media (max-width: 576px) {
