@@ -1,7 +1,7 @@
 import { Form, Row, Col, FloatingLabel } from "react-bootstrap"
 
 import { GENRES } from "../../consts/user.consts"
-import { Calendar } from "react-bootstrap-icons"
+import { Calendar, CalendarFill } from "react-bootstrap-icons"
 
 const UserSignUp = ({ signupData, handleInputChange, handleSingleSelectChange, handleSingleFileUpload }) => {
 
@@ -52,13 +52,18 @@ const UserSignUp = ({ signupData, handleInputChange, handleSingleSelectChange, h
 
             <Row className="g-3">
                 <Col md={6}>
-                    <Form.Group className="form-floating" >
-                        <Form.Control
-                            type="date"
-                            name="birth"
-                            placeholder="Año de nacimiento"
-                            value={signupData.birth}
-                            onChange={handleInputChange} />
+                    <Form.Group as={Row} className="align-items-center" >
+                        <Col className="d-md-none" xs={{ span: 2 }}> <CalendarFill /></Col>
+                        <Col className="text-start md-form-floating">
+                            <Form.Label className="d-md-none">Año de nacimiento</Form.Label>
+                            <Form.Control
+                                type="date"
+                                name="birth"
+                                placeholder="Año de nacimiento"
+                                className="h-100"
+                                value={signupData.birth}
+                                onChange={handleInputChange} />
+                        </Col>
                     </Form.Group>
                 </Col>
 

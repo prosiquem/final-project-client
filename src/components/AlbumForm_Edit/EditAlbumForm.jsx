@@ -11,6 +11,7 @@ import uploadServices from "../../services/upload.services"
 import { formatDateInput } from "../../utils/date.utils"
 import { UserMessageContext } from "../../contexts/userMessage.context"
 import { useNavigate } from "react-router-dom"
+import { CalendarFill } from "react-bootstrap-icons"
 
 const EditAlbumForm = ({ albumId }) => {
 
@@ -119,19 +120,21 @@ const EditAlbumForm = ({ albumId }) => {
                 </FloatingLabel>
             </Form.Group>
 
-            <Form.Group className="mb-3">
-                <FloatingLabel
-                    controlId="releaseDate"
-                    label="Fecha de lanzamiento"
-                >
-                    <Form.Control
-                        type="date"
-                        name="releaseDate"
-                        placeholder="Fecha de lanzamiento"
-                        value={formatDateInput(albumData.releaseDate)}
-                        onChange={handleInputChange} />
-                </FloatingLabel>
-            </Form.Group>
+            <Col md={6}>
+                <Form.Group as={Row} className="align-items-center" >
+                    <Col className="d-md-none" xs={{ span: 2 }}> <CalendarFill /></Col>
+                    <Col className="text-start md-form-floating">
+                        <Form.Label className="d-md-none">Fecha de lanzamiento</Form.Label>
+                        <Form.Control
+                            type="date"
+                            name="releaseDate"
+                            placeholder="Fecha de lanzamiento"
+                            className="h-100"
+                            value={formatDateInput(albumData.releaseDate)}
+                            onChange={handleInputChange} />
+                    </Col>
+                </Form.Group>
+            </Col>
 
             <Form.Group className="mb-3">
                 <Select

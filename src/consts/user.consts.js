@@ -1,7 +1,7 @@
 export const GENRES = [
     { value: "Woman", label: "Mujer" },
     { value: "Man", label: "Hombre" },
-    { value: "Non binary", label: "No binario" }
+    { value: "Non Binary", label: "No binario" }
 ]
 
 export const SOCIAL_MEDIA = [

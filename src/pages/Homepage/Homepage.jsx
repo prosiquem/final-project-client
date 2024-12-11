@@ -55,7 +55,7 @@ const Homepage = () => {
 
 
     return (
-        <div className="home-page">
+        <div className="HomePage">
             <Container className="page-container">
 
                 {isLoading ? (
@@ -65,57 +65,54 @@ const Homepage = () => {
                 ) : (
                     <>
 
-                        <Container className="homepage-greeting-container mb-5 d-flex justify-content-between">
-                            <h2>Hola, <span className="username">{loggedUser.role === "ARTIST" ? loggedUser.artistName : loggedUser.username}</span></h2>
-                            <GlobalSearchBar />
-                        </Container>
+                        <Row className="homepage-greeting-container mb-5 justify-content-between align-items-end gap-3">
+                            <Col xs={{ span: 12 }} md={{ span: 6 }}>
+                                <h2>Hola, <span className="username">{loggedUser.role === "ARTIST" ? loggedUser.artistName : loggedUser.username}</span></h2>
+                            </Col>
+                            <Col className='d-md-flex flex-row-reverse'>
+                                <GlobalSearchBar />
+                            </Col>
+
+                        </Row>
 
                         {loggedUser.role === "ARTIST" && (
-                            <Container className="homepage-artist-albums">
-                                <Row>
-                                    <Col>
-                                        <Link className="link" to="/mylibrary">
-                                            <h2>Mis álbumes <ArrowRightShort /></h2>
-                                        </Link>
-                                        <AlbumList albums={artistAlbum} />
-                                    </Col>
-                                </Row>
-                            </Container>
-                        )}
-
-                        <Container className="homepage-playlists">
-                            <Row>
+                            <Row className="homepage-artist-albums">
                                 <Col>
                                     <Link className="link" to="/mylibrary">
-                                        <h2>Mis playlists <ArrowRightShort /></h2>
+                                        <h2>Mis álbumes <ArrowRightShort /></h2>
                                     </Link>
-                                    <PlaylistList playlists={playlists} />
+                                    <AlbumList albums={artistAlbum} />
                                 </Col>
                             </Row>
-                        </Container>
+                        )}
 
-                        <Container className="homepage-last-playlists">
-                            <Row>
-                                <Col>
-                                    <Link className="link">
-                                        <h2>Últimas playlists <ArrowRightShort /></h2>
-                                    </Link>
-                                    <PlaylistList playlists={lastPlaylists} showAddButton={false} />
-                                </Col>
-                            </Row>
-                        </Container>
+                        <Row className="homepage-playlists">
+                            <Col>
+                                <Link className="link" to="/mylibrary">
+                                    <h2>Mis playlists <ArrowRightShort /></h2>
+                                </Link>
+                                <PlaylistList playlists={playlists} />
+                            </Col>
+                        </Row>
+
+                        <Row className="homepage-last-playlists">
+                            <Col>
+                                <Link className="link">
+                                    <h2>Últimas playlists <ArrowRightShort /></h2>
+                                </Link>
+                                <PlaylistList playlists={lastPlaylists} showAddButton={false} />
+                            </Col>
+                        </Row>
 
 
-                        <Container className="homepage-recent-added mb-5">
-                            <Row>
-                                <Col>
-                                    <Link className="link">
-                                        <h2>Últimos álbumes <ArrowRightShort /></h2>
-                                    </Link>
-                                    <AlbumList albums={albums} showAddButton={false} />
-                                </Col>
-                            </Row>
-                        </Container>
+                        <Row className="homepage-recent-added mb-5">
+                            <Col>
+                                <Link className="link">
+                                    <h2>Últimos álbumes <ArrowRightShort /></h2>
+                                </Link>
+                                <AlbumList albums={albums} showAddButton={false} />
+                            </Col>
+                        </Row>
                     </>
                 )}
 

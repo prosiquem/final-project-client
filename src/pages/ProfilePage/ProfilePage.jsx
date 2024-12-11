@@ -1,54 +1,65 @@
-import { Button, Col, Container, Dropdown, Form, Row, Table } from "react-bootstrap"
+import { Button, Col, Container, Dropdown, Form, Image, Row, Table } from "react-bootstrap"
 import { AuthContext } from "../../contexts/auth.context"
 import { useContext, useEffect, useState } from "react"
-import UserServices from "../../services/user.services"
 import Loader from "../../components/Loader/Loader"
 import { formatDateInput } from "../../utils/date.utils"
-import { CheckLg, ThreeDotsVertical, XLg } from "react-bootstrap-icons"
+import { CalendarFill, CheckLg, ThreeDotsVertical, XLg } from "react-bootstrap-icons"
 import { DEFAULT_IMAGES } from "../../consts/path.consts"
+import userServices from "../../services/user.services"
+import { MUSIC_GENRES } from "../../consts/music.consts"
+import { GENRES } from "../../consts/user.consts"
 
 const ProfilePage = () => {
 
     const [user, setUser] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [editForm, setEditForm] = useState(false)
-    const [email, setEmail] = useState(user.email)
-    const [username, setUsername] = useState(user.username)
-    const [birth, setBirth] = useState(user.birth)
-    const [gender, setGender] = useState(user.gender)
 
     const { loggedUser } = useContext(AuthContext)
 
     const image = user.cover || DEFAULT_IMAGES[Math.floor(Math.random() * DEFAULT_IMAGES.length)]
 
     useEffect(() => {
-        const fetchUser = () => {
-            UserServices.fetchUser(loggedUser._id)
-                .then(({ data }) => {
-                    console.log(data)
-                    setUser(data)
-                    setIsLoading(false)
-                })
-                .catch(err => {
-                    console.log(err)
-                })
-        }
 
-        if (loggedUser) {
-            fetchUser()
-        }
-    }, [loggedUser])
+        fetchUser()
 
-    const handleChange = (e, setter) => {
-        setter(e.target.value)
+    }, [])
+
+    const userGenre = GENRES.find(elm => elm.value === user.gender)
+
+    const fetchUser = () => {
+        userServices
+            .fetchUser(loggedUser._id)
+            .then(({ data }) => {
+                setUser(data)
+                setIsLoading(false)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
+    const handleChange = (e) => {
+
+        const { value, name } = e.target
+        setUser({ ...user, [name]: value })
+
+    }
+
+    const handleSingleSelectChange = (name, e) => {
+        const { value } = e.target
+        setUser({ ...user, [name]: value })
     }
 
     const handleSaveChanges = () => {
 
-        UserServices.editUser(loggedUser._id, editUser)
+        userServices
+            .editUser(loggedUser._id, user)
             .then(() => {
 
                 setEditForm(false)
+                fetchUser()
+
             })
             .catch((err) => {
                 console.log(err)
@@ -58,7 +69,7 @@ const ProfilePage = () => {
 
     return (
         <div className="profile-page">
-            <Container className="page-container">
+            <Container className="page-container p-4">
 
                 {isLoading ? (
                     <div className="loader-container">
@@ -70,9 +81,9 @@ const ProfilePage = () => {
                             <img className="cover-image" src={user.avatar} alt="Cover image" />
                         </div>
 
-                        <Row className="ProfileHeader profile-info w-100 gap-4 mt-4">
-                            <Col md="2">
-                                <img src={user.avatar} className="profile-image" alt="Avatar" />
+                        <Row className="ProfileHeader profile-info w-100 gap-md-4 mt-4">
+                            <Col md="2" xs="4">
+                                <Image src={user.avatar} className="profile-image" alt="Avatar" />
                             </Col>
                             <Col className="p-0 column-between">
                                 <Row className="details-info-header">
@@ -92,11 +103,11 @@ const ProfilePage = () => {
 
                         <Row className="profile-body pt-4 mt-5">
 
-                            <Col lg="7" md="9" sm="12">
+                            <Col lg="7" md="9" sm="12" >
 
                                 <Form as={Row} className="edit-info-container p-3">
 
-                                    <Col>
+                                    <Col xs="10">
                                         <Form.Group as={Row} className="mb-1" controlId="formPlaintextEmail">
                                             <Form.Label column sm="4">
                                                 Email:
@@ -106,7 +117,7 @@ const ProfilePage = () => {
                                                     <Form.Control
                                                         type="text"
                                                         defaultValue={user.email}
-                                                        onChange={(e) => handleChange(e, setEmail)}
+                                                        onChange={handleChange}
                                                     />
                                                 }
                                             </Col>
@@ -121,7 +132,7 @@ const ProfilePage = () => {
                                                     <Form.Control
                                                         type="text"
                                                         defaultValue={user.username}
-                                                        onChange={(e) => handleChange(e, setUsername)} />
+                                                        onChange={handleChange} />
                                                 }
                                             </Col>
                                         </Form.Group>
@@ -132,10 +143,19 @@ const ProfilePage = () => {
                                             </Form.Label>
                                             <Col >
                                                 {!editForm ? <p>{formatDateInput(user.birth)}</p> :
-                                                    <Form.Control
-                                                        type="date"
-                                                        defaultValue={formatDateInput(user.birth)}
-                                                        onChange={(e) => handleChange(e, setBirth)} />
+                                                    <Form.Group as={Row} className="align-items-center" >
+                                                        <Col className="d-md-none" xs={{ span: 2 }}> <CalendarFill /></Col>
+                                                        <Col className="text-start md-form-floating">
+                                                            <Form.Label className="d-md-none">Año de nacimiento</Form.Label>
+                                                            <Form.Control
+                                                                type="date"
+                                                                name="birth"
+                                                                placeholder="Año de nacimiento"
+                                                                className="h-100"
+                                                                defaultValue={formatDateInput(user.birth)}
+                                                                onChange={handleChange} />
+                                                        </Col>
+                                                    </Form.Group>
                                                 }
                                             </Col>
                                         </Form.Group>
@@ -145,25 +165,30 @@ const ProfilePage = () => {
                                                 Género:
                                             </Form.Label>
                                             <Col >
-                                                {!editForm ? <p>{user.gender}</p> :
-                                                    <Form.Control
-                                                        className="select-form"
-                                                        defaultValue={user.gender}
-                                                        onChange={(e) => handleChange(e, setGender)} />
+                                                {!editForm ? <p>{userGenre.label}</p> :
+
+                                                    <Form.Select className="mb-3" onChange={(e) => handleSingleSelectChange('gender', e)}>
+                                                        <option>Selecciona un género</option>
+                                                        {GENRES.map((elm, idx) => {
+                                                            return (
+                                                                <option key={idx} value={elm.value}>{elm.label}</option>
+                                                            )
+                                                        })}
+                                                    </Form.Select>
+
                                                 }
                                             </Col>
                                         </Form.Group>
 
                                     </Col>
 
-                                    <Col lg="1" md="1" sm="1">
+                                    <Col lg="1" md="1" xs="1">
                                         <Dropdown align="end">
                                             <Dropdown.Toggle variant="custom-transparent">
                                                 {editForm ? (
                                                     <>
                                                         <div className="d-flex flex-column align-items-center">
                                                             <XLg variant="custom-transparent" onClick={() => setEditForm(false)} />
-                                                            <CheckLg className="mt-4" onClick={handleSaveChanges} />
                                                         </div>
                                                     </>
                                                 ) : (
@@ -179,12 +204,22 @@ const ProfilePage = () => {
                                         </Dropdown>
                                     </Col>
 
+                                    {editForm &&
+                                        <Row>
+                                            <Col className="text-center">
+                                                <Button variant="custom-primary" onClick={handleSaveChanges}>
+                                                    Guardar cambios
+                                                </Button>
+                                            </Col>
+                                        </Row>
+                                    }
+
 
                                 </Form>
 
                             </Col>
 
-                            <Col className="d-flex flex-column gap-3">
+                            <Col className="d-flex flex-column gap-3 my-4 my-sm-0">
                                 <Button variant="custom-secondary" className="w-100 h-50">Cambiar de rol</Button>
                                 <Button variant="custom-secondary" className="w-100 h-50">Eliminar cuenta</Button>
                             </Col>
@@ -192,7 +227,7 @@ const ProfilePage = () => {
                         </Row>
 
                         <Row className="edit-info-container mt-3 p-3">
-                            <Col className="mt-4 mb-4 h-100">
+                            <Col className="h-100">
                                 <h2>Mis playlists activas</h2>
 
                                 <Table variant="custom-dark" className="mt-5">

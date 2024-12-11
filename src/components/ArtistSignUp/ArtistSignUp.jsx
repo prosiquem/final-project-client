@@ -4,7 +4,7 @@ import { GENRES, SOCIAL_MEDIA } from "../../consts/user.consts"
 import Select from "react-select"
 import makeAnimated from "react-select/animated"
 import { MUSIC_GENRES } from "../../consts/music.consts"
-import { XLg } from 'react-bootstrap-icons'
+import { CalendarFill, XLg } from 'react-bootstrap-icons'
 
 import './ArtistSignUp.css'
 
@@ -73,13 +73,18 @@ const ArtistSignUp = ({
 
             <Row className="g-3">
                 <Col md={6}>
-                    <Form.Group className="form-floating">
-                        <Form.Control
-                            type="date"
-                            name="birth"
-                            placeholder="Año de nacimiento"
-                            value={signupData.birth}
-                            onChange={handleInputChange} />
+                    <Form.Group as={Row} className="align-items-center" >
+                        <Col className="d-md-none" xs={{ span: 2 }}> <CalendarFill /></Col>
+                        <Col className="text-start md-form-floating">
+                            <Form.Label className="d-md-none">Año de nacimiento</Form.Label>
+                            <Form.Control
+                                type="date"
+                                name="birth"
+                                placeholder="Año de nacimiento"
+                                className="h-100"
+                                value={signupData.birth}
+                                onChange={handleInputChange} />
+                        </Col>
                     </Form.Group>
                 </Col>
 
