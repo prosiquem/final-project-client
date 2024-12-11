@@ -29,7 +29,7 @@ const AlbumDetailsControler = ({ data, loggedUser, isLoadingTracks, playTrack })
                 <Button variant="custom-primary me-2" onClick={handlePlayClick}> <PlayFill /> </Button>
                 {data.tracks.length > 0 && data.author._id === loggedUser._id &&
                     <Button
-                        variant="custom-secondary me-2"
+                        variant="custom-secondary me-2 h-100"
                         onClick={() => { openTrackUploader(true), setAlbumId(albumId) }}
                         disabled={isLoadingTracks}>
                         <PlusLg />

@@ -1,4 +1,4 @@
-import { Button, FloatingLabel, Form, Spinner } from "react-bootstrap"
+import { Button, Col, FloatingLabel, Form, Row, Spinner } from "react-bootstrap"
 import makeAnimated from "react-select/animated"
 import Select from "react-select"
 

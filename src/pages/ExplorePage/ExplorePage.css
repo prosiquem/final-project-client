@@ -1,0 +1,17 @@
+.horizontal-scroll {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    gap: 8px;
+    padding-bottom: 12px;
+}
+
+.horizontal-scroll .btn-custom-primary {
+    height: fit-content;
+    padding: 4px 12px;
+}
+
+.horizontal-scroll .btn-custom-secondary {
+    padding: 4px 12px;
+    height: fit-content;
+}

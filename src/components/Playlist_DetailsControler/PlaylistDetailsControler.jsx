@@ -17,10 +17,10 @@ const DetailsControler = ({ data, loggedUser, setAddTrack, playTrack }) => {
     }
 
     return (
-        <Row className="DetailsControler w-100">
-            <Col className="p-0">
+        <Row className="DetailsControler">
+            <Col className="py-2 py-md-5">
                 <Button variant="custom-primary me-2" onClick={handlePlayClick}> <PlayFill /> </Button>
-                <Button variant="custom-secondary me-2">Guardarme la playlist</Button>
+                <Button variant="custom-secondary me-2 h-100">Guardarme la playlist</Button>
                 {data.tracks.length > 0 && data.owner._id === loggedUser._id &&
                     <Button variant="custom-secondary me-2" onClick={() => setAddTrack(true)}>
                         <PlusLg />

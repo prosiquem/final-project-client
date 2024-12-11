@@ -73,7 +73,7 @@ const AlbumDetailPage = () => {
     return (isLoading ? <Loader /> :
 
         <div className="AlbumDetailPage">
-            <Container className="page-container gap-4">
+            <Container className="page-container gap-4 p-4 p-md-5">
 
                 <div className="cover-container">
                     <img className="cover-image" src={album.cover ? album.cover : DEFAULT_IMAGES[1]} alt="Cover image" />
@@ -83,7 +83,7 @@ const AlbumDetailPage = () => {
 
                 <AlbumDetailsControler data={album} loggedUser={loggedUser} isLoadingTracks={isLoadingTracks} playTrack={playTrack} />
 
-                <Row className="content w-100 py-3 align-items-center">
+                <Row className="content py-3 align-items-center">
                     {album.tracks.length === 0 ?
                         <Col md={{ span: 4, offset: 4 }} className="text-center">
                             {album.author._id === loggedUser._id ?
@@ -104,8 +104,8 @@ const AlbumDetailPage = () => {
                                     <tr>
                                         <th>#</th>
                                         <th>Nombre de canción</th>
-                                        {album.author._id === loggedUser._id && <th><Trash2Fill /></th>}
-                                        {album.author._id === loggedUser._id && <th><PencilFill /></th>}
+                                        {album.author._id === loggedUser._id && <th className="d-none"><Trash2Fill /></th>}
+                                        {album.author._id === loggedUser._id && <th className="d-none"><PencilFill /></th>}
                                     </tr>
                                 </thead>
                                 <tbody>

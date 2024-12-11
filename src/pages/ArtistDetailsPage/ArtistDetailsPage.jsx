@@ -173,7 +173,7 @@ const ArtistDetailsPage = () => {
                         )
                     }) :
                         <Carousel.Item className="coverCarouselItem">
-                            <Image className="coverCarouselImage-empty" />
+                            <Image src={artist.avatar} />
                         </Carousel.Item>}
                 </Carousel>
 
