@@ -605,7 +605,7 @@ textarea:autofill {
   background-color: #1f1f1f;
 }
 
-/* Cover image blur */
+/* Cover image blur in playlist, album and profile pages*/
 
 .cover-image {
   position: absolute;

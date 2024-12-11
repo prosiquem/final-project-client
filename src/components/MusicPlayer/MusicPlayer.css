@@ -59,16 +59,13 @@ input[type=range] {
     -webkit-appearance: none;
     appearance: none;
     border-radius: 10px;
-}
-
-input:hover {
     cursor: pointer;
 }
 
 @media (max-width: 576px) {
     .music-player-container {
-        bottom: 70px;
-        left: .3vw;
+        bottom: 100px;
+        left: 2vw;
     }
 
     .music-player {
