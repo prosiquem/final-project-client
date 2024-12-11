@@ -12,7 +12,6 @@
 }
 
 .launchpage-text {
-    width: 800px;
     font-size: 3.5em;
     text-align: center;
     color: #e1e1e1;
@@ -23,4 +22,14 @@
     justify-content: center;
     gap: 30px;
     margin-top: 40px;
+}
+
+@media (max-width: 767.98px) {
+
+    .launchpage-text {
+        font-size: 2em;
+        text-align: center;
+        color: #e1e1e1;
+    }
+
 }

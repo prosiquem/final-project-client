@@ -21,14 +21,14 @@ const Launchpage = () => {
                             Escucha a tus artistas preferidos y crea las mejores playlists de la comunidad.
                         </h1>
 
-                        <Container className="launchpage-buttons-container">
-                            <Link to="/signup">
-                                <Button className="custom-primary-button">Regístrate</Button>
-                            </Link>
-                            <Link to="/login">
-                                <Button className="custom-primary-button">Inicia sesión</Button>
-                            </Link>
-                        </Container>
+                        <Row className="launchpage-buttons-container">
+                            <Col lg={{ span: "2" }} md={{ span: "4" }} sm={{ span: "12" }}>
+                                <Button as={Link} to="/signup" variant="custom-primary" className='w-100'>Regístrate</Button>
+                            </Col>
+                            <Col lg={{ span: "2" }} md={{ span: "4" }} sm={{ span: "12" }}>
+                                <Button as={Link} to="/login" variant="custom-primary" className='w-100'>Inicia sesión</Button>
+                            </Col>
+                        </Row>
                     </Col>
                 </Row>
             </Container>
