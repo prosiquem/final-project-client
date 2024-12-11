@@ -11,18 +11,21 @@ import ArtistDetailsDescription from "../../components/Artist_DetailDescription/
 import ArtistGalleryForm from "../../components/ArtistGalleryForm/ArtistGalleryForm"
 import albumServices from "../../services/album.services"
 import AlbumList from "../../components/AlbumList/AlbumList"
-import AlbumCard from "../../components/AlbumCard/AlbumCard"
+import { UserMessageContext } from "../../contexts/userMessage.context"
+import uploadServices from "../../services/upload.services"
 
 const ArtistDetailsPage = () => {
 
     const { id: artistId } = useParams()
 
     const { loggedUser } = useContext(AuthContext)
+    const { createAlert } = useContext(UserMessageContext)
 
     const [artist, setArtist] = useState()
     const [isLoading, setIsLoading] = useState(true)
     const [isEditing, setIsEditing] = useState(false)
     const [artistAlbum, setArtistAlbums] = useState()
+    const [loadingImage, setLoadingImage] = useState(false)
 
 
     const [socialMediaData, setSocialMediaData] = useState([
@@ -37,7 +40,7 @@ const ArtistDetailsPage = () => {
 
         fetchData(artistId)
 
-    }, [artistId, isEditing])
+    }, [artistId])
 
     const fetchData = (artistId) => {
         const artistData = [
@@ -56,8 +59,105 @@ const ArtistDetailsPage = () => {
 
     }
 
-    const editArtist = (artistId) => {
-        console.log(artist)
+    const handleInputChange = e => {
+
+        const { value, name } = e.target
+        setArtist({ ...artist, [name]: value })
+
+    }
+
+    const handleMultiSelectChange = (name, selectedOption) => {
+        const values = selectedOption
+            ? selectedOption.map((option) => option.value)
+            : []
+        setArtist({ ...artist, [name]: values })
+    }
+
+    const editArtist = () => {
+
+        userServices
+            .editUser(artistId, artist)
+            .then(() => {
+                fetchData(artistId)
+                createAlert('Artista editado', false)
+            })
+            .catch(err => console.log(err))
+    }
+
+    const handleSocialMediaChange = (e, idx) => {
+        const { value } = e.target
+        const socialMediaCopy = [...socialMediaData]
+        socialMediaCopy[idx].url = value
+        setSocialMediaData(socialMediaCopy)
+        setArtist({ ...artist, socialMedia: socialMediaCopy })
+    }
+
+    const addSocialMedia = () => {
+        const socialMediaCopy = [...socialMediaData]
+        socialMediaCopy.push(
+            {
+                socialMedia: "Youtube",
+                url: "",
+                icon: "Youtube"
+            }
+        )
+        setSocialMediaData(socialMediaCopy)
+    }
+
+    const deleteSocialMedia = (idx) => {
+        const socialMediaCopy = [...socialMediaData]
+        if (socialMediaCopy.length > 1) {
+            socialMediaCopy.splice(idx, 1)
+            setSocialMediaData(socialMediaCopy)
+            setArtist({ ...artist, socialMedia: socialMediaCopy })
+        }
+    }
+
+    const handleSocialMediaSelectChange = (idx, e) => {
+        const socialMediaCopy = [...socialMediaData]
+        const { value } = e.target
+        let socialMedia = value.split(',')
+        socialMediaCopy[idx].socialMedia = socialMedia[0]
+        socialMediaCopy[idx].icon = socialMedia[1]
+        setSocialMediaData(socialMediaCopy)
+        setArtist({ ...artist, socialMedia: socialMediaCopy })
+    }
+
+    const handleGalleryUpload = (e) => {
+
+        const formData = new FormData()
+
+        Array.from(e.target.files).forEach((file) => {
+            formData.append("galleryData", file)
+        })
+
+        setLoadingImage(true)
+
+        uploadServices
+
+            .uploadGallery(formData)
+            .then(({ data }) => {
+
+                const artistGalleryCopy = [...artist.artistGallery]
+                artistGalleryCopy.push(...data.cloudinary_url)
+
+                setArtist({ ...artist, artistGallery: artistGalleryCopy })
+                setLoadingImage(false)
+            })
+            .catch(err => {
+                setLoadingImage(false)
+                console.log(err)
+            })
+
+    }
+
+    const deleteGalleryElm = (idx) => {
+
+        const artistGalleryCopy = [...artist.artistGallery]
+        artistGalleryCopy.splice(idx, 1)
+
+        setArtist({ ...artist, artistGallery: artistGalleryCopy })
+
     }
 
     return (isLoading ? <Loader /> :
@@ -65,13 +165,16 @@ const ArtistDetailsPage = () => {
             <Container className="page-container">
 
                 <Carousel fade controls={false} indicators={false} interval={4000} className="coverCarousel">
-                    {artist.artistGallery.map(elm => {
+                    {artist.artistGallery.length > 0 ? artist.artistGallery.map(elm => {
                         return (
-                            <Carousel.Item className="coverCarouselItem">
+                            <Carousel.Item key={elm} className="coverCarouselItem">
                                 <Image src={elm} className="coverCarouselImage" />
                             </Carousel.Item>
                         )
-                    })}
+                    }) :
+                        <Carousel.Item className="coverCarouselItem">
+                            <Image className="coverCarouselImage-empty" />
+                        </Carousel.Item>}
                 </Carousel>
 
                 <ArtistDetailsHeader
@@ -80,17 +183,33 @@ const ArtistDetailsPage = () => {
                     loggedUser={loggedUser}
                     isEditing={isEditing}
                     setIsEditing={setIsEditing}
-                    editArtist={editArtist} />
+
+                    handleInputChange={handleInputChange} />
 
                 <ArtistDetailsDescription
                     data={artist}
                     changeData={setArtist}
-                    loggedUser={loggedUser}
                     isEditing={isEditing}
                     socialMediaData={socialMediaData}
-                    setSocialMediaData={setSocialMediaData} />
+                    setSocialMediaData={setSocialMediaData}
 
-                {isEditing && <ArtistGalleryForm />}
+                    handleInputChange={handleInputChange}
+                    handleMultiSelectChange={handleMultiSelectChange}
+
+                    handleSocialMediaChange={handleSocialMediaChange}
+                    deleteSocialMedia={deleteSocialMedia}
+                    addSocialMedia={addSocialMedia}
+                    handleSocialMediaSelectChange={handleSocialMediaSelectChange} />
+
+                {isEditing &&
+                    <Col md={{ offset: "1" }}>
+                        <h2>Galería de imágenes</h2>
+                        <ArtistGalleryForm
+                            data={artist}
+                            handleGalleryUpload={handleGalleryUpload}
+                            deleteGalleryElm={deleteGalleryElm} />
+                    </Col>
+                }
 
                 {!isEditing && <Row className="py-5">
                     <Col md={{ offset: "1" }}>
@@ -105,7 +224,8 @@ const ArtistDetailsPage = () => {
                 {isEditing &&
                     <Button
                         onClick={() => { setIsEditing(false), editArtist() }}
-                        variant="custom-primary">
+                        variant="custom-primary"
+                        disabled={loadingImage} >
                         Guardar
                     </Button>}
 

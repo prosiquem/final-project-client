@@ -3,7 +3,7 @@ import makeAnimated from "react-select/animated"
 import Select from "react-select"
 
 import { MUSIC_GENRES } from "../../consts/music.consts"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import uploadServices from "../../services/upload.services"
 import albumServices from "../../services/album.services"
 import { AuthContext } from "../../contexts/auth.context"
@@ -44,7 +44,13 @@ const CreateAlbumForm = () => {
     const handleCreditsChange = e => {
 
         const { name, value } = e.target
+
+        const copyCreditsData = { ...creditsData }
+        copyCreditsData[name] = value
+
         setCreditsData({ ...creditsData, [name]: value })
+        setNewAlbumData({ ...newAlbumData, credits: creditsData })
+
     }
 
     const handleMultiSelectChange = (name, selectedOption) => {

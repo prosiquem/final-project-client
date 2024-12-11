@@ -50,7 +50,13 @@ const EditAlbumForm = ({ albumId }) => {
     const handleCreditsChange = (e) => {
 
         const { value, name } = e.target
+
+        const copyCreditsData = { ...creditsData }
+        copyCreditsData[name] = value
+
         setCreditsData({ ...creditsData, [name]: value })
+        setAlbumData({ ...albumData, credits: copyCreditsData })
+
 
     }
 

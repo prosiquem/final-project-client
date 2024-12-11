@@ -16,7 +16,7 @@ By Pedro Rosique & Elena Frontiñán
 
 | **URL** | **Description** | **Protected** |
 |---------|-----------------|------------|
-<!-- |     /mylibrary    |       User playlists          |      ✅      | -->
+|     /mylibrary    |       User playlists          |      ✅      |
 |    /playlist/:id     |         Playlist detail        |       ✅     |
 
 **Album pages**
@@ -29,7 +29,7 @@ By Pedro Rosique & Elena Frontiñán
 
 | **URL** | **Description** | **Protected** |
 |---------|-----------------|------------|
-<!-- |    /artists/:id     |       Artist detail         |      ✅      | -->
+|    /artists/:id     |       Artist detail         |      ✅      |
 
 **Explore pages**
 | **URL** | **Description** | **Protected** |
@@ -44,7 +44,3 @@ By Pedro Rosique & Elena Frontiñán
 |    /playlist/edit     |      Edit playlist           |     ✅       |
 |    /album/new     |        Create Album         |      ✅      |
 |     /album/edit    |       Edit Album          |      ✅      |
-
-**Admin pages**
-
-???

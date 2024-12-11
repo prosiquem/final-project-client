@@ -7,9 +7,21 @@ import makeAnimated from "react-select/animated"
 import { SOCIAL_MEDIA } from "../../consts/user.consts"
 import { XLg } from "react-bootstrap-icons"
 
-const ArtistDetailsDescription = ({ data, loggedUser, isEditing, socialMediaData, setSocialMediaData }) => {
+const ArtistDetailsDescription = ({
+    data,
+    isEditing,
+    setSocialMediaData,
 
-    const navigate = useNavigate()
+    handleInputChange,
+    handleMultiSelectChange,
+
+    handleSocialMediaChange,
+    deleteSocialMedia,
+    addSocialMedia,
+    socialMediaData,
+    handleSocialMediaSelectChange
+}) => {
+
     const animatedComponents = makeAnimated()
 
     return (
@@ -28,12 +40,12 @@ const ArtistDetailsDescription = ({ data, loggedUser, isEditing, socialMediaData
                                     as="textarea"
                                     rows={6}
                                     className="text-area"
-                                    defaultValue={data.description} />
+                                    defaultValue={data.description}
+                                    onChange={handleInputChange} />
                             </FloatingLabel>
                         </Form.Group>
                         :
-                        <p>{data.description}</p>
-                    }
+                        <p>{data.description}</p>}
 
                     {isEditing ?
 
@@ -46,27 +58,25 @@ const ArtistDetailsDescription = ({ data, loggedUser, isEditing, socialMediaData
                                 name="musicGenres"
                                 options={MUSIC_GENRES}
                                 value={MUSIC_GENRES.filter(option => data.musicGenres.includes(option.value))}
-
-                                isMulti
-                            />
+                                onChange={(selectedOptions) => handleMultiSelectChange('musicGenres', selectedOptions)}
+                                isMulti />
                         </Form.Group>
                         :
                         data.musicGenres.map(elm => {
                             return (
-                                <Badge>{elm}</Badge>
+                                <Badge key={elm} className="me-2">{elm}</Badge>
                             )
-                        })
-                    }
+                        })}
                 </Col>
 
                 {isEditing ?
                     <Col md={{ span: "4", offset: "1" }}>
                         <Form.Group>
-                            {data.socialMedia.map((elm, idx) => {
+                            {socialMediaData.map((elm, idx) => {
                                 return (
                                     <Row className="gap-2" key={`musicGenre-${idx}`}>
                                         <Col md="4" className="p-0">
-                                            <Form.Select className="mb-3">
+                                            <Form.Select className="mb-3" onChange={(e) => handleSocialMediaSelectChange(idx, e)}>
                                                 {SOCIAL_MEDIA.map((elm, idx) => {
                                                     return (
                                                         <option key={idx} value={[elm.value, elm.icon]}>{elm.label}</option>
@@ -80,14 +90,15 @@ const ArtistDetailsDescription = ({ data, loggedUser, isEditing, socialMediaData
                                                     type="text"
                                                     name="social-media-input"
                                                     placeholder="URL"
+                                                    onChange={e => handleSocialMediaChange(e, idx)}
                                                     value={elm.url}
-                                                    id={`formSocialMedia-${idx}`}
-                                                />
+                                                    id={`formSocialMedia-${idx}`} />
                                             </Form.Group>
                                         </Col>
                                         <Col md="1" className="p-0">
                                             <Button
                                                 variant="custom-transparent"
+                                                onClick={() => deleteSocialMedia(idx)}
                                                 disabled={socialMediaData.length <= 1}
                                                 size="sm">
                                                 <XLg color="#a8a8a8" />
@@ -95,10 +106,10 @@ const ArtistDetailsDescription = ({ data, loggedUser, isEditing, socialMediaData
                                         </Col>
                                     </Row>
                                 )
-                            })
-                            }
+                            })}
                             <Button
                                 variant="custom-transparent"
+                                onClick={addSocialMedia}
                                 size="sm"
                                 className="mt-2">
                                 Añadir red social
@@ -109,16 +120,15 @@ const ArtistDetailsDescription = ({ data, loggedUser, isEditing, socialMediaData
                     <Col md={{ span: "1", offset: "2" }}>
                         {data.socialMedia.map(elm => {
                             return (
-                                <NavLink variant="custom-transparent" to={elm.url}>
+                                <Row key={elm.url} as={NavLink} variant="custom-transparent " to={elm.url}>
                                     <Icon
                                         iconName={elm.icon}
                                         size={28} />
-                                </NavLink>
+                                </Row>
                             )
                         })}
 
-                    </Col>
-                }
+                    </Col>}
             </Row>
 
 
