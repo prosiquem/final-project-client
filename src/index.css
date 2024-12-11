@@ -8,6 +8,10 @@ svg {
   fill: #e1e1e1;
 }
 
+.fa-solid {
+  color: #e1e1e1;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -111,7 +115,7 @@ button.custom-primary-button {
   padding: 4px 8px;
   background-color: #aaf700;
   backdrop-filter: blur(10px);
-  color: #121212;
+  color: #121212 !important;
   border: none;
   font-size: 16px;
   cursor: pointer;
@@ -120,6 +124,11 @@ button.custom-primary-button {
 .btn-custom-primary>svg,
 button.custom-primary-button>svg {
   fill: black;
+}
+
+.btn-custom-primary>.fa-solid,
+button.custom-primary-button>.fa-solid {
+  color: black;
 }
 
 .btn-custom-primary:hover,
@@ -605,7 +614,7 @@ textarea:autofill {
   background-color: #1f1f1f;
 }
 
-/* Cover image blur */
+/* Cover image blur in playlist, album and profile pages*/
 
 .cover-image {
   position: absolute;
@@ -626,7 +635,7 @@ textarea:autofill {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, #ffffff00 0%, #0b0b0b 60%, #121212 90%);
+  background: linear-gradient(to bottom, #ffffff00 0%, #121212 60%);
   z-index: -1;
 }
 
@@ -656,6 +665,7 @@ textarea:autofill {
   border-radius: 8px;
   overflow: hidden;
   width: 100%;
+  cursor: pointer;
 }
 
 .card-img-top {

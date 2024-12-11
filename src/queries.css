@@ -23,6 +23,33 @@
         height: fit-content;
     }
 
+    .btn-custom-secondary {
+        padding: 1px 16px;
+    }
+
+    .cover-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 650px;
+        opacity: 80%;
+        filter: blur(30px);
+        object-fit: cover;
+        z-index: -2;
+    }
+
+    .cover-container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: linear-gradient(to bottom, #00000000 0%, #121212 90%);
+        z-index: -1;
+    }
+
 }
 
 @media (min-width : 577px) {

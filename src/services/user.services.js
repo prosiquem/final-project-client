@@ -37,6 +37,11 @@ class UserServices {
             this.axiosApp.put(`/users/${id}`, editUser)
         )
     }
+
+    countTracksPlayed(id) {
+        return this.axiosApp.post(`/users/${id}/track-count`)
+    }
+
 }
 
 export default new UserServices()

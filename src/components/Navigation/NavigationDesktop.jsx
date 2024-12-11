@@ -48,7 +48,7 @@ const Navigation = () => {
 
             {loggedUser &&
                 <>
-                    <Nav className="flex-column w-100 h-100 my-4">
+                    <Nav className="flex-column h-100 my-4">
 
                         <NavLink
                             to="/home"
@@ -63,10 +63,11 @@ const Navigation = () => {
                             className={({ isActive }) => isActive ? "nav-link selected" : "nav-link"}
                         >
                             {loggedUser?.avatar ? (
-                                <img
+                                <Image
+                                    height={"24px"} width={"24px"}
                                     src={loggedUser.avatar}
-                                    alt="Avatar"
-                                    className="avatar-img" />
+                                    alt="Avatar" roundedCircle
+                                />
                             ) : (
                                 <PersonFill />
                             )}
@@ -99,8 +100,8 @@ const Navigation = () => {
                     </Nav>
 
                     <Button variant='custom-primary' onClick={() => logoutUser()}>
-                        <BoxArrowLeft />
-                        {isExpanded && <span className="button-title ">Cerrar sesión</span>}
+                        <i class="fa-solid fa-door-open"></i>
+                        {isExpanded && <span>Cerrar sesión</span>}
                     </Button>
                 </>
 

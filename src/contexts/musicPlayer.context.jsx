@@ -86,8 +86,8 @@ export const MusicPlayerProvider = (props) => {
     }
 
     const prevTrack = () => {
-        const currentIndex = playlist.findIndex(track => track.file === currentTrack.file)
 
+        const currentIndex = playlist.findIndex(track => track.file === currentTrack.file)
 
         if (currentIndex === 0) {
             const repeatFirstTrack = playlist[0]
