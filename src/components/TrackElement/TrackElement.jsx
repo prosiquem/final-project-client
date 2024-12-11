@@ -30,6 +30,7 @@ const TrackElement = ({
             cover: album.cover,
         }
         playTrack(trackData)
+
     }
 
     return (

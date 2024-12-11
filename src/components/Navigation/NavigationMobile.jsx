@@ -36,7 +36,8 @@ const Navigation = () => {
                         className={({ isActive }) => isActive ? "nav-link selected" : "nav-link"}
                     >
                         {loggedUser?.avatar ? (
-                            <Image fluid
+                            <Image
+                                height={"24px"} width={"24px"}
                                 src={loggedUser.avatar}
                                 alt="Avatar" roundedCircle />
                         ) : (

@@ -1,27 +1,27 @@
-import { Button, Container, Row, Col, Image } from 'react-bootstrap';
-import { FastForwardFill, PauseFill, PlayFill, RewindFill } from 'react-bootstrap-icons';
-import { useMusicPlayer } from '../../contexts/musicPlayer.context';
-import './MusicPlayer.css';
+import { Button, Container, Row, Col, Image } from 'react-bootstrap'
+import { FastForwardFill, PauseFill, PlayFill, RewindFill } from 'react-bootstrap-icons'
+import { useMusicPlayer } from '../../contexts/musicPlayer.context'
+import './MusicPlayer.css'
 
 const MusicPlayer = () => {
 
-    const { currentTrack, isPlaying, togglePlayPause, nextTrack, prevTrack, currentTime, duration, seek } = useMusicPlayer();
+    const { currentTrack, isPlaying, togglePlayPause, nextTrack, prevTrack, currentTime, duration, seek } = useMusicPlayer()
 
     if (!currentTrack) {
-        return null;
+        return null
     }
 
     const handleSeekChange = (event) => {
-        const newTime = event.target.value;
-        seek(newTime);
-    };
+        const newTime = event.target.value
+        seek(newTime)
+    }
 
     const handleProgressClick = (event) => {
-        const progressBar = event.target;
-        const clickPosition = event.nativeEvent.offsetX;
-        const newTime = (clickPosition / progressBar.offsetWidth) * duration;
-        seek(newTime);
-    };
+        const progressBar = event.target
+        const clickPosition = event.nativeEvent.offsetX
+        const newTime = (clickPosition / progressBar.offsetWidth) * duration
+        seek(newTime)
+    }
 
     return (
         <div className="music-player-div">
@@ -30,16 +30,16 @@ const MusicPlayer = () => {
                 <div className="music-player">
                     <Row className="align-items-center">
 
-                        <Col xs="12" md={{ span: "1" }} >
+                        <Col xs="2" md={{ span: "1" }} >
                             <Image fluid src={currentTrack.cover} alt="Album Cover" className=" rounded" />
                         </Col>
 
-                        <Col md={{ span: "2" }} className="music-info d-flex flex-column align-self-end">
+                        <Col xs="10" md={{ span: "2" }} className="music-info d-flex flex-column align-self-end">
                             <h4 className="song-title mb-1">{currentTrack.title}</h4>
                             <label className="artist-name">{currentTrack.artistName}</label>
                         </Col>
 
-                        <Col xs="10" md className="progress-bar-container" onClick={handleProgressClick}>
+                        <Col xs="6" md="4" lg="6" className="progress-bar-container my-3" onClick={handleProgressClick}>
                             <input
                                 type="range"
                                 className="progress-bar w-100"
@@ -54,12 +54,12 @@ const MusicPlayer = () => {
                             />
                         </Col>
 
-                        <Col xs="auto" className="controls d-flex ml-5">
-                            <Button variant="custom-secondary" onClick={prevTrack} className="">
+                        <Col xs="6" md="5" lg="3" className="controls text-end">
+                            <Button variant="custom-secondary me-1" onClick={prevTrack}>
                                 <RewindFill />
                             </Button>
 
-                            <Button variant="custom-secondary" onClick={togglePlayPause} className="">
+                            <Button variant="custom-secondary me-1" onClick={togglePlayPause}>
                                 {isPlaying ? <PauseFill /> : <PlayFill />}
                             </Button>
 
@@ -71,7 +71,7 @@ const MusicPlayer = () => {
                 </div>
             </Container>
         </div>
-    );
-};
+    )
+}
 
-export default MusicPlayer;
+export default MusicPlayer

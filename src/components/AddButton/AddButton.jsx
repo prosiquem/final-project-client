@@ -1,11 +1,18 @@
 import { Card, Container } from 'react-bootstrap'
 import { Plus } from 'react-bootstrap-icons'
 import './AddButton.css'
+import { useNavigate } from 'react-router-dom'
 
 const AddButton = () => {
 
+    const navigate = useNavigate()
+
+    const handleNavigate = () => {
+        navigate("/playlist/new")
+    }
+
     return (
-        <article className="add-card mb-3">
+        <article className="add-card mb-3" onClick={handleNavigate}>
 
             <div className="add-card-container d-flex">
                 <Card className="add-card">

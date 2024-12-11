@@ -10,7 +10,7 @@ By Pedro Rosique & Elena Frontiñán
 |    /signup     |        Signup page      |           |
 |    /     |        Landing page         |            |
 |    /home     |        Initial page      |     ✅      |
-<!-- |    /profile/:id    |        Profile page         |     ✅       | -->
+|    /profile/:id    |        Profile page         |     ✅       |
 
 **Playlist pages**
 
