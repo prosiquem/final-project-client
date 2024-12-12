@@ -99,7 +99,7 @@ const AlbumDetailPage = () => {
                         :
                         <Col md="12" className="p-0">
                             {album.description && album.description.length > 1 && <p>{album.description}</p>}
-                            <Table variant="custom-dark">
+                            <Table variant="custom-dark" responsive>
                                 <thead>
                                     <tr>
                                         <th>#</th>

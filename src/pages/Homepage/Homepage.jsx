@@ -30,7 +30,7 @@ const Homepage = () => {
     const fetchHomeData = () => {
         const homeData = [
             AlbumServices.fetchArtistAlbum(loggedUser._id),
-            PlaylistServices.fetchUserPlaylists(loggedUser._id, 4),
+            PlaylistServices.fetchUserPlaylists(loggedUser._id),
             PlaylistServices.fetchLastPlaylists(),
             AlbumServices.fetchLastAlbums(),
         ]
@@ -39,9 +39,9 @@ const Homepage = () => {
 
         Promise.all(homeData)
             .then(([artistAlbum, playlists, lastPlaylists, albums]) => {
-                console.log(playlists.data)
                 setArtistAlbum(artistAlbum.data)
-                setPlaylists(playlists.data)
+                const limitedPlaylists = playlists.data.playlists.slice(0, 4)
+                setPlaylists(limitedPlaylists)
                 setLastPlaylists(lastPlaylists.data)
                 setAlbums(albums.data)
                 setIsLoading(false)
@@ -51,7 +51,6 @@ const Homepage = () => {
             })
 
     }
-
 
     return (
         <div className="HomePage">
@@ -77,9 +76,7 @@ const Homepage = () => {
                         {loggedUser.role === "ARTIST" && (
                             <Row className="homepage-artist-albums">
                                 <Col>
-                                    <Link className="link" to="/mylibrary">
-                                        <h2>Mis álbumes <ArrowRightShort /></h2>
-                                    </Link>
+                                    <Link className="link h2" to="/mylibrary">Mis álbumes <ArrowRightShort /></Link>
                                     <AlbumList albums={artistAlbum} />
                                 </Col>
                             </Row>
@@ -87,18 +84,14 @@ const Homepage = () => {
 
                         <Row className="homepage-playlists">
                             <Col>
-                                <Link className="link" to="/mylibrary">
-                                    <h2>Mis playlists <ArrowRightShort /></h2>
-                                </Link>
+                                <Link className="link h2" to="/mylibrary">Mis playlists <ArrowRightShort /></Link>
                                 <PlaylistList playlists={playlists} />
                             </Col>
                         </Row>
 
                         <Row className="homepage-last-playlists">
                             <Col>
-                                <Link className="link">
-                                    <h2>Últimas playlists <ArrowRightShort /></h2>
-                                </Link>
+                                <Link className="link h2" to="/explore">Últimas playlists <ArrowRightShort /></Link>
                                 <PlaylistList playlists={lastPlaylists} showAddButton={false} />
                             </Col>
                         </Row>
@@ -106,9 +99,7 @@ const Homepage = () => {
 
                         <Row className="homepage-recent-added mb-5">
                             <Col>
-                                <Link className="link">
-                                    <h2>Últimos álbumes <ArrowRightShort /></h2>
-                                </Link>
+                                <Link className="link h2" to="/explore">Últimos álbumes <ArrowRightShort /></Link>
                                 <AlbumList albums={albums} showAddButton={false} />
                             </Col>
                         </Row>

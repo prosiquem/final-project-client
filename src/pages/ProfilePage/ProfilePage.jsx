@@ -240,7 +240,7 @@ const ProfilePage = () => {
                             <Col className="h-100">
                                 <h2>Mis playlists activas</h2>
 
-                                <Table variant="custom-dark" className="mt-5">
+                                <Table variant="custom-dark" className="mt-5" responsive>
                                     <thead>
                                         <tr>
                                             <th >Cover</th>

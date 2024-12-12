@@ -178,7 +178,7 @@ const PaylistDetailPage = () => {
                         <Col md="12" className="p-0 h-100">
                             {playlist.description && playlist.description.length > 1 && <p>{playlist.description}</p>}
 
-                            <Table variant="custom-dark">
+                            <Table variant="custom-dark" responsive>
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -226,7 +226,7 @@ const PaylistDetailPage = () => {
                 <Modal.Body>
                     <TrackSearchBar setSearchResults={setSearchResults} />
                     {searchResults &&
-                        <Table variant="custom-dark">
+                        <Table variant="custom-dark" responsive>
 
                             <tbody>
                                 {searchResults.map((elm, idx) => {

@@ -26,7 +26,7 @@ class PlaylistServices {
         )
     }
 
-    fetchUserPlaylists(ownerId, maxResult) {
+    fetchFilteredPlaylists(ownerId, maxResult) {
         return (
             this.axiosApp.get('/playlists/search', {
                 params: {
@@ -34,6 +34,12 @@ class PlaylistServices {
                     maxResult
                 }
             })
+        )
+    }
+
+    fetchUserPlaylists(userId) {
+        return (
+            this.axiosApp.get(`/playlists/user/${userId}`)
         )
     }
 
