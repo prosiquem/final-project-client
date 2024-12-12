@@ -42,6 +42,14 @@ export const MusicPlayerProvider = (props) => {
         }
     }, [audio])
 
+    useEffect(() => {
+        if (!loggedUser && audio) {
+            audio.pause()
+            setIsPlaying(false)
+            setCurrentTrack(null)
+        }
+    }, [loggedUser, audio])
+
     const playTrack = (track) => {
         if (audio) {
             audio.pause()

@@ -14,7 +14,14 @@ const Launchpage = () => {
         <div className="Launchpage">
             <Container className="page-container">
                 {/* TODO */}
-                <video className="launchpage-video" src="src/assets/2.mp4" autoPlay loop muted></video>
+                <video
+                    className="launchpage-video"
+                    src="src/assets/koon.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                ></video>
 
                 <Row className="h-100 p-md-4 align-items-center">
                     <Col className='text-center p-0'>

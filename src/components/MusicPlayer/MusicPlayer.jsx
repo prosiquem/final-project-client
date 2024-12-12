@@ -1,7 +1,10 @@
+import { useContext } from 'react'
 import { Button, Container, Row, Col, Image } from 'react-bootstrap'
 import { FastForwardFill, PauseFill, PlayFill, RewindFill } from 'react-bootstrap-icons'
 import { useMusicPlayer } from '../../contexts/musicPlayer.context'
 import './MusicPlayer.css'
+
+
 
 const MusicPlayer = () => {
 

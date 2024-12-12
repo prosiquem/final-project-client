@@ -28,14 +28,14 @@
     }
 
     .cover-image {
-        height: 650px;
+        height: 450px;
         opacity: 80%;
         filter: blur(30px);
     }
 
     .cover-container::before {
         height: 100vh;
-        background: linear-gradient(to bottom, #00000000 0%, #121212 90%);
+        background: linear-gradient(to bottom, #00000000 0%, #121212 70%);
     }
 
 }
