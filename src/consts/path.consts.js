@@ -12,3 +12,5 @@ export const DEFAULT_IMAGES = [
     "https://res.cloudinary.com/dbq56vg5g/image/upload/v1734001079/koon/c1lo9lprmlzutxissogf.webp",
     "https://res.cloudinary.com/dbq56vg5g/image/upload/v1734001079/koon/rxc7trqnjlna8xu3pmnv.webp"
 ]
+
+export const LAUNCHPAGE_VIDEO = "https://res.cloudinary.com/dbq56vg5g/video/upload/v1734011111/koon/d12puq8eezk2m0nmccau.mp4"

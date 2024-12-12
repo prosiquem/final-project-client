@@ -25,6 +25,16 @@
     left: 0px;
 }
 
+.nav-button-toggle {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.isologo {
+    width: 30px;
+}
+
 .bottombar label {
     font-size: 10px;
 }

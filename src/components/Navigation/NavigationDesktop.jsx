@@ -25,28 +25,23 @@ const Navigation = () => {
                         variant="custom-transparent"
                         size="sm"
                         onClick={toggleExpand}
-                        style={{
-                            position: 'absolute',
-                            top: '10px',
-                            right: '10px'
-                        }}
                     >
                         {isExpanded ? <ChevronDoubleLeft /> : <ChevronDoubleRight />}
                     </Button>
                 )}
             </div>
 
-            <Row className="text-center pt-5">
+            <Row className="isologo text-center pt-4">
                 <Col>
                     <Navbar.Brand>
-                        <Image src={ISOLOGO} fluid style={{ width: "30px" }} />
+                        <Image src={ISOLOGO} fluid />
                     </Navbar.Brand>
                 </Col>
             </Row>
 
             {loggedUser && (
                 <>
-                    <Nav className="flex-column h-100 pt-4">
+                    <Nav className="flex-column h-100 pt-5">
                         <NavLink
                             to="/home"
                             className={({ isActive }) => isActive ? "nav-link selected" : "nav-link"}

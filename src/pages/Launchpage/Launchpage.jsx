@@ -3,6 +3,7 @@ import { Button, Col, Container, Row } from "react-bootstrap"
 import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../contexts/auth.context'
 import './LaunchPage.css'
+import { LAUNCHPAGE_VIDEO } from '../../consts/path.consts'
 
 const Launchpage = () => {
 
@@ -16,7 +17,7 @@ const Launchpage = () => {
                 {/* TODO */}
                 <video
                     className="launchpage-video"
-                    src="src/assets/koon.mp4"
+                    src={LAUNCHPAGE_VIDEO}
                     autoPlay
                     loop
                     muted
