@@ -1,11 +1,10 @@
 import { Routes, Route } from 'react-router-dom'
 import LoginPage from '../pages/LoginPage/LoginPage'
-import Launchpage from '../pages/LaunchPage/LaunchPage'
 import SignUpPage from '../pages/SignUpPage/SignUpPage'
 import PaylistDetailPage from '../pages/PlaylistDetailPage/PlaylistDetailPage'
 import PrivateRoutes from './PrivateRoutes'
 import NewPlaylistPage from '../pages/NewPlaylistPage/NewPlaylistPage'
-import HomePage from '../pages/Homepage/Homepage'
+import Homepage from '../pages/Homepage/Homepage'
 import ExplorePage from '../pages/ExplorePage/ExplorePage'
 import EditPlaylistPage from '../pages/EditPlaylistPage/EditPlaylistPage'
 import AlbumDetailPage from '../pages/AlbumDetailPage/AlbumDetailPage'
@@ -30,7 +29,7 @@ const AppRoutes = () => {
 
                 <Route element={<PrivateRoutes />}>
 
-                    <Route path={'/home'} element={<HomePage />} />
+                    <Route path={'/home'} element={<Homepage />} />
                     <Route path={'/profile/:id'} element={<ProfilePage />} />
 
                     <Route path={'/explore'} element={<ExplorePage />} />
@@ -46,8 +45,6 @@ const AppRoutes = () => {
                     <Route path={'/playlist/edit/:id'} element={<EditPlaylistPage />} />
                     <Route path={'/album/new'} element={<NewAlbumPage />} />
                     <Route path={'/album/edit/:id'} element={<EditAlbumPage />} />
-                    <Route path={'/track/edit'} element={<h1>--------------------Edit track</h1>} />
-
                 </Route>
 
             </Routes>
