@@ -12,17 +12,15 @@ import { MusicPlayerProvider } from './contexts/musicplayer.context.jsx'
 import { TracksUploaderWrapper } from './contexts/tracksUploader.context.jsx'
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <UserMessageProviderWrapper>
-      <AuthProviderWrapper>
-        <TracksUploaderWrapper>
-          <MusicPlayerProvider>
-            <Router>
-              <App />
-            </Router>
-          </MusicPlayerProvider>
-        </TracksUploaderWrapper>
-      </AuthProviderWrapper>
-    </UserMessageProviderWrapper>
-  </StrictMode>
+  <UserMessageProviderWrapper>
+    <AuthProviderWrapper>
+      <TracksUploaderWrapper>
+        <MusicPlayerProvider>
+          <Router>
+            <App />
+          </Router>
+        </MusicPlayerProvider>
+      </TracksUploaderWrapper>
+    </AuthProviderWrapper>
+  </UserMessageProviderWrapper>
 )

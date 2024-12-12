@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { AuthContext } from "../../contexts/auth.context"
 import { UserMessageContext } from "../../contexts/userMessage.context"
@@ -12,6 +12,7 @@ import PlaylistDetailsHeader from "../../components/Playlist_DetailsHeader/Playl
 import DetailsControler from "../../components/Playlist_DetailsControler/PlaylistDetailsControler"
 import playlistServices from "../../services/playlist.services"
 import '../../general-css/DetailPage.css'
+import userServices from "../../services/user.services"
 
 
 
@@ -23,24 +24,21 @@ const PaylistDetailPage = () => {
     const [isLoading, setIsLoading] = useState(true)
     const [addTrack, setAddTrack] = useState(false)
     const [searchResults, setSearchResults] = useState()
+    const [userData, setUserData] = useState()
+    const [initialLoaded, setInitialLoaded] = useState(false)
 
     const { loggedUser } = useContext(AuthContext)
     const { createAlert } = useContext(UserMessageContext)
 
     const { playTrack,
-        pauseTrack,
-        stopTrack,
-        currentTrack,
-        isPlaying,
         setPlaylist: setPlaylistContext,
-        nextTrack,
-        prevTrack
     } = useMusicPlayer()
 
     const navigate = useNavigate()
 
     useEffect(() => {
         fetchPlaylist()
+        fetchUserData()
     }, [])
 
     const fetchPlaylist = () => {
@@ -50,6 +48,16 @@ const PaylistDetailPage = () => {
                 setPlaylist(data)
                 setPlaylistContext(data.tracks)
                 setIsLoading(false)
+                setInitialLoaded(true)
+            })
+            .catch(err => console.log(err))
+    }
+
+    const fetchUserData = () => {
+        userServices
+            .fetchUserData(loggedUser._id, { playlists: 1 })
+            .then(({ data }) => {
+                setUserData(data)
             })
             .catch(err => console.log(err))
     }
@@ -93,6 +101,41 @@ const PaylistDetailPage = () => {
             .catch(err => console.log(err))
     }
 
+    const savePlaylist = (_id) => {
+        const userPlaylistCopy = [...userData.playlists]
+        userPlaylistCopy.push(_id)
+
+        setUserData({ ...userData, playlists: userPlaylistCopy })
+        editUser({ ...userData, playlists: userPlaylistCopy })
+
+    }
+
+    const unsavePlaylist = (_id) => {
+        const userPlaylistCopy = [...userData.playlists]
+        const elmToRemove = userPlaylistCopy.indexOf(_id)
+        console.log(userPlaylistCopy)
+        userPlaylistCopy.splice(elmToRemove, 1)
+        console.log(userPlaylistCopy)
+
+        setUserData({ ...userData, playlists: userPlaylistCopy })
+        editUser({ ...userData, playlists: userPlaylistCopy })
+
+    }
+
+
+    const editUser = (data) => {
+
+        userServices
+            .editUser(loggedUser._id, data)
+            .then(() => {
+                fetchPlaylist()
+                fetchUserData()
+            })
+            .catch(err => console.log(err))
+
+    }
+
+
     return isLoading ? <Loader /> :
         <div className="PaylistDetailPage">
             <Container className="page-container p-4 p-md-5">
@@ -101,9 +144,19 @@ const PaylistDetailPage = () => {
                     <img className="cover-image" src={playlist.cover ? playlist.cover : DEFAULT_IMAGES[1]} alt="Cover image" />
                 </div>
 
-                <PlaylistDetailsHeader data={playlist} loggedUser={loggedUser} deleteElm={deletePlaylist} />
+                <PlaylistDetailsHeader
+                    data={playlist}
+                    loggedUser={loggedUser}
+                    deleteElm={deletePlaylist} />
 
-                <DetailsControler data={playlist} loggedUser={loggedUser} setAddTrack={setAddTrack} playTrack={playTrack} />
+                <DetailsControler
+                    data={playlist}
+                    loggedUser={loggedUser}
+                    setAddTrack={setAddTrack}
+                    playTrack={playTrack}
+                    savePlaylist={savePlaylist}
+                    unsavePlaylist={unsavePlaylist}
+                    userData={userData} />
 
                 <Row className="content w-100 py-3 align-items-center">
                     {playlist.tracks.length === 0 ?

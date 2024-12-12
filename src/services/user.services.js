@@ -26,6 +26,12 @@ class UserServices {
         )
     }
 
+    fetchUserData(id, params) {
+        return (
+            this.axiosApp.get(`/users/${id}/search`, { params })
+        )
+    }
+
     fetchArtists() {
         return (
             this.axiosApp.get('/artists')

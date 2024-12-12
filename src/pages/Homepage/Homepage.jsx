@@ -30,7 +30,7 @@ const Homepage = () => {
     const fetchHomeData = () => {
         const homeData = [
             AlbumServices.fetchArtistAlbum(loggedUser._id),
-            PlaylistServices.fetchPlaylists(),
+            PlaylistServices.fetchUserPlaylists(loggedUser._id, 4),
             PlaylistServices.fetchLastPlaylists(),
             AlbumServices.fetchLastAlbums(),
         ]
@@ -39,9 +39,9 @@ const Homepage = () => {
 
         Promise.all(homeData)
             .then(([artistAlbum, playlists, lastPlaylists, albums]) => {
-                const filteredPlaylists = playlists.data.filter(playlist => playlist.owner._id === loggedUser._id)
+                console.log(playlists.data)
                 setArtistAlbum(artistAlbum.data)
-                setPlaylists(filteredPlaylists)
+                setPlaylists(playlists.data)
                 setLastPlaylists(lastPlaylists.data)
                 setAlbums(albums.data)
                 setIsLoading(false)

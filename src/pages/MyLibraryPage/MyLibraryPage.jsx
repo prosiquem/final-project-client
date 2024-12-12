@@ -27,17 +27,16 @@ const MyLibraryPage = () => {
     const fetchLibraryData = () => {
         const libraryData = [
             AlbumServices.fetchArtistAlbum(loggedUser._id),
-            PlaylistServices.fetchPlaylists()
+            PlaylistServices.fetchUserPlaylists(loggedUser._id)
         ]
 
         setIsLoading(true)
 
         Promise.all(libraryData)
             .then(([artistAlbumResponse, playlistsResponse]) => {
-                const userPlaylists = playlistsResponse.data.filter(playlist => playlist.owner._id === loggedUser._id)
                 setArtistAlbum(artistAlbumResponse.data)
-                setPlaylists(userPlaylists)
-                setFilteredPlaylists(userPlaylists)
+                setPlaylists(playlistsResponse.data)
+                setFilteredPlaylists(playlistsResponse.data)
                 setIsLoading(false)
             })
             .catch(err => {

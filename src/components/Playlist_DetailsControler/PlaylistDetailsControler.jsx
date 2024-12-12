@@ -1,7 +1,7 @@
 import { Button, Col, Row } from "react-bootstrap"
 import { PlayFill, PlusLg } from "react-bootstrap-icons"
 
-const DetailsControler = ({ data, loggedUser, setAddTrack, playTrack }) => {
+const DetailsControler = ({ data, loggedUser, setAddTrack, playTrack, savePlaylist, unsavePlaylist, userData }) => {
 
     const handlePlayClick = () => {
         if (data.tracks.length > 0) {
@@ -19,13 +19,24 @@ const DetailsControler = ({ data, loggedUser, setAddTrack, playTrack }) => {
     return (
         <Row className="DetailsControler">
             <Col className="py-2 py-md-5">
-                <Button variant="custom-primary me-2" onClick={handlePlayClick}> <PlayFill /> </Button>
-                <Button variant="custom-secondary me-2 h-100">Guardarme la playlist</Button>
-                {data.tracks.length > 0 && data.owner._id === loggedUser._id &&
-                    <Button variant="custom-secondary me-2" onClick={() => setAddTrack(true)}>
-                        <PlusLg />
-                    </Button>
-                }
+                <Row>
+                    <Col xs={{ span: 3 }} md={{ span: 'auto' }}>
+                        <Button variant="custom-primary" onClick={handlePlayClick}> <PlayFill /> </Button>
+                    </Col>
+                    {loggedUser._id != data.owner._id && <Col xs={{ span: 8 }} md={{ span: 'auto' }}>
+                        {userData.playlists.find(elm => elm === data._id) === undefined ?
+                            <Button variant="custom-secondary h-100" onClick={() => savePlaylist(data._id)}>Guardar</Button>
+                            : <Button variant="custom-secondary h-100" onClick={() => unsavePlaylist(data._id)}>No guardar</Button>}
+                    </Col>}
+                    <Col xs={{ span: 3 }} md={{ span: 'auto' }}>
+
+                        {data.tracks.length > 0 && data.owner._id === loggedUser._id &&
+                            <Button variant="custom-secondary " onClick={() => setAddTrack(true)}>
+                                <PlusLg />
+                            </Button>
+                        }
+                    </Col>
+                </Row>
             </Col>
         </Row>
     )
