@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import LoginPage from '../pages/LoginPage/LoginPage'
-import Launchpage from '../pages/LaunchPage/LaunchPage'
+import Launchpage from '../pages/LaunchPage_/LaunchPage_'
 import SignUpPage from '../pages/SignUpPage/SignUpPage'
 import PaylistDetailPage from '../pages/PlaylistDetailPage/PlaylistDetailPage'
 import PrivateRoutes from './PrivateRoutes'
@@ -14,7 +14,7 @@ import EditAlbumPage from '../pages/EditAlbumPage/EditAlbumPage'
 import MyLibraryPage from '../pages/MyLibraryPage/MyLibraryPage'
 import ProfilePage from '../pages/ProfilePage/ProfilePage'
 import ArtistDetailsPage from '../pages/ArtistDetailsPage/ArtistDetailsPage'
-import LaunchPage from '../pages/LaunchPage/LaunchPage'
+import LaunchPage from '../pages/LaunchPage_/LaunchPage_'
 
 const AppRoutes = () => {
 
