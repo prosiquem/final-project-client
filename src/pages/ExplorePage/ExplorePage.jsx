@@ -4,6 +4,8 @@ import Loader from "../../components/Loader/Loader"
 import ExploreList from "../../components/ExploreList/ExploreList"
 import ExploreServices from "../../services/explore.services"
 import SpecificSearcher from "../../components/SpecificSearcher/SpecificSearcher"
+import { EXPLORE_FILTERS } from "../../consts/filter.conts"
+import "./ExplorePage.css"
 
 const ExplorePage = () => {
     const [explore, setExplore] = useState({
@@ -23,7 +25,6 @@ const ExplorePage = () => {
         setIsLoading(true)
         ExploreServices.fetchExplore()
             .then(({ data }) => {
-                console.log(data)
                 setExplore({
                     artists: data.artists,
                     playlists: data.playlists,
@@ -64,56 +65,30 @@ const ExplorePage = () => {
                     </div>
                 ) : (
                     <Container className="explore-items">
-                        <Row className="mt-3">
-                            <Container className="explore-buttons d-flex justify-content-between">
-                                <Col xs="auto" className="mb-2">
-                                    <Button
-                                        className="px-4"
-                                        variant={filter === "all" ? "custom-primary" : "custom-secondary"}
-                                        onClick={() => handleFilterChange("all")}
-                                    >
-                                        Todos
-                                    </Button>
-                                </Col>
-                                <Col xs="auto" className="mb-2">
-                                    <Button
-                                        className="px-4"
-                                        variant={filter === "artists" ? "custom-primary" : "custom-secondary"}
-                                        onClick={() => handleFilterChange("artists")}
-                                    >
-                                        Artistas
-                                    </Button>
-                                </Col>
-                                <Col xs="auto" className="mb-2">
-                                    <Button
-                                        className="px-4"
-                                        variant={filter === "playlists" ? "custom-primary" : "custom-secondary"}
-                                        onClick={() => handleFilterChange("playlists")}
-                                    >
-                                        Playlists
-                                    </Button>
-                                </Col>
-                                <Col xs="auto" className="mb-2">
-                                    <Button
-                                        className="px-4"
-                                        variant={filter === "albums" ? "custom-primary" : "custom-secondary"}
-                                        onClick={() => handleFilterChange("albums")}
-                                    >
-                                        Álbumes
-                                    </Button>
-                                </Col>
+                        <Row className="mt-3 align-items-center">
 
-                                <Container className="explore-searcher">
-                                    <Col xs="auto" className="mb-2">
-                                        <SpecificSearcher
-                                            playlists={explore.playlists}
-                                            artists={explore.artists}
-                                            albums={explore.albums}
-                                            setFilteredResults={setFilteredResults}
-                                        />
-                                    </Col>
-                                </Container>
-                            </Container>
+                            <div className="col horizontal-scroll">
+                                {EXPLORE_FILTERS.map(elm => {
+                                    return (
+                                        <Button
+                                            className="px-4"
+                                            variant={filter === elm.value ? "custom-primary" : "custom-secondary"}
+                                            onClick={() => handleFilterChange(elm.value)}>
+                                            {elm.label}
+                                        </Button>
+                                    )
+                                })}
+                            </div>
+
+                            <Col xs="auto" className="mb-2">
+                                <SpecificSearcher
+                                    playlists={explore.playlists}
+                                    artists={explore.artists}
+                                    albums={explore.albums}
+                                    setFilteredResults={setFilteredResults}
+                                />
+                            </Col>
+
                         </Row>
 
                         <ExploreList

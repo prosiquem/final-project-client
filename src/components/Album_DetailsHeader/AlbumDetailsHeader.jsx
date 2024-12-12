@@ -12,16 +12,18 @@ const AlbumDetailsHeader = ({ data, loggedUser, deleteElm }) => {
 
     return (
 
-        <Row className="AlbumDetailsHeader details-info w-100 gap-4">
-            <Col md="2" className="p-0"><Image src={data.cover ? data.cover : PLAYLIST_COVER} fluid /></Col>
+        <Row className="AlbumDetailsHeader details-info gap-4 pb-5">
+            <Col md={{ span: 4, offset: 0 }} xs={{ span: 12, offset: 0 }} className="p-0">
+                <Image src={data.cover ? data.cover : PLAYLIST_COVER} fluid />
+            </Col>
             <Col className="p-0 column-between">
 
 
                 <Row className="details-info-header">
-                    <Col md="10" ><label>Álbum</label></Col>
+                    <Col xs="10" md="10" ><label>Álbum</label></Col>
 
                     {data.author._id === loggedUser._id &&
-                        <Col md="2" className="text-end" >
+                        <Col xs="2" md="2" className="text-end" >
 
                             <Dropdown
                                 align="end">
@@ -48,7 +50,7 @@ const AlbumDetailsHeader = ({ data, loggedUser, deleteElm }) => {
                     </Col>
                 </Row>
 
-                <Row className="">
+                <Row className="d-none d-md-flex">
                     <Col>
                         <label> Productores: {data.credits.producers ? data.credits.producers : 'Desconocido'} | Derechos reservados {data.credits.recordLabel ? data.credits.recordLabel : 'Desconocido'}®</label>
                     </Col>

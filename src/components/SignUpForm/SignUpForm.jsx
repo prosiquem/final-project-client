@@ -102,8 +102,6 @@ const SignUpForm = () => {
 
         formData.append("imageData", e.target.files[0])
 
-        console.log(e.target.files[0])
-
         setLoadingImage(true)
 
         uploadServices

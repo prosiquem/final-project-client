@@ -95,7 +95,7 @@ const PaylistDetailPage = () => {
 
     return isLoading ? <Loader /> :
         <div className="PaylistDetailPage">
-            <Container className="page-container gap-4">
+            <Container className="page-container p-4 p-md-5">
 
                 <div className="cover-container">
                     <img className="cover-image" src={playlist.cover ? playlist.cover : DEFAULT_IMAGES[1]} alt="Cover image" />
@@ -132,7 +132,7 @@ const PaylistDetailPage = () => {
                                         <th>Nombre de canción</th>
                                         <th>Artista</th>
                                         <th>Álbum</th>
-                                        <th>Eliminar</th>
+                                        {loggedUser._id === playlist.owner._id && <th>Eliminar</th>}
                                     </tr>
                                 </thead>
 
@@ -193,6 +193,6 @@ const PaylistDetailPage = () => {
                     }
                 </Modal.Body>
             </Modal>
-        </div>
+        </div >
 }
 export default PaylistDetailPage

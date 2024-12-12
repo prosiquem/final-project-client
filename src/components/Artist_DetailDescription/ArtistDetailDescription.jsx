@@ -28,7 +28,7 @@ const ArtistDetailsDescription = ({
         <Form className="ArtistDetailsDescription">
 
             <Row>
-                <Col md={{ offset: "1" }}>
+                <Col md={!isEditing ? { span: "8", offset: "1" } : { span: "12" }} xs={isEditing ? { span: "12" } : { span: "10" }}>
                     {isEditing ?
                         <Form.Group className="mb-3">
                             <FloatingLabel
@@ -70,7 +70,7 @@ const ArtistDetailsDescription = ({
                 </Col>
 
                 {isEditing ?
-                    <Col md={{ span: "4", offset: "1" }}>
+                    <Col>
                         <Form.Group>
                             {socialMediaData.map((elm, idx) => {
                                 return (
@@ -84,7 +84,7 @@ const ArtistDetailsDescription = ({
                                                 })}
                                             </Form.Select>
                                         </Col>
-                                        <Col className="p-0">
+                                        <Col xs={{ span: "9" }} className="p-0">
                                             <Form.Group className="mb-3">
                                                 <Form.Control
                                                     type="text"
@@ -95,7 +95,7 @@ const ArtistDetailsDescription = ({
                                                     id={`formSocialMedia-${idx}`} />
                                             </Form.Group>
                                         </Col>
-                                        <Col md="1" className="p-0">
+                                        <Col md="1" xs={{ span: "2" }} className="p-0">
                                             <Button
                                                 variant="custom-transparent"
                                                 onClick={() => deleteSocialMedia(idx)}
@@ -117,7 +117,7 @@ const ArtistDetailsDescription = ({
                         </Form.Group>
                     </Col>
                     :
-                    <Col md={{ span: "1", offset: "2" }}>
+                    <Col md={{ span: "2", offset: "1" }} xs={{ span: "2", offset: "0" }}>
                         {data.socialMedia.map(elm => {
                             return (
                                 <Row key={elm.url} as={NavLink} variant="custom-transparent " to={elm.url}>

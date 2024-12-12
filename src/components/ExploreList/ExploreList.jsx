@@ -23,10 +23,10 @@ const ExploreList = ({ artists, playlists, albums }) => {
     const randomizeCards = randomExplore.sort(() => Math.random() - 0.5)
 
     return (
-        <Row className="my-5 pt-4 pb-5 explore-list">
+        <Row className="my-5 pb-5 explore-list">
             {
                 randomizeCards.map((elm) => (
-                    <Col key={elm._id} xs={12} sm={6} md={4} lg={3}>
+                    <Col key={elm._id} xs={6} sm={6} md={4} lg={3}>
                         {elm.type === "artist" && <ArtistCard {...elm} />}
                         {elm.type === "playlist" && <PlaylistCard {...elm} />}
                         {elm.type === "album" && <AlbumCard {...elm} />}
