@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import LoginPage from '../pages/LoginPage/LoginPage'
-import Launchpage from '../pages/LaunchPage/Launchpage'
+import Launchpage from '../pages/LaunchPage/LaunchPage'
 import SignUpPage from '../pages/SignUpPage/SignUpPage'
 import PaylistDetailPage from '../pages/PlaylistDetailPage/PlaylistDetailPage'
 import PrivateRoutes from './PrivateRoutes'
@@ -14,6 +14,7 @@ import EditAlbumPage from '../pages/EditAlbumPage/EditAlbumPage'
 import MyLibraryPage from '../pages/MyLibraryPage/MyLibraryPage'
 import ProfilePage from '../pages/ProfilePage/ProfilePage'
 import ArtistDetailsPage from '../pages/ArtistDetailsPage/ArtistDetailsPage'
+import LaunchPage from '../pages/LaunchPage/LaunchPage'
 
 const AppRoutes = () => {
 
@@ -23,7 +24,7 @@ const AppRoutes = () => {
 
             <Routes>
 
-                <Route path={'/'} element={<Launchpage />} />
+                <Route path={'/'} element={<LaunchPage />} />
                 <Route path={'/login'} element={<LoginPage />} />
                 <Route path={'/signup'} element={<SignUpPage />} />
 

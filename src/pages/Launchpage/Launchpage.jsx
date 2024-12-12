@@ -5,7 +5,7 @@ import { AuthContext } from '../../contexts/auth.context'
 import './LaunchPage.css'
 import { LAUNCHPAGE_VIDEO } from '../../consts/path.consts'
 
-const Launchpage = () => {
+const LaunchPage = () => {
 
     const { loggedUser } = useContext(AuthContext)
 
@@ -46,4 +46,4 @@ const Launchpage = () => {
     )
 }
 
-export default Launchpage
+export default LaunchPage
