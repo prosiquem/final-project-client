@@ -30,16 +30,16 @@ const MusicPlayer = () => {
                 <div className="music-player">
                     <Row className="align-items-center">
 
-                        <Col xs="2" md={{ span: "1" }} >
+                        <Col xs="2" sm="" md={{ span: "1" }} >
                             <Image fluid src={currentTrack.cover} alt="Album Cover" className=" rounded" />
                         </Col>
 
-                        <Col xs="10" md={{ span: "2" }} className="music-info d-flex flex-column align-self-end">
+                        <Col xs="10" sm="" md={{ span: "2" }} className="music-info d-flex flex-column align-self-end">
                             <h4 className="song-title mb-1">{currentTrack.title}</h4>
                             <label className="artist-name">{currentTrack.artistName}</label>
                         </Col>
 
-                        <Col xs="6" md="4" lg="6" className="progress-bar-container my-3" onClick={handleProgressClick}>
+                        <Col xs="4" sm="" md={{ span: "4" }} lg="6" className="progress-bar-container my-3" onClick={handleProgressClick}>
                             <input
                                 type="range"
                                 className="progress-bar w-100"
@@ -54,16 +54,16 @@ const MusicPlayer = () => {
                             />
                         </Col>
 
-                        <Col xs="6" md="5" lg="3" className="controls text-end">
-                            <Button variant="custom-secondary me-1" onClick={prevTrack}>
+                        <Col xs="8" md={{ span: "5" }} lg="3" className="controls text-end">
+                            <Button variant="custom-player me-1" onClick={prevTrack}>
                                 <RewindFill />
                             </Button>
 
-                            <Button variant="custom-secondary me-1" onClick={togglePlayPause}>
+                            <Button variant="custom-player me-1" onClick={togglePlayPause}>
                                 {isPlaying ? <PauseFill /> : <PlayFill />}
                             </Button>
 
-                            <Button variant="custom-secondary" onClick={nextTrack}>
+                            <Button variant="custom-player" onClick={nextTrack}>
                                 <FastForwardFill />
                             </Button>
                         </Col>

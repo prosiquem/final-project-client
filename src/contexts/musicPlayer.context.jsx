@@ -1,4 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react"
+import UserServices from "../services/user.services"
+import { AuthContext } from "./auth.context"
 
 const MusicPlayerContext = createContext()
 
@@ -10,6 +12,9 @@ export const MusicPlayerProvider = (props) => {
     const [playlist, setPlaylist] = useState([])
     const [currentTime, setCurrentTime] = useState(0)
     const [duration, setDuration] = useState(0)
+    const [playedTracks, setPlayedTracks] = useState([])
+
+    const { loggedUser } = useContext(AuthContext)
 
     useEffect(() => {
         if (audio) {
@@ -46,6 +51,10 @@ export const MusicPlayerProvider = (props) => {
         setCurrentTrack(track)
         setIsPlaying(true)
         newAudio.play()
+
+        if (loggedUser && !playedTracks.includes(track.id)) {
+            UserServices.countTracks(loggedUser._id)
+        }
     }
 
     const togglePlayPause = () => {
@@ -82,6 +91,10 @@ export const MusicPlayerProvider = (props) => {
                 artistName: nextTrack.author.artistName,
                 cover: nextTrack.album.cover
             })
+
+            if (loggedUser) {
+                UserServices.countTracks(loggedUser._id)
+            }
         }
     }
 
@@ -97,6 +110,11 @@ export const MusicPlayerProvider = (props) => {
                 artistName: repeatFirstTrack.author.artistName,
                 cover: repeatFirstTrack.album.cover
             })
+
+            if (loggedUser) {
+                UserServices.countTracks(loggedUser._id)
+            }
+
             return
         }
 
@@ -110,6 +128,10 @@ export const MusicPlayerProvider = (props) => {
                 artistName: prevTrack.author.artistName,
                 cover: prevTrack.album.cover
             })
+
+            if (loggedUser) {
+                UserServices.countTracks(loggedUser._id)
+            }
         }
     }
 

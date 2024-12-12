@@ -38,8 +38,8 @@ class UserServices {
         )
     }
 
-    countTracksPlayed(id) {
-        return this.axiosApp.post(`/users/${id}/track-count`)
+    countTracks(id) {
+        return this.axiosApp.put(`/users/${id}/tracks/count`)
     }
 
 }

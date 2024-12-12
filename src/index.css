@@ -176,6 +176,29 @@ button.custom-primary-button:active {
   color: #e1e1e1;
 }
 
+.btn-custom-player {
+  align-items: center;
+  justify-content: center;
+  background-color: #252525a4;
+  border-radius: 50px;
+  color: #e1e1e1;
+  transition: background-color 0.3s ease;
+  padding: 10px 30px;
+
+}
+
+.btn-custom-player:hover {
+  transition: background-color 0.3s ease;
+  background-color: #313131a4;
+  color: #e1e1e1;
+}
+
+.btn-custom-player:active {
+  border: none !important;
+  background-color: #313131a4 !important;
+  color: #e1e1e1;
+}
+
 button.custom-focus-button {
   border-radius: 50px;
   padding: 10px 30px;

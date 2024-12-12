@@ -100,7 +100,7 @@ const Navigation = () => {
                     </Nav>
 
                     <Button variant='custom-primary' onClick={() => logoutUser()}>
-                        <i class="fa-solid fa-door-open"></i>
+                        <i class="fa-solid fa-right-from-bracket"></i>
                         {isExpanded && <span>Cerrar sesión</span>}
                     </Button>
                 </>

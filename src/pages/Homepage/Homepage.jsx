@@ -38,13 +38,12 @@ const Homepage = () => {
         setIsLoading(true)
 
         Promise.all(homeData)
-            .then(([artistAlbumResponse, playlistsResponse, lastPlaylistsResponse, albumsResponse]) => {
-                const filteredPlaylists = playlistsResponse.data.filter(playlist => playlist.owner._id === loggedUser._id)
-                setArtistAlbum(artistAlbumResponse.data)
-                console.log(artistAlbumResponse.data)
+            .then(([artistAlbum, playlists, lastPlaylists, albums]) => {
+                const filteredPlaylists = playlists.data.filter(playlist => playlist.owner._id === loggedUser._id)
+                setArtistAlbum(artistAlbum.data)
                 setPlaylists(filteredPlaylists)
-                setLastPlaylists(lastPlaylistsResponse.data)
-                setAlbums(albumsResponse.data)
+                setLastPlaylists(lastPlaylists.data)
+                setAlbums(albums.data)
                 setIsLoading(false)
             })
             .catch(err => {

@@ -3,10 +3,9 @@ import { AuthContext } from "../../contexts/auth.context"
 import { useContext, useEffect, useState } from "react"
 import Loader from "../../components/Loader/Loader"
 import { formatDateInput } from "../../utils/date.utils"
-import { CalendarFill, CheckLg, ThreeDotsVertical, XLg } from "react-bootstrap-icons"
+import { CalendarFill, ThreeDotsVertical, XLg } from "react-bootstrap-icons"
 import { DEFAULT_IMAGES } from "../../consts/path.consts"
 import userServices from "../../services/user.services"
-import { MUSIC_GENRES } from "../../consts/music.consts"
 import { GENRES } from "../../consts/user.consts"
 
 const ProfilePage = () => {
@@ -15,7 +14,7 @@ const ProfilePage = () => {
     const [isLoading, setIsLoading] = useState(true)
     const [editForm, setEditForm] = useState(false)
 
-    const { loggedUser } = useContext(AuthContext)
+    const { loggedUser, logoutUser } = useContext(AuthContext)
 
     const image = user.cover || DEFAULT_IMAGES[Math.floor(Math.random() * DEFAULT_IMAGES.length)]
 
@@ -31,6 +30,7 @@ const ProfilePage = () => {
         userServices
             .fetchUser(loggedUser._id)
             .then(({ data }) => {
+                console.log(data)
                 setUser(data)
                 setIsLoading(false)
             })
@@ -81,11 +81,21 @@ const ProfilePage = () => {
                             <img className="cover-image" src={user.avatar} alt="Cover image" />
                         </div>
 
+                        <Button
+                            className="mobile-logout-button position-absolute"
+                            variant="custom-primary"
+                            onClick={() => logoutUser()}
+                            style={{ top: "20px", right: "20px", width: "50px", padding: "3px" }}
+                        >
+                            <i className="fa-solid fa-right-from-bracket"></i>
+                        </Button>
+
+
                         <Row className="ProfileHeader profile-info w-100 gap-md-4 mt-4">
                             <Col md="2" xs="4">
                                 <Image src={user.avatar} className="profile-image" alt="Avatar" />
                             </Col>
-                            <Col className="p-0 column-between">
+                            <Col className="column-between">
                                 <Row className="details-info-header">
                                     <Col md="10">
                                         <label>Mi perfil</label>
@@ -95,7 +105,7 @@ const ProfilePage = () => {
                                 <Row className="details-info-description align-items-end">
                                     <Col>
                                         <h1>{user.username}</h1>
-                                        <h5>{user.playlists.length === 1 ? "playlist creada" : `${user.playlists.length} playlists creadas`}</h5>
+                                        <h5>{user.playlists.length === 1 ? "playlist creada" : `${user.playlists.length} playlists creadas`} · {user.tracksListened} tracks escuchadas</h5>
                                     </Col>
                                 </Row>
                             </Col>
