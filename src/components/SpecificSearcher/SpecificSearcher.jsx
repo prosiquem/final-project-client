@@ -1,31 +1,34 @@
 import { useEffect, useState, useRef } from "react"
 import { Form } from "react-bootstrap"
 
-const SpecificSearcher = ({ playlists, artists, albums, setFilteredResults }) => {
+const SpecificSearcher = ({ playlists = [], artists = [], albums = [], setFilteredResults, filterBy = [] }) => {
     const [search, setSearch] = useState("")
     const [isExpanded, setIsExpanded] = useState(false)
     const searchRef = useRef(null)
 
     const handleSearch = (e) => {
-
         const value = e.target.value.toLowerCase()
         setSearch(value)
 
-        const filteredPlaylists = playlists.filter(playlist =>
-            playlist.name && playlist.name.toLowerCase().includes(value)
-        )
-        const filteredArtists = artists.filter(artist =>
-            artist.artistName && artist.artistName.toLowerCase().includes(value)
-        )
-        const filteredAlbums = albums.filter(album =>
-            album.title && album.title.toLowerCase().includes(value)
-        )
+        const filteredResults = {}
 
-        setFilteredResults({
-            playlists: filteredPlaylists,
-            artists: filteredArtists,
-            albums: filteredAlbums
-        })
+        if (filterBy.includes("playlists")) {
+            filteredResults.playlists = playlists.filter(playlist =>
+                playlist.name && playlist.name.toLowerCase().includes(value)
+            )
+        }
+        if (filterBy.includes("artists")) {
+            filteredResults.artists = artists.filter(artist =>
+                artist.artistName && artist.artistName.toLowerCase().includes(value)
+            )
+        }
+        if (filterBy.includes("albums")) {
+            filteredResults.albums = albums.filter(album =>
+                album.title && album.title.toLowerCase().includes(value)
+            )
+        }
+
+        setFilteredResults(filteredResults)
     }
 
     const toggleExpand = () => {
@@ -53,7 +56,7 @@ const SpecificSearcher = ({ playlists, artists, albums, setFilteredResults }) =>
         >
             <Form.Control
                 type="text"
-                placeholder="Buscar en mi biblioteca..."
+                placeholder="¿Qué te apetece escuchar?"
                 value={search}
                 onChange={handleSearch}
                 className="search-input"

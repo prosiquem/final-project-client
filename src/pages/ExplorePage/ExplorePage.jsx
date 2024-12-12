@@ -86,6 +86,7 @@ const ExplorePage = () => {
                                     artists={explore.artists}
                                     albums={explore.albums}
                                     setFilteredResults={setFilteredResults}
+                                    filterBy={["playlists", "artists", "albums"]}
                                 />
                             </Col>
 

@@ -52,7 +52,11 @@ const MyLibraryPage = () => {
                 ) : (
                     <>
                         <Container className="searcher-container d-flex justify-content-end">
-                            <SpecificSearcher playlists={playlists} setFilteredPlaylists={setFilteredPlaylists} />
+                            <SpecificSearcher
+                                playlists={playlists}
+                                setFilteredResults={(results) => setFilteredPlaylists(results.playlists)}
+                                filterBy={["playlists"]}
+                            />
                         </Container>
 
                         {loggedUser.role === "ARTIST" && (

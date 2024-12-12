@@ -1,16 +1,17 @@
-import { Col, Row, Spinner } from "react-bootstrap"
+import { Col, Container, Image, Row, Spinner } from "react-bootstrap"
 
 const Loader = () => {
 
     return (
 
-        <div className="Loader">
-
-            <Row className="h-100 align-items-center">
-                <Col>
-                    <Spinner animation="grow" />
-                </Col>
-            </Row>
+        <div className="loader">
+            <Container className="page-container d-flex align-items-center justify-content-center vh-100">
+                <Row>
+                    <Col>
+                        <Spinner animation="grow" />
+                    </Col>
+                </Row>
+            </Container>
         </div >
     )
 }
