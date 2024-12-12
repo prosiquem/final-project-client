@@ -35,8 +35,8 @@ const MyLibraryPage = () => {
         Promise.all(libraryData)
             .then(([artistAlbumResponse, playlistsResponse]) => {
                 setArtistAlbum(artistAlbumResponse.data)
-                setPlaylists(playlistsResponse.data)
-                setFilteredPlaylists(playlistsResponse.data)
+                setPlaylists(playlistsResponse.data.playlists)
+                setFilteredPlaylists(playlistsResponse.data.playlists)
                 setIsLoading(false)
             })
             .catch(err => {
