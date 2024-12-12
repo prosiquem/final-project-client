@@ -9,7 +9,7 @@ import PlaylistServices from "../../services/playlist.services"
 import AlbumServices from "../../services/album.services"
 import GlobalSearchBar from '../../components/GlobalSearchBar/GlobalSearchBar'
 import AlbumList from '../../components/AlbumList/AlbumList'
-import './HomePage.css'
+import './Homepage.css'
 
 const Homepage = () => {
 
