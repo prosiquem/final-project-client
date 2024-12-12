@@ -4,7 +4,7 @@ import { Col, Container, Row, Button, Table, Form, Modal, Image, Offcanvas } fro
 import albumServices from "../../services/album.services"
 import Loader from "../../components/Loader/Loader"
 import { AuthContext } from "../../contexts/auth.context"
-import { useMusicPlayer } from "../../contexts/musicplayer.context"
+import { useMusicPlayer } from "../../contexts/musicPlayer.context"
 import AlbumDetailsHeader from "../../components/Album_DetailsHeader/AlbumDetailsHeader"
 import AlbumDetailsControler from "../../components/Album_DetailsControler/AlbumDetailsControler"
 import TrackElement from "../../components/TrackElement/TrackElement"
