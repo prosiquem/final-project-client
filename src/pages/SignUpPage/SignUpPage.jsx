@@ -7,7 +7,7 @@ const SignUpPage = () => {
         <div className="SignUpPage">
             <Container className="page-container text-center align-content-center">
 
-                <Image src={ISOLOGO} width={"150px"} className="d-sm-none" />
+                <Image src={ISOLOGO} width={"50px"} className="d-sm-none py-5" />
 
                 <Row className="h-100 justify-content-center">
                     <Col md={{ span: 8 }} lg={{ span: 6 }} >

@@ -30,7 +30,7 @@ const Navigation = () => {
             <div className="mt-5">
                 {loggedUser && (
                     <Button
-                        className="nav-button-toggle"
+                        className={isExpanded ? "nav-button-toggle expanded" : "nav-button-toggle"}
                         variant="custom-primary-float"
                         size="sm"
                         onClick={toggleExpand}

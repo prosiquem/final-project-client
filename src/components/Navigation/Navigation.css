@@ -14,7 +14,7 @@
     z-index: 1000;
 }
 
-/* .bottombar.navbar {
+.bottombar.navbar {
     background-color: #000000;
     backdrop-filter: blur(10px);
     width: 100vw;
@@ -23,7 +23,17 @@
     padding: 8px 24px;
     bottom: 0px;
     left: 0px;
-} */
+}
+
+.nav-button-toggle {
+    position: absolute;
+    top: 5vh;
+    left: 60px;
+}
+
+.nav-button-toggle.expanded {
+    left: 190px;
+}
 
 .nav-button-toggle .fa-solid {
     font-size: .8em;
