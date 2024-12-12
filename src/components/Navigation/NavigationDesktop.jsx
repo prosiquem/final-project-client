@@ -4,7 +4,7 @@ import { ISOLOGO } from '../../consts/path.consts'
 import { NavLink } from 'react-router-dom'
 
 import { Button, Nav, Navbar, Col, Row, Image } from 'react-bootstrap'
-import { ChevronDoubleLeft, ChevronDoubleRight, CollectionFill, CompassFill, HouseFill, PersonFill, PlusCircleFill } from 'react-bootstrap-icons'
+import { CollectionFill, CompassFill, HouseFill, PersonFill, PlusCircleFill } from 'react-bootstrap-icons'
 
 
 const Navigation = () => {
@@ -18,20 +18,8 @@ const Navigation = () => {
 
     return (
         <Navbar className={`sidebar ${isExpanded ? 'expanded' : ''}`}>
-            <div className="d-flex justify-content-end">
-                {loggedUser && (
-                    <Button
-                        className="nav-button-toggle"
-                        variant="custom-transparent"
-                        size="sm"
-                        onClick={toggleExpand}
-                    >
-                        {isExpanded ? <ChevronDoubleLeft /> : <ChevronDoubleRight />}
-                    </Button>
-                )}
-            </div>
 
-            <Row className="isologo text-center pt-4">
+            <Row className="isologo text-center mt-2">
                 <Col>
                     <Navbar.Brand>
                         <Image src={ISOLOGO} fluid />
@@ -39,9 +27,23 @@ const Navigation = () => {
                 </Col>
             </Row>
 
+            <div className="mt-5">
+                {loggedUser && (
+                    <Button
+                        className="nav-button-toggle"
+                        variant="custom-primary-float"
+                        size="sm"
+                        onClick={toggleExpand}
+
+                    >
+                        {isExpanded ? <i class="fa-solid fa-chevron-left"></i> : <i class="fa-solid fa-chevron-right"></i>}
+                    </Button>
+                )}
+            </div>
+
             {loggedUser && (
                 <>
-                    <Nav className="flex-column h-100 pt-5">
+                    <Nav className="navbar-buttons flex-column h-100 mt-5">
                         <NavLink
                             to="/home"
                             className={({ isActive }) => isActive ? "nav-link selected" : "nav-link"}
@@ -91,8 +93,8 @@ const Navigation = () => {
                         </NavLink>
                     </Nav>
 
-                    <Button variant='custom-primary' onClick={() => logoutUser()}>
-                        <i className="fa-solid fa-right-from-bracket"></i>
+                    <Button className='logout-button' variant='custom-primary' onClick={() => logoutUser()}>
+                        <i className="fa-solid fa-right-from-bracket me-2"></i>
                         {isExpanded && <span>Cerrar sesión</span>}
                     </Button>
                 </>
