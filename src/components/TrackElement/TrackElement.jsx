@@ -38,7 +38,7 @@ const TrackElement = ({
             {!isCreateElm && <td>{idx + 1}</td>}
             <td onClick={handleTrackClick}>{title}</td>
             {type != 'album' && <td onClick={handleTrackClick}>{author?.artistName ? `${author.artistName}` : 'Desconocido'}</td>}
-            {type != 'album' && <td onClick={handleTrackClick}>{author?.artistName ? `${album.title}` : 'Desconocido'}</td>}
+            {type != 'album' && <td onClick={handleTrackClick}>{author?.artistName ? `${album?.title}` : 'Desconocido'}</td>}
             {/* {!isCreateElm && <td>{time}</td>*/}
 
             {type != 'album' && !isCreateElm && playlistOwner._id === user._id && <td>

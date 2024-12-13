@@ -30,6 +30,7 @@ const TrackSearchBar = ({ setSearchResults }) => {
             .searchSongs(searchTerm)
             .then(({ data }) => {
                 setSearchResults(data)
+                console.log(data)
             })
             .catch(err => console.log(err))
     }
