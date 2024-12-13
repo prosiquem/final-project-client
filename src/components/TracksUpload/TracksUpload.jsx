@@ -87,7 +87,7 @@ const TracksUpload = () => {
                 setUpload({ isCorrect: false })
             })
 
-        setAlbumId()
+        setAlbumId(albumId)
         setAudios([])
     }
 
