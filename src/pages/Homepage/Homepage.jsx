@@ -3,6 +3,7 @@ import { Col, Container, Row } from "react-bootstrap"
 import { AuthContext } from '../../contexts/auth.context'
 import { ArrowRightShort } from 'react-bootstrap-icons'
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import Loader from '../../components/Loader/Loader'
 import PlaylistList from '../../components/PlaylistList/PlaylistList'
 import PlaylistServices from "../../services/playlist.services"
@@ -12,20 +13,22 @@ import AlbumList from '../../components/AlbumList/AlbumList'
 import './Homepage.css'
 
 const Homepage = () => {
-
     const [artistAlbum, setArtistAlbum] = useState([])
     const [playlists, setPlaylists] = useState([])
     const [lastPlaylists, setLastPlaylists] = useState([])
     const [albums, setAlbums] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
-    const { loggedUser } = useContext(AuthContext)
+    const { loggedUser, logoutUser } = useContext(AuthContext)
+
+    const [hasAnimated, setHasAnimated] = useState(false);  // Estado para controlar la animación
 
     useEffect(() => {
         if (loggedUser) {
-            fetchHomeData()
+            fetchHomeData();
+            setHasAnimated(false);  // Reiniciar el estado de la animación cuando el usuario haga login
         }
-    }, [loggedUser])
+    }, [loggedUser]);
 
     const fetchHomeData = () => {
         const homeData = [
@@ -49,67 +52,78 @@ const Homepage = () => {
             .catch(err => {
                 console.error(err)
             })
-
     }
+
+    const handleLogout = () => {
+        logoutUser();  // Llamar al método de logout
+        setHasAnimated(false);  // Resetear el estado de la animación
+    };
 
     return (
         <div className="HomePage">
             <Container className="page-container">
-
                 {isLoading ? (
                     <div className="loader-container">
                         <Loader />
                     </div>
                 ) : (
                     <>
-
                         <Row className="homepage-greeting-container mb-5 justify-content-between align-items-end gap-3">
                             <Col xs={{ span: 12 }} md={{ span: 6 }}>
-                                <h2>Hola, <span className="username">{loggedUser.role === "ARTIST" ? loggedUser.artistName : loggedUser.username}</span></h2>
+                                <motion.h2
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 1 }}
+                                    onAnimationComplete={() => setHasAnimated(true)} // Cuando la animación termine, marcar como realizada
+                                >
+                                    Hola, <span className="username">{loggedUser.role === "ARTIST" ? loggedUser.artistName : loggedUser.username}</span>
+                                </motion.h2>
                             </Col>
                             <Col className='d-md-flex flex-row-reverse'>
                                 <GlobalSearchBar />
                             </Col>
-
                         </Row>
 
-                        {loggedUser.role === "ARTIST" && (
-                            <Row className="homepage-artist-albums">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 1.5, duration: 0.5 }}
+                        >
+                            {loggedUser.role === "ARTIST" && (
+                                <Row className="homepage-artist-albums">
+                                    <Col>
+                                        <Link className="link h2" to="/mylibrary">Mis álbumes <ArrowRightShort /></Link>
+                                        <AlbumList albums={artistAlbum} />
+                                    </Col>
+                                </Row>
+                            )}
+
+                            <Row className="homepage-playlists">
                                 <Col>
-                                    <Link className="link h2" to="/mylibrary">Mis álbumes <ArrowRightShort /></Link>
-                                    <AlbumList albums={artistAlbum} />
+                                    <Link className="link h2" to="/mylibrary">Mis playlists <ArrowRightShort /></Link>
+                                    <PlaylistList playlists={playlists} />
                                 </Col>
                             </Row>
-                        )}
 
-                        <Row className="homepage-playlists">
-                            <Col>
-                                <Link className="link h2" to="/mylibrary">Mis playlists <ArrowRightShort /></Link>
-                                <PlaylistList playlists={playlists} />
-                            </Col>
-                        </Row>
+                            <Row className="homepage-last-playlists">
+                                <Col>
+                                    <Link className="link h2" to="/explore">Últimas playlists <ArrowRightShort /></Link>
+                                    <PlaylistList playlists={lastPlaylists} showAddButton={false} />
+                                </Col>
+                            </Row>
 
-                        <Row className="homepage-last-playlists">
-                            <Col>
-                                <Link className="link h2" to="/explore">Últimas playlists <ArrowRightShort /></Link>
-                                <PlaylistList playlists={lastPlaylists} showAddButton={false} />
-                            </Col>
-                        </Row>
-
-
-                        <Row className="homepage-recent-added mb-5">
-                            <Col>
-                                <Link className="link h2" to="/explore">Últimos álbumes <ArrowRightShort /></Link>
-                                <AlbumList albums={albums} showAddButton={false} />
-                            </Col>
-                        </Row>
+                            <Row className="homepage-recent-added mb-5">
+                                <Col>
+                                    <Link className="link h2" to="/explore">Últimos álbumes <ArrowRightShort /></Link>
+                                    <AlbumList albums={albums} showAddButton={false} />
+                                </Col>
+                            </Row>
+                        </motion.div>
                     </>
                 )}
-
             </Container>
         </div>
     )
-
 }
 
-export default Homepage
+export default Homepage;

@@ -6,9 +6,7 @@ import { NavLink } from 'react-router-dom'
 import { Button, Nav, Navbar, Col, Row, Image } from 'react-bootstrap'
 import { CollectionFill, CompassFill, HouseFill, PersonFill, PlusCircleFill } from 'react-bootstrap-icons'
 
-
 const Navigation = () => {
-
     const [isExpanded, setIsExpanded] = useState(false)
     const { loggedUser, logoutUser } = useContext(AuthContext)
 
@@ -18,7 +16,6 @@ const Navigation = () => {
 
     return (
         <Navbar className={`sidebar ${isExpanded ? 'expanded' : ''}`}>
-
             <Row className="isologo text-center mt-2">
                 <Col>
                     <Navbar.Brand>
@@ -34,16 +31,15 @@ const Navigation = () => {
                         variant="custom-primary-float"
                         size="sm"
                         onClick={toggleExpand}
-
                     >
-                        {isExpanded ? <i class="fa-solid fa-chevron-left"></i> : <i class="fa-solid fa-chevron-right"></i>}
+                        {isExpanded ? <i className="fa-solid fa-chevron-left"></i> : <i className="fa-solid fa-chevron-right"></i>}
                     </Button>
                 )}
             </div>
 
             {loggedUser && (
                 <>
-                    <Nav className="navbar-buttons flex-column h-100 mt-5">
+                    <Nav className="navbar-buttons flex-column h-100 mt-3">
                         <NavLink
                             to="/home"
                             className={({ isActive }) => isActive ? "nav-link selected" : "nav-link"}
@@ -93,15 +89,17 @@ const Navigation = () => {
                         </NavLink>
                     </Nav>
 
-                    <Button className='logout-button' variant='custom-primary' onClick={() => logoutUser()}>
-                        <i className="fa-solid fa-right-from-bracket me-2"></i>
-                        {isExpanded && <span>Cerrar sesión</span>}
+                    <Button
+                        className='logout-button'
+                        variant='custom-primary'
+                        onClick={() => logoutUser()}>
+                        <i className="fa-solid fa-right-from-bracket"></i>
+                        {isExpanded && <span className='ms-2'>Cerrar sesión</span>}
                     </Button>
                 </>
             )}
         </Navbar>
     )
 }
-
 
 export default Navigation
