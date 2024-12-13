@@ -127,7 +127,6 @@ const CreatePlaylistForm = () => {
 
             <Form.Group className="mb-3">
                 <Form.Check
-                    required
                     type="checkbox"
                     name="public"
                     label="Es una lista pública"
