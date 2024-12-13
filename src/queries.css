@@ -38,6 +38,16 @@
         background: linear-gradient(to bottom, #00000000 0%, #121212 70%);
     }
 
+    .toast {
+        max-width: 60vw;
+    }
+
+
+    .offcanvas {
+        background-color: #1f1f1f;
+        width: 80vw !important;
+    }
+
 }
 
 @media (min-width : 577px) {

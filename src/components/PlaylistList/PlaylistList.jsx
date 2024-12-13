@@ -7,7 +7,7 @@ const PlaylistList = ({ playlists, showAddButton = true }) => {
         <Row className="my-md-5 my-4 gap-md-4 playlist-list">
             {showAddButton && (
                 <Col lg="2" md="3" sm="4" xs="6">
-                    <AddButton />
+                    <AddButton redirect={"playlist"} />
                 </Col>
             )}
             {

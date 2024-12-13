@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { AuthContext } from "../../contexts/auth.context"
 import { UserMessageContext } from "../../contexts/userMessage.context"
 import { useMusicPlayer } from "../../contexts/musicPlayer.context"
-import { Col, Container, Row, Button, Table, Modal } from "react-bootstrap"
+import { Col, Container, Row, Button, Table, Modal, Offcanvas } from "react-bootstrap"
 import { DEFAULT_IMAGES } from "../../consts/path.consts"
 import Loader from "../../components/Loader/Loader"
 import TrackElement from "../../components/TrackElement/TrackElement"
@@ -13,6 +13,7 @@ import DetailsControler from "../../components/Playlist_DetailsControler/Playlis
 import playlistServices from "../../services/playlist.services"
 import '../../general-css/DetailPage.css'
 import userServices from "../../services/user.services"
+import EditPlaylistForm from "../../components/PlaylistForm_Edit/EditPlaylistForm"
 
 
 
@@ -25,7 +26,7 @@ const PaylistDetailPage = () => {
     const [addTrack, setAddTrack] = useState(false)
     const [searchResults, setSearchResults] = useState()
     const [userData, setUserData] = useState()
-    const [initialLoaded, setInitialLoaded] = useState(false)
+    const [editPlaylistModal, setEditPlaylistModal] = useState(false)
 
     const { loggedUser } = useContext(AuthContext)
     const { createAlert } = useContext(UserMessageContext)
@@ -48,7 +49,6 @@ const PaylistDetailPage = () => {
                 setPlaylist(data)
                 setPlaylistContext(data.tracks)
                 setIsLoading(false)
-                setInitialLoaded(true)
             })
             .catch(err => console.log(err))
     }
@@ -147,7 +147,8 @@ const PaylistDetailPage = () => {
                 <PlaylistDetailsHeader
                     data={playlist}
                     loggedUser={loggedUser}
-                    deleteElm={deletePlaylist} />
+                    deleteElm={deletePlaylist}
+                    setEditPlaylistModal={setEditPlaylistModal} />
 
                 <DetailsControler
                     data={playlist}
@@ -246,6 +247,19 @@ const PaylistDetailPage = () => {
                     }
                 </Modal.Body>
             </Modal>
+
+            <Offcanvas
+                show={editPlaylistModal}
+                onHide={() => setEditPlaylistModal(false)}
+                backdrop="static"
+                scroll
+                placement="end" >
+                <Offcanvas.Header closeButton> Editar playlist
+                </Offcanvas.Header>
+                <Offcanvas.Body>
+                    <EditPlaylistForm playlistId={playlistId} setEditPlaylistModal={setEditPlaylistModal} fetchPlaylistPage={fetchPlaylist} />
+                </Offcanvas.Body>
+            </Offcanvas>
         </div >
 }
 export default PaylistDetailPage

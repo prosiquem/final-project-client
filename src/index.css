@@ -75,8 +75,8 @@ input {
   border-radius: 10px;
   margin-top: 2.5vh;
   margin-left: 105px;
-  padding: 20px;
-  padding-bottom: 100px;
+  padding: 20px !important;
+  padding-bottom: 20vh !important;
   align-items: center;
   overflow-y: auto;
   overflow-x: hidden;
@@ -572,6 +572,8 @@ textarea:autofill {
   background-color: #454545;
   max-width: 30vw;
   z-index: 10002;
+  border: 1px #aaf700 solid;
+  border-radius: 20px;
 }
 
 .toast-header {
@@ -664,6 +666,7 @@ textarea:autofill {
 
 .offcanvas {
   background-color: #1f1f1f;
+  width: 40vw !important;
 }
 
 /* Cover image blur in playlist, album and profile pages*/

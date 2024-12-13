@@ -32,6 +32,7 @@ const CreateAlbumForm = () => {
         recordLabel: ""
     })
     const [loadingImage, setLoadingImage] = useState(false)
+    const [isValidated, setIsValidated] = useState(false)
 
     const animatedComponents = makeAnimated()
     const navigate = useNavigate()
@@ -86,6 +87,14 @@ const CreateAlbumForm = () => {
     const handleFormSubmit = (e) => {
 
         e.preventDefault()
+        const form = e.target
+
+        if (form.checkValidity() === false) {
+            e.stopPropagation()
+            setIsValidated(true)
+            createAlert(`Rellena todos los campos`, false)
+            return
+        }
 
         setNewAlbumData({ ...newAlbumData, credits: creditsData })
 
@@ -94,13 +103,18 @@ const CreateAlbumForm = () => {
             .then(({ data }) => {
                 createAlert('Album creado', false)
                 navigate(`/album/${data}`)
+                setIsValidated(false)
             })
             .catch((err) => console.log(err))
 
     }
 
     return (
-        <Form className="CreateAlbumForm my-5" onSubmit={handleFormSubmit}>
+        <Form
+            className="CreateAlbumForm my-5"
+            onSubmit={handleFormSubmit}
+            noValidate
+            validated={isValidated}>
 
             <Form.Group className="mb-3">
                 <FloatingLabel
@@ -108,11 +122,15 @@ const CreateAlbumForm = () => {
                     label="Nombre del album"
                 >
                     <Form.Control
+                        required
                         type="text"
                         name="title"
                         placeholder="Nombre del album"
                         value={newAlbumData.title}
                         onChange={handleInputChange} />
+                    <Form.Control.Feedback type="invalid">
+                        Este campo es obligatorio.
+                    </Form.Control.Feedback>
                 </FloatingLabel>
             </Form.Group>
 
@@ -122,6 +140,7 @@ const CreateAlbumForm = () => {
                     <Col className="text-start md-form-floating">
                         <Form.Label className="d-md-none">Fecha de lanzamiento</Form.Label>
                         <Form.Control
+                            required
                             type="date"
                             name="releaseDate"
                             placeholder="Fecha de lanzamiento"
@@ -134,6 +153,7 @@ const CreateAlbumForm = () => {
 
             <Form.Group className="mb-3">
                 <Select
+                    required
                     className="select-form"
                     classNamePrefix="select"
                     components={animatedComponents}
