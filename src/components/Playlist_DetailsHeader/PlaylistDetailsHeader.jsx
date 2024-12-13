@@ -7,7 +7,7 @@ import { ThreeDotsVertical } from "react-bootstrap-icons"
 
 
 const
-    PlaylistDetailsHeader = ({ data, loggedUser, deleteElm }) => {
+    PlaylistDetailsHeader = ({ data, loggedUser, deleteElm, setEditPlaylistModal }) => {
 
         const navigate = useNavigate()
 
@@ -38,7 +38,7 @@ const
 
                                     <Dropdown.Menu>
                                         <Dropdown.Item onClick={deleteElm}>Eliminar esta playlist</Dropdown.Item>
-                                        <Dropdown.Item onClick={() => navigate(`/playlist/edit/${data._id}`)}>Editar playlist</Dropdown.Item>
+                                        <Dropdown.Item onClick={() => setEditPlaylistModal(true)}>Editar playlist</Dropdown.Item>
                                     </Dropdown.Menu>
 
                                 </Dropdown>

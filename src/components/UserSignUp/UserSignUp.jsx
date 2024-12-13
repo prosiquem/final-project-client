@@ -14,11 +14,15 @@ const UserSignUp = ({ signupData, handleInputChange, handleSingleSelectChange, h
                     label="Email"
                 >
                     <Form.Control
+                        required
                         type="email"
                         name="email"
                         placeholder="Email"
                         value={signupData.email}
                         onChange={handleInputChange} />
+                    <Form.Control.Feedback type="invalid">
+                        Este campo es obligatorio.
+                    </Form.Control.Feedback>
                 </FloatingLabel>
             </Form.Group>
 
@@ -28,11 +32,15 @@ const UserSignUp = ({ signupData, handleInputChange, handleSingleSelectChange, h
                     label="Password"
                 >
                     <Form.Control
+                        required
                         type="password"
                         name="password"
                         placeholder="Contraseña"
                         value={signupData.password}
                         onChange={handleInputChange} />
+                    <Form.Control.Feedback type="invalid">
+                        Este campo es obligatorio.
+                    </Form.Control.Feedback>
                 </FloatingLabel>
             </Form.Group>
 
@@ -42,11 +50,15 @@ const UserSignUp = ({ signupData, handleInputChange, handleSingleSelectChange, h
                     label="Nombre de usuario"
                 >
                     <Form.Control
+                        required
                         type="text"
                         name="username"
                         placeholder="Nombre de usuario"
                         value={signupData.username}
                         onChange={handleInputChange} />
+                    <Form.Control.Feedback type="invalid">
+                        Este campo es obligatorio.
+                    </Form.Control.Feedback>
                 </FloatingLabel>
             </Form.Group>
 
@@ -57,18 +69,22 @@ const UserSignUp = ({ signupData, handleInputChange, handleSingleSelectChange, h
                         <Col className="text-start md-form-floating">
                             <Form.Label className="d-md-none">Año de nacimiento</Form.Label>
                             <Form.Control
+                                required
                                 type="date"
                                 name="birth"
                                 placeholder="Año de nacimiento"
                                 className="h-100"
                                 value={signupData.birth}
                                 onChange={handleInputChange} />
+                            <Form.Control.Feedback type="invalid">
+                                Este campo es obligatorio.
+                            </Form.Control.Feedback>
                         </Col>
                     </Form.Group>
                 </Col>
 
                 <Col md={6} className="form-floating">
-                    <Form.Select className="mb-3" onChange={(e) => handleSingleSelectChange('gender', e)}>
+                    <Form.Select required className="mb-3" onChange={(e) => handleSingleSelectChange('gender', e)}>
                         <option>Selecciona un género</option>
                         {GENRES.map((elm, idx) => {
                             return (

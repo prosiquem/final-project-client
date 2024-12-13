@@ -14,6 +14,7 @@ import { PencilFill, Trash2, Trash2Fill } from "react-bootstrap-icons"
 import tracksServices from "../../services/tracks.services"
 import EditTrackForm from "../../components/TrackForm_Edit/TrackForm_Edit"
 import { DEFAULT_IMAGES } from "../../consts/path.consts"
+import EditAlbumForm from "../../components/AlbumForm_Edit/EditAlbumForm"
 
 const AlbumDetailPage = () => {
 
@@ -22,6 +23,7 @@ const AlbumDetailPage = () => {
     const [album, setAlbum] = useState()
     const [isLoading, setIsLoading] = useState(true)
     const [editTrackModal, setEditTrackModal] = useState(false)
+    const [editAlbumModal, setEditAlbumModal] = useState(false)
     const [trackId, setTrackId] = useState()
 
     const { loggedUser } = useContext(AuthContext)
@@ -79,7 +81,7 @@ const AlbumDetailPage = () => {
                     <img className="cover-image" src={album.cover ? album.cover : DEFAULT_IMAGES[1]} alt="Cover image" />
                 </div>
 
-                <AlbumDetailsHeader data={album} loggedUser={loggedUser} deleteElm={deleteAlbum} />
+                <AlbumDetailsHeader data={album} loggedUser={loggedUser} deleteElm={deleteAlbum} setEditAlbumModal={setEditAlbumModal} />
 
                 <AlbumDetailsControler data={album} loggedUser={loggedUser} isLoadingTracks={isLoadingTracks} playTrack={playTrack} />
 
@@ -132,7 +134,12 @@ const AlbumDetailPage = () => {
                 </Row>
             </Container>
 
-            <Offcanvas show={editTrackModal} onHide={() => setEditTrackModal(false)} backdrop="static" scroll >
+            <Offcanvas
+                show={editTrackModal}
+                onHide={() => setEditTrackModal(false)}
+                backdrop="static"
+                scroll
+                placement="end">
                 <Offcanvas.Header closeButton>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
@@ -141,6 +148,19 @@ const AlbumDetailPage = () => {
                         setEditTrackModal={setEditTrackModal}
                         fetchAlbum={fetchAlbum}
                         albumId={albumId} />
+                </Offcanvas.Body>
+            </Offcanvas>
+
+            <Offcanvas
+                show={editAlbumModal}
+                onHide={() => setEditAlbumModal(false)}
+                backdrop="static"
+                scroll
+                placement="end" >
+                <Offcanvas.Header closeButton> Editar album
+                </Offcanvas.Header>
+                <Offcanvas.Body>
+                    <EditAlbumForm albumId={albumId} setEditAlbumModal={setEditAlbumModal} fetchAlbumPage={fetchAlbum} />
                 </Offcanvas.Body>
             </Offcanvas>
 

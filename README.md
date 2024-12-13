@@ -41,6 +41,4 @@ By Pedro Rosique & Elena Frontiñán
 | **URL** | **Description** | **Protected** |
 |---------|-----------------|------------|
 |     /playlist/new    |      Create playlist           |      ✅      |
-|    /playlist/edit     |      Edit playlist           |     ✅       |
 |    /album/new     |        Create Album         |      ✅      |
-|     /album/edit    |       Edit Album          |      ✅      |

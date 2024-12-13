@@ -4,19 +4,19 @@ import playlistServices from "../../services/playlist.services"
 import { UserMessageContext } from "../../contexts/userMessage.context"
 
 import Loader from "../../components/Loader/Loader"
-import { Button, FloatingLabel, Form, Spinner } from "react-bootstrap"
+import { Button, FloatingLabel, Form, Image, Spinner } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 import uploadServices from "../../services/upload.services"
 
-const EditPlaylistForm = ({ playlistId }) => {
+const EditPlaylistForm = ({ playlistId, setEditPlaylistModal, fetchPlaylistPage }) => {
 
     const { createAlert } = useContext(UserMessageContext)
 
     const [playlistData, setPlaylistData] = useState()
     const [isLoading, setIsLoading] = useState(true)
     const [loadingImage, setLoadingImage] = useState(false)
+    const [isValidated, setIsValidated] = useState(false)
 
-    const navigate = useNavigate()
 
     useEffect(() => {
 
@@ -68,12 +68,23 @@ const EditPlaylistForm = ({ playlistId }) => {
     const handleFormSubmit = (e) => {
 
         e.preventDefault()
+        const form = e.target
+
+        if (form.checkValidity() === false) {
+            e.stopPropagation()
+            setIsValidated(true)
+            createAlert(`Rellena todos los campos`, false)
+            return
+        }
 
         playlistServices
             .editPlaylist(playlistId, playlistData)
             .then(() => {
                 createAlert(`${playlistData.name} playlist editada`, false)
-                navigate(`/playlist/${playlistId}`)
+                setEditPlaylistModal(false)
+                setIsValidated(false)
+                setEditPlaylistModal(false)
+                fetchPlaylistPage()
             })
 
     }
@@ -82,7 +93,10 @@ const EditPlaylistForm = ({ playlistId }) => {
 
         <div className="EditPlaylistForm my-4">
 
-            <Form onSubmit={(e) => handleFormSubmit(e)}>
+            <Form
+                onSubmit={(e) => handleFormSubmit(e)}
+                noValidate
+                validated={isValidated}>
 
                 <Form.Group className="mb-3">
                     <FloatingLabel
@@ -90,16 +104,20 @@ const EditPlaylistForm = ({ playlistId }) => {
                         label="Nombre de la Playlist"
                     >
                         <Form.Control
+                            required
                             type="text"
                             name="name"
                             placeholder="Nombre de la Playlist"
                             value={playlistData.name}
                             onChange={handlePlaylistChange} />
+                        <Form.Control.Feedback type="invalid">
+                            Este campo es obligatorio.
+                        </Form.Control.Feedback>
                     </FloatingLabel>
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                    <img src={playlistData.cover} height={'100px'} width={'100px'} />
+                    {playlistData.cover && <Image src={playlistData.cover} height={'100px'} rounded className="mb-3" />}
                     <Form.Control
                         type="file"
                         name="cover"
@@ -124,15 +142,18 @@ const EditPlaylistForm = ({ playlistId }) => {
 
                 <Form.Group className="mb-3">
                     <Form.Check
+                        required
                         type="checkbox"
                         name="public"
                         label="Es una lista pública"
                         checked={playlistData.public}
                         onChange={handlePlaylistChange} />
+                    <Form.Control.Feedback type="invalid">
+                        Este campo es obligatorio.
+                    </Form.Control.Feedback>
                 </Form.Group>
 
                 <Button
-                    onClick={handleFormSubmit}
                     variant="custom-primary"
                     type="submit">
                     {loadingImage ? <Spinner animation="border" variant="primary" /> : "Guardar cambios"}

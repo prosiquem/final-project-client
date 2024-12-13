@@ -6,10 +6,8 @@ import PrivateRoutes from './PrivateRoutes'
 import NewPlaylistPage from '../pages/NewPlaylistPage/NewPlaylistPage'
 import Homepage from '../pages/Homepage/Homepage'
 import ExplorePage from '../pages/ExplorePage/ExplorePage'
-import EditPlaylistPage from '../pages/EditPlaylistPage/EditPlaylistPage'
 import AlbumDetailPage from '../pages/AlbumDetailPage/AlbumDetailPage'
 import NewAlbumPage from '../pages/NewAlbumPage/NewAlbumPage'
-import EditAlbumPage from '../pages/EditAlbumPage/EditAlbumPage'
 import MyLibraryPage from '../pages/MyLibraryPage/MyLibraryPage'
 import ProfilePage from '../pages/ProfilePage/ProfilePage'
 import ArtistDetailsPage from '../pages/ArtistDetailsPage/ArtistDetailsPage'
@@ -42,9 +40,7 @@ const AppRoutes = () => {
                     <Route path={'/artists/:id'} element={<ArtistDetailsPage />} />
 
                     <Route path={'/playlist/new'} element={<NewPlaylistPage />} />
-                    <Route path={'/playlist/edit/:id'} element={<EditPlaylistPage />} />
                     <Route path={'/album/new'} element={<NewAlbumPage />} />
-                    <Route path={'/album/edit/:id'} element={<EditAlbumPage />} />
                 </Route>
 
             </Routes>

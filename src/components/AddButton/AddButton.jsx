@@ -3,12 +3,12 @@ import { Plus } from 'react-bootstrap-icons'
 import './AddButton.css'
 import { useNavigate } from 'react-router-dom'
 
-const AddButton = () => {
+const AddButton = ({ redirect }) => {
 
     const navigate = useNavigate()
 
     const handleNavigate = () => {
-        navigate("/playlist/new")
+        navigate(`/${redirect}/new`)
     }
 
     return (

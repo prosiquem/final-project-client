@@ -6,17 +6,17 @@ import { Col, Dropdown, Image, Row } from "react-bootstrap"
 import { ThreeDotsVertical } from "react-bootstrap-icons"
 
 
-const AlbumDetailsHeader = ({ data, loggedUser, deleteElm }) => {
+const AlbumDetailsHeader = ({ data, loggedUser, deleteElm, setEditAlbumModal }) => {
 
     const navigate = useNavigate()
 
     return (
 
-        <Row className="AlbumDetailsHeader details-info gap-4 pb-5">
-            <Col md={{ span: 4, offset: 0 }} xs={{ span: 12, offset: 0 }} className="p-0">
+        <Row className="AlbumDetailsHeader details-info gap-4 pb-5   w-100">
+            <Col md={{ span: 2, offset: 0 }} xs={{ span: 12, offset: 0 }} className="p-0">
                 <Image src={data.cover ? data.cover : PLAYLIST_COVER} fluid />
             </Col>
-            <Col className="p-0 column-between">
+            <Col md="auto" xs="12" className="p-0 column-between">
 
 
                 <Row className="details-info-header">
@@ -34,7 +34,7 @@ const AlbumDetailsHeader = ({ data, loggedUser, deleteElm }) => {
 
                                 <Dropdown.Menu>
                                     <Dropdown.Item onClick={deleteElm}>Eliminar este album</Dropdown.Item>
-                                    <Dropdown.Item onClick={() => navigate(`/album/edit/${data._id}`)}>Editar album</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => setEditAlbumModal(true)}>Editar album</Dropdown.Item>
                                 </Dropdown.Menu>
 
                             </Dropdown>

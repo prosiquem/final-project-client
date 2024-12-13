@@ -3,17 +3,16 @@ import makeAnimated from "react-select/animated"
 
 import { MUSIC_GENRES } from "../../consts/music.consts"
 
-import { Badge, Button, FloatingLabel, Form, Image, Spinner } from "react-bootstrap"
+import { Badge, Button, Col, Row, FloatingLabel, Form, Image, Spinner } from "react-bootstrap"
 import { useContext, useEffect, useState } from "react"
 import albumServices from "../../services/album.services"
 import Loader from "../Loader/Loader"
 import uploadServices from "../../services/upload.services"
 import { formatDateInput } from "../../utils/date.utils"
 import { UserMessageContext } from "../../contexts/userMessage.context"
-import { useNavigate } from "react-router-dom"
 import { CalendarFill } from "react-bootstrap-icons"
 
-const EditAlbumForm = ({ albumId }) => {
+const EditAlbumForm = ({ albumId, setEditAlbumModal, fetchAlbumPage }) => {
 
     const animatedComponents = makeAnimated()
 
@@ -23,8 +22,7 @@ const EditAlbumForm = ({ albumId }) => {
     const [isLoading, setIsLoading] = useState(true)
     const [albumData, setAlbumData] = useState()
     const [creditsData, setCreditsData] = useState()
-
-    const navigate = useNavigate()
+    const [isValidated, setIsValidated] = useState(false)
 
     useEffect(() => {
         fetchAlbum()
@@ -93,18 +91,32 @@ const EditAlbumForm = ({ albumId }) => {
     const handleFormSubmit = (e) => {
 
         e.preventDefault()
+        const form = e.target
+
+        if (form.checkValidity() === false) {
+            e.stopPropagation()
+            setIsValidated(true)
+            createAlert(`Rellena todos los campos`, false)
+            return
+        }
 
         albumServices
             .editAlbum(albumId, albumData)
             .then(() => {
                 createAlert(`${albumData.title} editado`, false)
-                navigate(`/album/${albumId}`)
+                setIsValidated(false)
+                setEditAlbumModal(false)
+                fetchAlbumPage(albumId)
             })
 
     }
 
     return (isLoading ? <Loader /> :
-        <Form className="CreateAlbumForm my-5" onSubmit={handleFormSubmit}>
+        <Form
+            className="CreateAlbumForm my-2"
+            onSubmit={handleFormSubmit}
+            noValidate
+            validated={isValidated}>
 
             <Form.Group className="mb-3">
                 <FloatingLabel
@@ -112,20 +124,25 @@ const EditAlbumForm = ({ albumId }) => {
                     label="Nombre del album"
                 >
                     <Form.Control
+                        required
                         type="text"
                         name="title"
                         placeholder="Nombre del album"
                         value={albumData.title}
                         onChange={handleInputChange} />
+                    <Form.Control.Feedback type="invalid">
+                        Este campo es obligatorio.
+                    </Form.Control.Feedback>
                 </FloatingLabel>
             </Form.Group>
 
-            <Col md={6}>
-                <Form.Group as={Row} className="align-items-center" >
+            <Col>
+                <Form.Group as={Row} className="align-items-center mb-3" >
                     <Col className="d-md-none" xs={{ span: 2 }}> <CalendarFill /></Col>
                     <Col className="text-start md-form-floating">
                         <Form.Label className="d-md-none">Fecha de lanzamiento</Form.Label>
                         <Form.Control
+                            required
                             type="date"
                             name="releaseDate"
                             placeholder="Fecha de lanzamiento"
@@ -133,11 +150,15 @@ const EditAlbumForm = ({ albumId }) => {
                             value={formatDateInput(albumData.releaseDate)}
                             onChange={handleInputChange} />
                     </Col>
+                    <Form.Control.Feedback type="invalid">
+                        Este campo es obligatorio.
+                    </Form.Control.Feedback>
                 </Form.Group>
             </Col>
 
             <Form.Group className="mb-3">
                 <Select
+                    required
                     className="select-form"
                     classNamePrefix="select"
                     components={animatedComponents}
@@ -151,7 +172,7 @@ const EditAlbumForm = ({ albumId }) => {
             </Form.Group>
 
             <Form.Group className="mb-3">
-                <Image src={albumData.cover} width={"50%"} />
+                {albumData.cover && <Image src={albumData.cover} height={'100px'} rounded className="mb-3" />}
                 <br />
                 <Form.Label>Portada</Form.Label>
                 <Form.Control
@@ -212,7 +233,8 @@ const EditAlbumForm = ({ albumId }) => {
             <Button
                 variant="custom-primary"
                 disabled={loadingImage}
-                onClick={handleFormSubmit}>
+                type="submit"
+            >
                 {loadingImage ? <Spinner animation="border" variant="primary" /> : "Guardar cambios"}
             </Button>
 

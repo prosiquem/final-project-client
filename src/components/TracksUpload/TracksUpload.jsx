@@ -14,7 +14,7 @@ import './TracksUpload.css'
 const TracksUpload = () => {
 
     const { loggedUser } = useContext(AuthContext)
-    const { closeTrackUploader, showTrackUploader, albumId, setIsLoading, isLoadingTracks } = useContext(TracksUploaderContext)
+    const { closeTrackUploader, showTrackUploader, albumId, setIsLoading, isLoadingTracks, setAlbumId } = useContext(TracksUploaderContext)
 
     const [loadingImage, setLoadingImage] = useState()
     const [audios, setAudios] = useState([])
@@ -86,6 +86,9 @@ const TracksUpload = () => {
                 console.log(err)
                 setUpload({ isCorrect: false })
             })
+
+        setAlbumId()
+        setAudios([])
     }
 
     return (showTrackUploader &&

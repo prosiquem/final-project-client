@@ -12,6 +12,7 @@ const CreatePlaylistForm = () => {
     const { createAlert } = useContext(UserMessageContext)
 
     const [loadingImage, setLoadingImage] = useState(false)
+    const [isValidated, setIsValidated] = useState(false)
 
     const navigate = useNavigate()
 
@@ -56,19 +57,32 @@ const CreatePlaylistForm = () => {
     const handleFormSubmit = e => {
 
         e.preventDefault()
+        const form = e.target
+
+        if (form.checkValidity() === false) {
+            e.stopPropagation()
+            setIsValidated(true)
+            createAlert(`Rellena todos los campos`, false)
+            return
+        }
 
         playlistServices
             .postPlaylist(playlistData)
             .then(({ data }) => {
                 createAlert('Playlist creada', false)
                 navigate(`/playlist/${data}`)
+                setIsValidated(false)
             })
             .catch((err) => console.log(err))
     }
 
 
     return (
-        <Form className="CreatePlaylistForm my-5" onSubmit={(e) => handleFormSubmit(e)}>
+        <Form
+            className="CreatePlaylistForm my-5"
+            onSubmit={(e) => handleFormSubmit(e)}
+            noValidate
+            validated={isValidated}>
 
             <Form.Group className="mb-3">
                 <FloatingLabel
@@ -76,11 +90,15 @@ const CreatePlaylistForm = () => {
                     label="Nombre de la Playlist"
                 >
                     <Form.Control
+                        required
                         type="text"
                         name="name"
                         placeholder="Nombre de la Playlist"
                         value={playlistData.name}
                         onChange={handlePlaylistChange} />
+                    <Form.Control.Feedback type="invalid">
+                        Este campo es obligatorio.
+                    </Form.Control.Feedback>
                 </FloatingLabel>
             </Form.Group>
 
@@ -109,6 +127,7 @@ const CreatePlaylistForm = () => {
 
             <Form.Group className="mb-3">
                 <Form.Check
+                    required
                     type="checkbox"
                     name="public"
                     label="Es una lista pública"
@@ -117,7 +136,6 @@ const CreatePlaylistForm = () => {
             </Form.Group>
 
             <Button
-                onClick={handleFormSubmit}
                 variant="custom-primary"
                 type="submit">
                 {loadingImage ? <Spinner animation="border" variant="primary" /> : "Crear playlist"}

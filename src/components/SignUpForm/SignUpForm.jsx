@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 
 import authServices from "../../services/auth.services"
@@ -9,6 +9,7 @@ import { Button, Container, Form, Spinner, Tab, Tabs } from "react-bootstrap"
 import UserSignUp from "../UserSignUp/UserSignUp"
 import ArtistSignUp from "../ArtistSignUp/ArtistSignUp"
 import uploadServices from "../../services/upload.services"
+import { UserMessageContext } from "../../contexts/userMessage.context"
 
 const SignUpForm = () => {
 
@@ -38,6 +39,9 @@ const SignUpForm = () => {
     ])
 
     const [loadingImage, setLoadingImage] = useState(false)
+    const [isValidated, setIsValidated] = useState(false)
+
+    const { createAlert } = useContext(UserMessageContext)
 
     const handleRoleChange = (value) => {
         setSignupData({ ...signupData, ['role']: value })
@@ -145,10 +149,18 @@ const SignUpForm = () => {
 
     const handleFormSubmit = (e) => {
         e.preventDefault()
+        const form = e.target
 
         const reqPayloadSignup = {
             ...signupData,
             socialMedia: socialMediaData
+        }
+
+        if (form.checkValidity() === false) {
+            e.stopPropagation()
+            setIsValidated(true)
+            createAlert(`Rellena todos los campos`, false)
+            return
         }
 
         authServices
@@ -158,7 +170,12 @@ const SignUpForm = () => {
     }
 
     return (
-        <Form className="text-center" onSubmit={handleFormSubmit}>
+        <Form
+            className="text-center"
+            onSubmit={handleFormSubmit}
+            noValidate
+            validated={isValidated}
+        >
             <Tabs
                 defaultActiveKey="USER"
                 id="role-selection"
@@ -192,7 +209,7 @@ const SignUpForm = () => {
                 </Tab>
             </Tabs>
             <Button
-                onClick={handleFormSubmit}
+                type="submit"
                 variant="custom-primary"
                 disabled={loadingImage}>
                 {loadingImage ? <Spinner animation="border" variant="primary" /> : "Registrarme"}

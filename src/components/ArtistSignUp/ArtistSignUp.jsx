@@ -35,11 +35,15 @@ const ArtistSignUp = ({
                     label="Email"
                 >
                     <Form.Control
+                        required
                         type="email"
                         name="email"
                         placeholder="Email"
                         value={signupData.email}
                         onChange={handleInputChange} />
+                    <Form.Control.Feedback type="invalid">
+                        Este campo es obligatorio.
+                    </Form.Control.Feedback>
                 </FloatingLabel>
             </Form.Group>
 
@@ -49,11 +53,15 @@ const ArtistSignUp = ({
                     label="Password"
                 >
                     <Form.Control
+                        required
                         type="password"
                         name="password"
                         placeholder="Contraseña"
                         value={signupData.password}
                         onChange={handleInputChange} />
+                    <Form.Control.Feedback type="invalid">
+                        Este campo es obligatorio.
+                    </Form.Control.Feedback>
                 </FloatingLabel>
             </Form.Group>
 
@@ -63,11 +71,15 @@ const ArtistSignUp = ({
                     label="Nombre de usuario"
                 >
                     <Form.Control
+                        required
                         type="text"
                         name="username"
                         placeholder="Nombre de usuario"
                         value={signupData.username}
                         onChange={handleInputChange} />
+                    <Form.Control.Feedback type="invalid">
+                        Este campo es obligatorio.
+                    </Form.Control.Feedback>
                 </FloatingLabel>
             </Form.Group>
 
@@ -78,18 +90,22 @@ const ArtistSignUp = ({
                         <Col className="text-start md-form-floating">
                             <Form.Label className="d-md-none">Año de nacimiento</Form.Label>
                             <Form.Control
+                                required
                                 type="date"
                                 name="birth"
                                 placeholder="Año de nacimiento"
                                 className="h-100"
                                 value={signupData.birth}
                                 onChange={handleInputChange} />
+                            <Form.Control.Feedback type="invalid">
+                                Este campo es obligatorio.
+                            </Form.Control.Feedback>
                         </Col>
                     </Form.Group>
                 </Col>
 
                 <Col md={6} className="form-floating">
-                    <Form.Select className="mb-3" onChange={(e) => handleSingleSelectChange('gender', e)}>
+                    <Form.Select required className="mb-3" onChange={(e) => handleSingleSelectChange('gender', e)}>
                         <option>Selecciona un género</option>
                         {GENRES.map((elm, idx) => {
                             return (
@@ -117,16 +133,21 @@ const ArtistSignUp = ({
                     label="Tu nombre como artista"
                 >
                     <Form.Control
+                        required
                         type="text"
                         name="artistName"
                         placeholder="Nombre de artista"
                         value={signupData.artistName}
                         onChange={handleInputChange} />
+                    <Form.Control.Feedback type="invalid">
+                        Este campo es obligatorio.
+                    </Form.Control.Feedback>
                 </FloatingLabel>
             </Form.Group>
 
             <Form.Group className="mb-3">
                 <Select
+                    required
                     className="select-form"
                     classNamePrefix="select"
                     components={animatedComponents}
@@ -137,6 +158,9 @@ const ArtistSignUp = ({
                     onChange={(selectedOptions) => handleMultiSelectChange('musicGenres', selectedOptions)}
                     isMulti
                 />
+                <Form.Control.Feedback type="invalid">
+                    Este campo es obligatorio.
+                </Form.Control.Feedback>
             </Form.Group>
 
             <h5 className="pt-4">Galería de fotos</h5>
