@@ -272,7 +272,7 @@ const ProfilePage = () => {
                                             ))
                                         ) : (
                                             <tr>
-                                                <td className="text-center">No tienes playlists activas</td>
+                                                <td className="text-left">No tienes playlists activas</td>
                                             </tr>
                                         )}
                                     </tbody>

@@ -27,12 +27,12 @@
 
 .nav-button-toggle {
     position: absolute;
-    top: 5vh;
+    top: 7vh;
     left: 55px;
 }
 
 .nav-button-toggle.expanded {
-    left: 190px;
+    left: 185px;
 }
 
 .nav-button-toggle .fa-solid {

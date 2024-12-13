@@ -135,7 +135,7 @@ const CreateAlbumForm = () => {
             </Form.Group>
 
             <Col md={6}>
-                <Form.Group as={Row} className="align-items-center" >
+                <Form.Group as={Row} className="align-items-center mb-3" >
                     <Col className="d-md-none" xs={{ span: 2 }}> <CalendarFill /></Col>
                     <Col className="text-start md-form-floating">
                         <Form.Label className="d-md-none">Fecha de lanzamiento</Form.Label>

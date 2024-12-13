@@ -48,6 +48,10 @@
         width: 80vw !important;
     }
 
+    .mobile-logout-button {
+        display: block;
+    }
+
 }
 
 @media (min-width : 577px) {
