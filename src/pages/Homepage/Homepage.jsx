@@ -21,12 +21,12 @@ const Homepage = () => {
 
     const { loggedUser, logoutUser } = useContext(AuthContext)
 
-    const [hasAnimated, setHasAnimated] = useState(false);  // Estado para controlar la animación
+    const [hasAnimated, setHasAnimated] = useState(false)
 
     useEffect(() => {
         if (loggedUser) {
-            fetchHomeData();
-            setHasAnimated(false);  // Reiniciar el estado de la animación cuando el usuario haga login
+            fetchHomeData()
+            setHasAnimated(false)
         }
     }, [loggedUser]);
 
@@ -55,9 +55,9 @@ const Homepage = () => {
     }
 
     const handleLogout = () => {
-        logoutUser();  // Llamar al método de logout
-        setHasAnimated(false);  // Resetear el estado de la animación
-    };
+        logoutUser()
+        setHasAnimated(false)
+    }
 
     return (
         <div className="HomePage">
@@ -69,18 +69,24 @@ const Homepage = () => {
                 ) : (
                     <>
                         <Row className="homepage-greeting-container mb-5 justify-content-between align-items-end gap-3">
-                            <Col xs={{ span: 12 }} md={{ span: 6 }}>
+                            <Col xs={{ span: 9 }} md={{ span: 6 }}>
                                 <motion.h2
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 1 }}
-                                    onAnimationComplete={() => setHasAnimated(true)} // Cuando la animación termine, marcar como realizada
+                                    onAnimationComplete={() => setHasAnimated(true)}
                                 >
                                     Hola, <span className="username">{loggedUser.role === "ARTIST" ? loggedUser.artistName : loggedUser.username}</span>
                                 </motion.h2>
                             </Col>
                             <Col className='d-md-flex flex-row-reverse'>
-                                <GlobalSearchBar />
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 1.5, duration: 0.5 }}
+                                >
+                                    <GlobalSearchBar xs={{ span: 3 }} />
+                                </motion.div>
                             </Col>
                         </Row>
 
