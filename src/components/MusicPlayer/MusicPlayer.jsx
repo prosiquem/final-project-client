@@ -42,7 +42,7 @@ const MusicPlayer = () => {
                             <label className="artist-name">{currentTrack.artistName}</label>
                         </Col>
 
-                        <Col xs="6" sm="" md={{ span: "4" }} lg="6" className="progress-bar-container my-3" onClick={handleProgressClick}>
+                        <Col xs="5" sm="" md={{ span: "4" }} lg="6" className="progress-bar-container my-3" onClick={handleProgressClick}>
                             <input
                                 type="range"
                                 className="progress-bar w-100"
@@ -57,7 +57,7 @@ const MusicPlayer = () => {
                             />
                         </Col>
 
-                        <Col xs="6" md={{ span: "5" }} lg="3" className="controls text-end">
+                        <Col xs="7" md={{ span: "5" }} lg="3" className="controls text-end">
                             <Button variant="custom-player me-1" onClick={prevTrack}>
                                 <RewindFill />
                             </Button>
