@@ -8,7 +8,7 @@ const LoginPage = () => {
         <div className="login-page">
             <Container className="page-container text-center align-content-center">
 
-                <Image src={ISOLOGO} width={"100px"} className="d-sm-none py-5" />
+                <Image src={ISOLOGO} width={"50px"} className="d-sm-none py-4" />
 
                 <Row className="mb-3">
                     <Col>
