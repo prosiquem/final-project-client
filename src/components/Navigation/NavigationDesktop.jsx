@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react'
 import { AuthContext } from '../../contexts/auth.context'
-import { ISOLOGO } from '../../consts/path.consts'
+import { ISOLOGO, ISOLOGO_TEXT } from '../../consts/path.consts'
 import { NavLink } from 'react-router-dom'
 
 import { Button, Nav, Navbar, Col, Row, Image } from 'react-bootstrap'
@@ -19,7 +19,11 @@ const Navigation = () => {
             <Row className="isologo text-center mt-2">
                 <Col>
                     <Navbar.Brand>
-                        <Image src={ISOLOGO} fluid />
+                        <Image
+                            src={isExpanded ? ISOLOGO_TEXT : ISOLOGO}
+                            className={isExpanded ? 'isologo-expanded' : 'isologo-collapsed'}
+                            fluid
+                        />
                     </Navbar.Brand>
                 </Col>
             </Row>

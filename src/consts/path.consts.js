@@ -2,7 +2,7 @@ export const PLAYLIST_COVER = 'https://res.cloudinary.com/dt9pviq34/image/upload
 
 export const ISOLOGO = 'https://res.cloudinary.com/dbq56vg5g/image/upload/v1734002224/koon/pibwzdgoinhxv3lqsi8n.png'
 
-export const ISOLOGO_TEXT = "https://res.cloudinary.com/dbq56vg5g/image/upload/v1734003566/koon/egoiw0rvhspfzvdjrkq8.png"
+export const ISOLOGO_TEXT = "https://res.cloudinary.com/dbq56vg5g/image/upload/v1734003566/koon/ljakkbvxbdair9qp36uv.png"
 
 export const DEFAULT_IMAGES = [
     "https://res.cloudinary.com/dbq56vg5g/image/upload/v1734001187/koon/sb6dufayo2i3bdiz2qri.jpg",
