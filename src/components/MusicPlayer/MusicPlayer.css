@@ -2,7 +2,7 @@
     position: fixed;
     bottom: 40px;
     left: 115px;
-    width: calc(100vw - 130px - 2.5vw) !important;
+    width: calc(100vw - 130px - 1.7vw) !important;
     z-index: 99;
     border-radius: 10px;
     overflow: hidden;
@@ -30,7 +30,7 @@
 }
 
 .artist-name {
-    font-size: .85em;
+    font-size: .75em;
     color: #c3c3c3;
 }
 

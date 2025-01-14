@@ -4,8 +4,6 @@ import { FastForwardFill, PauseFill, PlayFill, RewindFill } from 'react-bootstra
 import { useMusicPlayer } from '../../contexts/musicPlayer.context'
 import './MusicPlayer.css'
 
-
-
 const MusicPlayer = () => {
 
     const { currentTrack, isPlaying, togglePlayPause, nextTrack, prevTrack, currentTime, duration, seek } = useMusicPlayer()
@@ -28,6 +26,7 @@ const MusicPlayer = () => {
 
     return (
         <div className="music-player-div">
+
             <Container className="music-player-container">
 
                 <div className="music-player">

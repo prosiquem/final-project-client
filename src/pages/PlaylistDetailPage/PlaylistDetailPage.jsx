@@ -159,7 +159,7 @@ const PaylistDetailPage = () => {
                     unsavePlaylist={unsavePlaylist}
                     userData={userData} />
 
-                <Row className="content w-100 py-3 align-items-center">
+                <Row className="content w-100 align-items-center">
                     {playlist.tracks.length === 0 ?
 
                         <Col md={{ span: 4, offset: 4 }} className="text-center">
