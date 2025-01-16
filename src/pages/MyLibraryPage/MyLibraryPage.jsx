@@ -51,14 +51,6 @@ const MyLibraryPage = () => {
                     <Loader />
                 ) : (
                     <>
-                        <Container className="searcher-container d-flex justify-content-end">
-                            <SpecificSearcher
-                                playlists={playlists}
-                                setFilteredResults={(results) => setFilteredPlaylists(results.playlists)}
-                                filterBy={["playlists"]}
-                            />
-                        </Container>
-
                         {loggedUser.role === "ARTIST" && (
                             <Container className="library-albums">
                                 <h2>Mi discografía</h2>
@@ -67,13 +59,24 @@ const MyLibraryPage = () => {
                         )}
 
                         <Container className="library-playlists">
-                            <h2>Mi biblioteca</h2>
+                            <Container className="searcher-container px-0 pt-1 d-flex justify-content-between align-items-center">
+
+                                <h2>Mi biblioteca</h2>
+
+                                <SpecificSearcher
+                                    playlists={playlists}
+                                    setFilteredResults={(results) => setFilteredPlaylists(results.playlists)}
+                                    filterBy={["playlists"]}
+                                />
+                            </Container>
+
                             <PlaylistList playlists={filteredPlaylists} />
                         </Container>
                     </>
                 )}
             </Container>
         </div>
+
     )
 
 }

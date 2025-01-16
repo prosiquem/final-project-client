@@ -15,7 +15,7 @@ const Navigation = () => {
     }
 
     return (
-        <Navbar className={`sidebar ${isExpanded ? 'expanded' : ''}`}>
+        <Navbar className={`sidebar px-2 ${isExpanded ? 'expanded' : ''}`}>
             <Row className="isologo text-center mt-2">
                 <Col>
                     <Navbar.Brand>
@@ -95,7 +95,7 @@ const Navigation = () => {
 
                     <Button
                         className='logout-button'
-                        variant='custom-primary'
+                        variant='custom-primary p-2'
                         onClick={() => logoutUser()}>
                         <i className="fa-solid fa-right-from-bracket"></i>
                         {isExpanded && <span className='ms-2'>Cerrar sesión</span>}
