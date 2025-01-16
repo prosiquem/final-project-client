@@ -16,12 +16,12 @@
     }
 
     .searcher.expanded {
-        width: 210px;
+        width: 170px;
         transform: scaleX(1) scaleY(1);
     }
 
     .list-filtered {
-        font-size: 1em;
+        font-size: .85em;
     }
 
     .md-form-floating {

@@ -99,7 +99,7 @@ const AlbumDetailPage = () => {
                                     Añadir canción</Button>}
                         </Col>
                         :
-                        <Col md="12" className="px-4">
+                        <Col md="12" className="px-3">
                             {album.description && album.description.length > 1 && <p>{album.description}</p>}
                             <Table variant="custom-dark" responsive>
                                 <thead>

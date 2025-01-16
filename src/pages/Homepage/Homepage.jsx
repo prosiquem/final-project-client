@@ -68,27 +68,27 @@ const Homepage = () => {
                     </div>
                 ) : (
                     <>
-                        <Row className="homepage-greeting-container mb-5 mx-2 justify-content-between align-items-end gap-3">
-                            <Col xs={{ span: 9 }} md={{ span: 6 }}>
+                        <Row className="homepage-greeting-container mb-5 mx-0 md:mx-2 justify-content-between align-items-end gap-3">
+                            <Col xs={{ span: 12 }} className="d-flex justify-content-between align-items-center flex-wrap">
                                 <motion.h2
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 1 }}
                                     onAnimationComplete={() => setHasAnimated(true)}
+                                    className="mb-0"
                                 >
                                     Hola, <span className="username">{loggedUser.role === "ARTIST" ? loggedUser.artistName : loggedUser.username}</span>
                                 </motion.h2>
-                            </Col>
-                            <Col className='d-md-flex flex-row-reverse'>
                                 <motion.div
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 1.5, duration: 0.5 }}
                                 >
-                                    <GlobalSearchBar xs="auto" />
+                                    <GlobalSearchBar xs="4" />
                                 </motion.div>
                             </Col>
                         </Row>
+
 
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -96,7 +96,7 @@ const Homepage = () => {
                             transition={{ delay: 1.5, duration: 0.5 }}
                         >
                             {loggedUser.role === "ARTIST" && (
-                                <Row className="homepage-artist-albums">
+                                <Row className="homepage-artist-albums mx-0 md:mx-2">
                                     <Col>
                                         <Link className="link h2" to="/mylibrary">Mis álbumes <ArrowRightShort /></Link>
                                         <AlbumList albums={artistAlbum} />
@@ -104,21 +104,22 @@ const Homepage = () => {
                                 </Row>
                             )}
 
-                            <Row className="homepage-playlists mx-2">
+                            <Row className="homepage-playlists mx-0 md:mx-2">
+
                                 <Col>
                                     <Link className="link h2" to="/mylibrary">Mis playlists <ArrowRightShort /></Link>
                                     <PlaylistList playlists={playlists} />
                                 </Col>
                             </Row>
 
-                            <Row className="homepage-last-playlists mx-2">
+                            <Row className="homepage-last-playlists mx-0 md:mx-2">
                                 <Col>
                                     <Link className="link h2" to="/explore">Últimas playlists <ArrowRightShort /></Link>
                                     <PlaylistList playlists={lastPlaylists} showAddButton={false} />
                                 </Col>
                             </Row>
 
-                            <Row className="homepage-recent-added mb-3 mx-2">
+                            <Row className="homepage-recent-added mb-3 mx-0 md:mx-2">
                                 <Col>
                                     <Link className="link h2" to="/explore">Últimos álbumes <ArrowRightShort /></Link>
                                     <AlbumList albums={albums} showAddButton={false} />

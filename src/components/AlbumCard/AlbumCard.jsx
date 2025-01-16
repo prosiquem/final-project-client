@@ -26,7 +26,7 @@ const AlbumCard = ({ _id, author, cover, title, tracks }) => {
             <div className="album-card-text">
                 <h5 className="album-card-title">{title}</h5>
                 <p className="album-card-subtitle">
-                    {tracks && tracks.length === 1 ? "Single" : "Álbum"} · {author.artistName}
+                    {tracks && (tracks.length === 1 || tracks.length === 2) ? "Single" : "Álbum"} · {author.artistName}
                 </p>
             </div>
         </article>

@@ -56,7 +56,7 @@ const SpecificSearcher = ({ playlists = [], artists = [], albums = [], setFilter
         >
             <Form.Control
                 type="text"
-                placeholder="¿Qué te apetece escuchar?"
+                placeholder="Quiero escuchar..."
                 value={search}
                 onChange={handleSearch}
                 className="search-input"

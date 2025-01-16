@@ -66,7 +66,7 @@ const GlobalSearchBar = () => {
             >
                 <Form.Control
                     type="text"
-                    placeholder="¿Qué quieres escuchar?"
+                    placeholder="Quiero escuchar..."
                     value={filterValue}
                     onChange={handleFilterChange}
                     className="search-input"

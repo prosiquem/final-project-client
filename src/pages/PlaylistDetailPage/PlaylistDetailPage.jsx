@@ -179,7 +179,7 @@ const PaylistDetailPage = () => {
                         <Col md="12" className="pl-0 mx-2">
                             {playlist.description && playlist.description.length > 1 && <p>{playlist.description}</p>}
 
-                            <Table variant="custom-dark">
+                            <Table variant="custom-dark" responsive>
                                 <thead>
                                     <tr>
                                         <th>#</th>

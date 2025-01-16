@@ -20,7 +20,13 @@ const AlbumDetailsHeader = ({ data, loggedUser, deleteElm, setEditAlbumModal }) 
 
 
                 <Row className="details-info-header">
-                    <Col xs="10" md="10" ><label>Álbum</label></Col>
+
+                    <Col xs="10" md="10">
+                        <label>
+                            {data.tracks.length === 1 || data.tracks.length === 2 ? "Single" : "Álbum"}
+                        </label>
+                    </Col>
+
 
                     {data.author._id === loggedUser._id &&
                         <Col xs="2" md="2" className="text-end" >
