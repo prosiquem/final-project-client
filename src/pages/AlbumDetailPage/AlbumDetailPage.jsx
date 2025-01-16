@@ -85,9 +85,9 @@ const AlbumDetailPage = () => {
 
                 <AlbumDetailsControler data={album} loggedUser={loggedUser} isLoadingTracks={isLoadingTracks} playTrack={playTrack} />
 
-                <Row className="content py-3 align-items-center">
+                <Row className="content align-items-center">
                     {album.tracks.length === 0 ?
-                        <Col md={{ span: 4, offset: 4 }} className="text-center">
+                        <Col md={{ span: 4, offset: 4 }} className="text-center py-3">
                             {album.author._id === loggedUser._id ?
                                 <p>Aun no tienes añadido ninguna canción. ¿Empezamos?</p> :
                                 <p>{album.author.artistName} aun no ha añadido ninguna canción</p>}
@@ -99,7 +99,7 @@ const AlbumDetailPage = () => {
                                     Añadir canción</Button>}
                         </Col>
                         :
-                        <Col md="12" className="p-0">
+                        <Col md="12" className="px-4">
                             {album.description && album.description.length > 1 && <p>{album.description}</p>}
                             <Table variant="custom-dark" responsive>
                                 <thead>

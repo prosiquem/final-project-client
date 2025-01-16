@@ -24,12 +24,17 @@ const AlbumDetailsControler = ({ data, loggedUser, isLoadingTracks, playTrack })
     }
 
     return (
-        <Row className="AlbumDetailsControler w-100">
-            <Col className="p-0">
-                <Button variant="custom-primary me-2" onClick={handlePlayClick}> <PlayFill /> </Button>
+        <Row className="AlbumDetailsControler w-100 py-4">
+            <Col className="px-3">
+                <Button
+                    variant="custom-primary me-3"
+                    onClick={handlePlayClick}>
+                    <PlayFill />
+                </Button>
+
                 {data.tracks.length > 0 && data.author._id === loggedUser._id &&
                     <Button
-                        variant="custom-secondary me-2 h-100"
+                        variant="custom-secondary h-100"
                         onClick={() => { openTrackUploader(true), setAlbumId(albumId) }}
                         disabled={isLoadingTracks}>
                         <PlusLg />

@@ -12,7 +12,7 @@ const AlbumDetailsHeader = ({ data, loggedUser, deleteElm, setEditAlbumModal }) 
 
     return (
 
-        <Row className="AlbumDetailsHeader details-info gap-4 pb-4 w-100">
+        <Row className="AlbumDetailsHeader details-info gap-4 px-3 pt-2 w-100">
             <Col md={{ span: 2, offset: 0 }} xs={{ span: 12, offset: 0 }} className="p-0">
                 <Image src={data.cover ? data.cover : PLAYLIST_COVER} fluid />
             </Col>

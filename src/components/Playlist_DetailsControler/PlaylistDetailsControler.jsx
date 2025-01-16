@@ -18,23 +18,38 @@ const DetailsControler = ({ data, loggedUser, setAddTrack, playTrack, savePlayli
 
     return (
         <Row className="DetailsControler">
-            <Col className="py-2 py-md-5">
+            <Col className="py-3 px-3 py-md-4">
                 <Row>
                     <Col xs={{ span: 3 }} md={{ span: 'auto' }}>
-                        <Button variant="custom-primary" onClick={handlePlayClick}> <PlayFill /> </Button>
+                        <Button variant="custom-primary me-1" onClick={handlePlayClick}> <PlayFill /> </Button>
                     </Col>
-                    {loggedUser._id != data.owner._id && <Col xs={{ span: 8 }} md={{ span: 'auto' }}>
-                        {userData.playlists.find(elm => elm === data._id) === undefined ?
-                            <Button variant="custom-secondary h-100" onClick={() => savePlaylist(data._id)}>Guardar</Button>
-                            : <Button variant="custom-secondary h-100" onClick={() => unsavePlaylist(data._id)}>No guardar</Button>}
-                    </Col>}
-                    <Col xs={{ span: 3 }} md={{ span: 'auto' }}>
+
+                    {loggedUser._id != data.owner._id &&
+
+                        <Col xs={{ span: 8 }} md={{ span: 'auto' }} className="px-0">
+
+                            {userData.playlists.find(elm => elm === data._id) === undefined ?
+                                <Button
+                                    variant="custom-secondary h-100"
+                                    onClick={() => savePlaylist(data._id)}>
+                                    Guardar
+                                </Button>
+                                :
+                                <Button
+                                    variant="custom-secondary h-100"
+                                    onClick={() => unsavePlaylist(data._id)}>
+                                    No guardar
+                                </Button>}
+                        </Col>}
+
+                    <Col xs={{ span: 3 }} md={{ span: 'auto' }} className="px-0">
 
                         {data.tracks.length > 0 && data.owner._id === loggedUser._id &&
-                            <Button variant="custom-secondary " onClick={() => setAddTrack(true)}>
+                            <Button
+                                variant="custom-secondary "
+                                onClick={() => setAddTrack(true)}>
                                 <PlusLg />
-                            </Button>
-                        }
+                            </Button>}
                     </Col>
                 </Row>
             </Col>

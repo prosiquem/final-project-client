@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import { DEFAULT_IMAGES, PLAYLIST_COVER } from "../../consts/path.consts"
+import { DEFAULT_IMAGES } from "../../consts/path.consts"
 import { formatingMonthYear } from "../../utils/date.utils"
 
 import { Col, Dropdown, Image, Row } from "react-bootstrap"
@@ -15,7 +15,7 @@ const
 
         return (
 
-            <Row className="DetailsHeader details-info w-100 gap-4">
+            <Row className="DetailsHeader details-info w-100 px-3 pt-2 gap-4">
                 <Col md="2" xs="4" className="p-0">
                     <Image src={data.cover ? data.cover : image} fluid />
                 </Col>
@@ -24,28 +24,26 @@ const
 
 
                     <Row className="details-info-header">
-                        <Col md="10" ><label>Playlist</label></Col>
+                        <Col md="12" className="d-flex justify-content-between align-items-start">
 
-                        {data.owner._id === loggedUser._id &&
-                            <Col md="2" className="text-end" >
+                            <label>Playlist</label>
 
-                                <Dropdown
-                                    align="end">
+                            {data.owner._id === loggedUser._id && (
 
+                                <Dropdown align="end">
                                     <Dropdown.Toggle variant="custom-transparent">
                                         <ThreeDotsVertical />
                                     </Dropdown.Toggle>
-
                                     <Dropdown.Menu>
                                         <Dropdown.Item onClick={deleteElm}>Eliminar esta playlist</Dropdown.Item>
                                         <Dropdown.Item onClick={() => setEditPlaylistModal(true)}>Editar playlist</Dropdown.Item>
                                     </Dropdown.Menu>
-
                                 </Dropdown>
 
-                            </Col>}
-
+                            )}
+                        </Col>
                     </Row>
+
 
                     <Row className="details-info-description align-items-end">
                         <Col>

@@ -28,7 +28,7 @@ const Homepage = () => {
             fetchHomeData()
             setHasAnimated(false)
         }
-    }, [loggedUser]);
+    }, [loggedUser])
 
     const fetchHomeData = () => {
         const homeData = [
@@ -68,7 +68,7 @@ const Homepage = () => {
                     </div>
                 ) : (
                     <>
-                        <Row className="homepage-greeting-container mb-5 justify-content-between align-items-end gap-3">
+                        <Row className="homepage-greeting-container mb-5 mx-2 justify-content-between align-items-end gap-3">
                             <Col xs={{ span: 9 }} md={{ span: 6 }}>
                                 <motion.h2
                                     initial={{ opacity: 0, y: 20 }}
@@ -85,7 +85,7 @@ const Homepage = () => {
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 1.5, duration: 0.5 }}
                                 >
-                                    <GlobalSearchBar xs={{ span: 3 }} />
+                                    <GlobalSearchBar xs="auto" />
                                 </motion.div>
                             </Col>
                         </Row>
@@ -104,21 +104,21 @@ const Homepage = () => {
                                 </Row>
                             )}
 
-                            <Row className="homepage-playlists">
+                            <Row className="homepage-playlists mx-2">
                                 <Col>
                                     <Link className="link h2" to="/mylibrary">Mis playlists <ArrowRightShort /></Link>
                                     <PlaylistList playlists={playlists} />
                                 </Col>
                             </Row>
 
-                            <Row className="homepage-last-playlists">
+                            <Row className="homepage-last-playlists mx-2">
                                 <Col>
                                     <Link className="link h2" to="/explore">Últimas playlists <ArrowRightShort /></Link>
                                     <PlaylistList playlists={lastPlaylists} showAddButton={false} />
                                 </Col>
                             </Row>
 
-                            <Row className="homepage-recent-added mb-5">
+                            <Row className="homepage-recent-added mb-3 mx-2">
                                 <Col>
                                     <Link className="link h2" to="/explore">Últimos álbumes <ArrowRightShort /></Link>
                                     <AlbumList albums={albums} showAddButton={false} />
@@ -132,4 +132,4 @@ const Homepage = () => {
     )
 }
 
-export default Homepage;
+export default Homepage

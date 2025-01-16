@@ -176,10 +176,10 @@ const PaylistDetailPage = () => {
                                 </Button>}
                         </Col>
                         :
-                        <Col md="12" className="p-0 h-100">
+                        <Col md="12" className="pl-0 mx-2">
                             {playlist.description && playlist.description.length > 1 && <p>{playlist.description}</p>}
 
-                            <Table variant="custom-dark" responsive>
+                            <Table variant="custom-dark">
                                 <thead>
                                     <tr>
                                         <th>#</th>

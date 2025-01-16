@@ -3,7 +3,7 @@ import { Form, ListGroup } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import FilterServices from '../../services/filter.services'
 
-const ExpandingSearchBar = () => {
+const GlobalSearchBar = () => {
 
     const [isExpanded, setIsExpanded] = useState(false)
     const [filterValue, setFilterValue] = useState("")
@@ -97,7 +97,7 @@ const ExpandingSearchBar = () => {
                                 <ListGroup.Item key={track._id}>
 
                                     <Link to={`/album/${track.album}`} className="link">
-                                        {track.title} <br /> <span className="search-subtitle">Canción · {track.author.artistName}</span>
+                                        {track.title} <br /> <span className="search-subtitle">Canción · {track.author && track.author.artistName ? track.author.artistName : ""}</span>
                                     </Link>
 
                                 </ListGroup.Item>
@@ -117,4 +117,4 @@ const ExpandingSearchBar = () => {
     )
 }
 
-export default ExpandingSearchBar
+export default GlobalSearchBar
