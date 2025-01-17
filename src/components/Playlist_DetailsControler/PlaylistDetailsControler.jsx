@@ -18,7 +18,7 @@ const DetailsControler = ({ data, loggedUser, setAddTrack, playTrack, savePlayli
 
     return (
         <Row className="DetailsControler">
-            <Col className="py-3 px-3 py-md-5">
+            <Col className="py-3 px-3 py-md-4">
                 <Row>
                     <Col xs={{ span: 3 }} md={{ span: 'auto' }}>
                         <Button variant="custom-primary me-1" onClick={handlePlayClick}> <PlayFill /> </Button>

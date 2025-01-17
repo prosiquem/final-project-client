@@ -24,11 +24,11 @@ const MusicPlayer = () => {
 
             setTimeout(() => {
                 setDisplayCover(currentTrack.cover)
-            }, 250)
+            }, 400)
 
             setTimeout(() => {
                 setIsRotating(false)
-            }, 500)
+            }, 400)
         }
     }, [currentTrack?.cover])
 

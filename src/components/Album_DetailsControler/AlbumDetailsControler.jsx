@@ -25,7 +25,7 @@ const AlbumDetailsControler = ({ data, loggedUser, isLoadingTracks, playTrack })
 
     return (
         <Row className="AlbumDetailsControler w-100">
-            <Col className="py-3 px-3 py-md-5">
+            <Col className="py-3 px-3 py-md-4">
                 <Button
                     variant="custom-primary me-3"
                     onClick={handlePlayClick}>

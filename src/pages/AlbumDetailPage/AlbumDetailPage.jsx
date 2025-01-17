@@ -75,7 +75,7 @@ const AlbumDetailPage = () => {
     return (isLoading ? <Loader /> :
 
         <div className="AlbumDetailPage">
-            <Container className="page-container gap-4 p-4 p-md-5">
+            <Container className="page-container gap-4 p-4 p-md-4">
 
                 <div className="cover-container">
                     <img className="cover-image" src={album.cover ? album.cover : DEFAULT_IMAGES[1]} alt="Cover image" />
