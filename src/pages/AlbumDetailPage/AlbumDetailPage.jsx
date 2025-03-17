@@ -45,6 +45,7 @@ const AlbumDetailPage = () => {
                 setAlbum(data)
                 setPlaylist(data.tracks)
                 setIsLoading(false)
+                console.log(data)
             })
             .catch(err => console.log(err))
     }
@@ -105,7 +106,7 @@ const AlbumDetailPage = () => {
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Nombre de canción</th>
+                                        <th>Título</th>
                                         {album.author._id === loggedUser._id && <th className="d-none"><Trash2Fill /></th>}
                                         {album.author._id === loggedUser._id && <th className="d-none"><PencilFill /></th>}
                                     </tr>

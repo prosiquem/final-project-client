@@ -54,6 +54,7 @@ const ArtistDetailsPage = () => {
                 setSocialMediaData(artistData.socialMedia)
                 setArtistAlbums(albumArtistData)
                 setIsLoading(false)
+                console.log(artistData)
             })
             .catch(err => console.log(err))
 

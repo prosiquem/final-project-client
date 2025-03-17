@@ -1,7 +1,12 @@
+.no-select {
+  user-select: none;
+}
+
 * {
   color: #999999;
   margin: 0px;
   padding: 0px;
+  user-select: none;
 }
 
 svg {
@@ -159,6 +164,7 @@ button.custom-primary-button:hover {
 button.custom-primary-button:active {
   color: #e1e1e1 !important;
   background-color: #7ab300 !important;
+  transform: none;
 }
 
 .btn-custom-primary-float:hover {
@@ -170,6 +176,7 @@ button.custom-primary-button:active {
 button.custom-primary-button:active {
   color: #e1e1e1 !important;
   background-color: #7ab300 !important;
+  transform: none;
 }
 
 .btn-custom-transparent {
@@ -203,16 +210,18 @@ button.custom-primary-button:active {
   border: none !important;
   background-color: #313131a4 !important;
   color: #e1e1e1;
+  transform: none;
 }
 
 .btn-custom-player {
   align-items: center;
   justify-content: center;
-  background-color: #252525a4;
+  background-color: #2525258e;
   border-radius: 50px;
   color: #e1e1e1;
   transition: background-color 0.3s ease;
   padding: 10px 30px;
+  border: none;
 
 }
 
@@ -224,8 +233,34 @@ button.custom-primary-button:active {
 
 .btn-custom-player:active {
   border: none !important;
-  background-color: #313131a4 !important;
+  background-color: #3e3e3ea4 !important;
   color: #e1e1e1;
+  transform: none;
+}
+
+.btn-custom-mobile-player {
+  align-items: center;
+  justify-content: center;
+  background-color: #2525258e;
+  border-radius: 50px;
+  color: #e1e1e1;
+  transition: background-color 0.3s ease;
+  padding: 10px 30px;
+  border: none;
+
+}
+
+.btn-custom-mobile-player:hover {
+  transition: background-color 0.3s ease;
+  background-color: #313131a4;
+  color: #e1e1e1;
+}
+
+.btn-custom-mobile-player:active {
+  border: none !important;
+  background-color: #3e3e3ea4 !important;
+  color: #e1e1e1;
+  transform: none;
 }
 
 button.custom-focus-button {
@@ -688,6 +723,29 @@ textarea:autofill {
 }
 
 .cover-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(to bottom, #ffffff00 0%, #121212 100%);
+  z-index: -1;
+}
+
+.cover-image-playlist {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 400px;
+  opacity: 60%;
+  filter: blur(70px);
+  object-fit: cover;
+  z-index: -2;
+}
+
+.cover-container-playlist::before {
   content: "";
   position: absolute;
   top: 0;

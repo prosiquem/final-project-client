@@ -5,7 +5,7 @@
     }
 
     .page-container {
-        height: 75vh;
+        height: 79vh;
         margin: 5vw;
         width: 90vw !important;
     }
@@ -29,18 +29,29 @@
     }
 
     .btn-custom-player {
-        padding: 1px 16px;
+        padding: 3px 18px;
     }
 
     .cover-image {
-        height: 450px;
+        height: 560px;
         opacity: 80%;
         filter: blur(30px);
     }
 
     .cover-container::before {
         height: 100vh;
-        background: linear-gradient(to bottom, #00000000 0%, #121212 70%);
+        background: linear-gradient(to bottom, #00000000 0%, #121212 90%);
+    }
+
+    .cover-image-playlist {
+        height: 360px;
+        opacity: 80%;
+        filter: blur(30px);
+    }
+
+    .cover-container-playlist::before {
+        height: 100vh;
+        background: linear-gradient(to bottom, #00000000 0%, #121212 50%);
     }
 
     .toast {

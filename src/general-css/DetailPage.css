@@ -2,6 +2,10 @@
     border-radius: 16px;
 }
 
+.details-info h5 {
+    font-size: 1.1em;
+}
+
 .details-info img {
     border-radius: 24px;
     object-fit: cover;
@@ -38,4 +42,11 @@
 .edit-info-container {
     background-color: #252525a4;
     border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+
+    .col-title {
+        min-width: 115px;
+    }
 }

@@ -140,8 +140,8 @@ const PaylistDetailPage = () => {
         <div className="PaylistDetailPage">
             <Container className="page-container p-4 p-md-5">
 
-                <div className="cover-container">
-                    <img className="cover-image" src={playlist.cover ? playlist.cover : DEFAULT_IMAGES[1]} alt="Cover image" />
+                <div className="cover-container-playlist">
+                    <img className="cover-image-playlist" src={playlist.cover ? playlist.cover : DEFAULT_IMAGES[1]} alt="Cover image" />
                 </div>
 
                 <PlaylistDetailsHeader
@@ -183,9 +183,9 @@ const PaylistDetailPage = () => {
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Nombre de canción</th>
-                                        <th>Artista</th>
-                                        <th>Álbum</th>
+                                        <th className="col-title">Título</th>
+                                        <th className="col-artist">Artista</th>
+                                        <th className="col-album">Álbum</th>
                                         {loggedUser._id === playlist.owner._id && <th>Eliminar</th>}
                                     </tr>
                                 </thead>

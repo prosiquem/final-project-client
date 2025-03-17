@@ -1,9 +1,10 @@
 
 import './App.css'
 import './components/Navigation/Navigation.css'
+import './components/MusicPlayer/MusicPlayer.css'
 import Navigation from './components/Navigation'
 import AppRoutes from './routes/AppRoutes.jsx'
-import MusicPlayer from './components/MusicPlayer/MusicPlayer.jsx'
+import MusicPlayer from './components/MusicPlayer/index.jsx'
 import UserMessage from './components/UserMessage/UserMessage.jsx'
 import TracksUpload from './components/TracksUpload/TracksUpload.jsx'
 import { useContext } from 'react'

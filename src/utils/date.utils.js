@@ -7,6 +7,15 @@ export const formatingMonthYear = (dateData) => {
     const year = date.getFullYear()
 
     return (`${capitalizedMonth} ${year}`)
+}
+
+export const formatingYear = (dateData) => {
+
+    const date = new Date(dateData)
+
+    const year = date.getFullYear()
+
+    return (`${year}`)
 
 }
 

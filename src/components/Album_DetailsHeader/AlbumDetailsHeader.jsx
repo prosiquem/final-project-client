@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import { PLAYLIST_COVER } from "../../consts/path.consts"
-import { formatingMonthYear } from "../../utils/date.utils"
+import { formatingYear } from "../../utils/date.utils"
 
 import { Col, Dropdown, Image, Row } from "react-bootstrap"
 import { ThreeDotsVertical } from "react-bootstrap-icons"
@@ -12,7 +12,7 @@ const AlbumDetailsHeader = ({ data, loggedUser, deleteElm, setEditAlbumModal }) 
 
     return (
 
-        <Row className="AlbumDetailsHeader details-info gap-4 px-3 pt-2 w-100">
+        <Row className="AlbumDetailsHeader details-info gap-4 px-3 pt-2">
             <Col md={{ span: 2, offset: 0 }} xs={{ span: 12, offset: 0 }} className="p-0">
                 <Image src={data.cover ? data.cover : PLAYLIST_COVER} fluid />
             </Col>
@@ -52,7 +52,7 @@ const AlbumDetailsHeader = ({ data, loggedUser, deleteElm, setEditAlbumModal }) 
                 <Row className="details-info-description align-items-end">
                     <Col>
                         <h1>{data.title}</h1>
-                        <h5> {data.author.artistName} · {formatingMonthYear(data.createdAt)} · {data.tracks.length} canciones </h5>
+                        <h5> {data.author.artistName} · {formatingYear(data.releaseDate)} · {data.tracks.length} canciones </h5>
                     </Col>
                 </Row>
 

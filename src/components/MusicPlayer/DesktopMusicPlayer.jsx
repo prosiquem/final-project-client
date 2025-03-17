@@ -1,14 +1,15 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect } from 'react'
 import { Button, Container, Row, Col, Image } from 'react-bootstrap'
 import { FastForwardFill, PauseFill, PlayFill, RewindFill } from 'react-bootstrap-icons'
 import { useMusicPlayer } from '../../contexts/musicPlayer.context'
 import './MusicPlayer.css'
 
-const MusicPlayer = () => {
+const DesktopMusicPlayer = () => {
     const { currentTrack, isPlaying, togglePlayPause, nextTrack, prevTrack, currentTime, duration, seek } = useMusicPlayer()
     const [isVisible, setIsVisible] = useState(false)
     const [isRotating, setIsRotating] = useState(false)
     const [displayCover, setDisplayCover] = useState(null)
+    const [firstRender, setFirstRender] = useState(true)
 
     useEffect(() => {
         if (currentTrack) {
@@ -20,17 +21,22 @@ const MusicPlayer = () => {
 
     useEffect(() => {
         if (currentTrack?.cover) {
-            setIsRotating(true)
-
-            setTimeout(() => {
+            if (firstRender) {
+                setFirstRender(false)
                 setDisplayCover(currentTrack.cover)
-            }, 400)
+            } else if (currentTrack.cover !== displayCover) {
+                setIsRotating(true)
 
-            setTimeout(() => {
-                setIsRotating(false)
-            }, 400)
+                setTimeout(() => {
+                    setDisplayCover(currentTrack.cover)
+                }, 400)
+
+                setTimeout(() => {
+                    setIsRotating(false)
+                }, 400)
+            }
         }
-    }, [currentTrack?.cover])
+    }, [currentTrack?.cover, displayCover, firstRender])
 
     if (!currentTrack) {
         return null
@@ -49,13 +55,14 @@ const MusicPlayer = () => {
     }
 
     return (
-        <div className="music-player-div">
-            <Container className={`music-player-container ${isVisible ? 'visible' : ''}`}>
-                <div className="music-player">
+        <div className="desktop-music-player-div">
+            <Container className={`desktop-music-player-container ${isVisible ? 'visible' : ''} g-0`}>
+                <div className="desktop-music-player">
                     <Row className="align-items-center">
-                        <Col xs="2" sm="" md={{ span: "1" }}>
+
+                        <Col xs="2" md={{ span: "1" }}>
                             <div
-                                className={`album-cover-wrapper ${isRotating ? 'rotating' : ''}`}
+                                className={`desktop-album-cover-wrapper ${isRotating ? 'rotating' : ''}`}
                             >
                                 <Image
                                     fluid
@@ -65,11 +72,15 @@ const MusicPlayer = () => {
                                 />
                             </div>
                         </Col>
-                        <Col xs="10" sm="" md={{ span: "2" }} className="music-info d-flex flex-column align-self-end">
-                            <h4 className="song-title mb-1">{currentTrack.title}</h4>
-                            <label className="artist-name">{currentTrack.artistName}</label>
+
+                        <Col xs="3" md={{ span: "2" }} className="desktop-music-info d-flex align-self-center px-0">
+                            <div className="info-wrapper d-flex flex-column align-self-center ">
+                                <h4 className="desktop-song-title mb-0">{currentTrack.title}</h4>
+                                <label className="desktop-artist-name">{currentTrack.artistName}</label>
+                            </div>
                         </Col>
-                        <Col xs="5" sm="" md={{ span: "4" }} lg="6" className="progress-bar-container my-3" onClick={handleProgressClick}>
+
+                        <Col xs="7" md={{ span: "5" }} lg="6" className="desktop-progress-bar-container my-3" onClick={handleProgressClick}>
                             <input
                                 type="range"
                                 className="progress-bar w-100"
@@ -79,11 +90,12 @@ const MusicPlayer = () => {
                                 step="0.1"
                                 onChange={handleSeekChange}
                                 style={{
-                                    background: `linear-gradient(to right, #aaf700 ${(currentTime / duration) * 100}%, #2c29299d ${(currentTime / duration) * 100}%)`
+                                    background: `linear-gradient(to right, #aaf700 ${(currentTime / duration) * 100}%, #252525a4 ${(currentTime / duration) * 100}%)`,
                                 }}
                             />
                         </Col>
-                        <Col xs="7" md={{ span: "5" }} lg="3" className="controls text-end">
+
+                        <Col xs="12" md={{ span: "4" }} lg="3" className="desktop-controls text-end">
                             <Button variant="custom-player me-1" onClick={prevTrack}>
                                 <RewindFill />
                             </Button>
@@ -94,6 +106,7 @@ const MusicPlayer = () => {
                                 <FastForwardFill />
                             </Button>
                         </Col>
+
                     </Row>
                 </div>
             </Container>
@@ -101,4 +114,4 @@ const MusicPlayer = () => {
     )
 }
 
-export default MusicPlayer
+export default DesktopMusicPlayer
