@@ -174,7 +174,7 @@ const MobileMusicPlayer = () => {
 
                     <div className={`mobile-music-player ${isExpanded ? 'expanded' : ''}`}>
 
-                        {isExpanded && <div className="grip-bar"></div>}
+                        <div className={`grip-bar ${desktopAnimationClass}`}></div>
 
                         <Row className="align-items-center">
                             <Col xs="2" sm="2" md={{ span: '1' }} className={`mobile-album-cover-wrapper ${isRotating ? 'rotating' : ''} ${isExpanded ? 'expanded' : ''}`}>

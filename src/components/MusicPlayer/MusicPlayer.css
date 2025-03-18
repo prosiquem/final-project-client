@@ -105,7 +105,7 @@ input[type=range]::-webkit-slider-runnable-track {
 .mobile-music-player-container {
     position: fixed;
     height: 8vh;
-    bottom: 145px;
+    bottom: 112px;
     width: 85vw !important;
     left: 7.5vw;
     z-index: 99;
@@ -169,6 +169,7 @@ input[type=range]::-webkit-slider-runnable-track {
 
 .mobile-album-cover-wrapper {
     transition: transform 0.4s ease, width 0.4s ease, height 0.4s ease;
+    transform: translateX(0);
 }
 
 .mobile-album-cover-wrapper.rotating .mobile-album-cover {
@@ -185,7 +186,7 @@ input[type=range]::-webkit-slider-runnable-track {
 }
 
 .mobile-album-cover-wrapper.expanded {
-    transform: scale(0.9) translateY(0px);
+    transform: translateX(0) scale(0.9) translateY(25px);
     width: 100%;
     height: 100%;
     display: flex;
@@ -223,13 +224,13 @@ input[type=range]::-webkit-slider-runnable-track {
     position: absolute;
     top: 46%;
     left: 55px;
-    transform: translateY(-50%);
+    transform: translateY(-46%);
     transition: top 0.4s ease, left 0.4s ease, transform 0.4s ease;
 }
 
 .mobile-music-player.expanded .mobile-info-wrapper {
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 0%);
     top: auto;
     margin-top: 10px;
 }
@@ -273,7 +274,7 @@ input[type=range]::-webkit-slider-runnable-track {
 }
 
 .desktop-progress-bar-container {
-    margin-top: 0.9rem;
+    margin-top: 2rem;
 }
 
 .desktop-wrapper {
@@ -295,11 +296,27 @@ input[type=range]::-webkit-slider-runnable-track {
 }
 
 .grip-bar {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     width: 60px;
     height: 4px;
     background-color: #9999;
     border-radius: 10px;
-    margin: 8px auto;
+    transition: opacity 0.2s ease, filter 0.4s ease, visibility 0.2s ease;
+}
+
+.grip-bar.fade-out {
+    opacity: 0;
+    visibility: hidden;
+    filter: blur(10px);
+}
+
+.grip-bar.fade-in {
+    opacity: 1;
+    visibility: visible;
+    filter: blur(0px);
 }
 
 @media (max-width: 576px) {
