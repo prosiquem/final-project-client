@@ -105,7 +105,7 @@ input[type=range]::-webkit-slider-runnable-track {
 .mobile-music-player-container {
     position: fixed;
     height: 8vh;
-    bottom: 100px;
+    bottom: 90px;
     width: 85vw !important;
     left: 7.5vw;
     z-index: 99;
