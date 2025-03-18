@@ -104,8 +104,8 @@ input[type=range]::-webkit-slider-runnable-track {
 
 .mobile-music-player-container {
     position: fixed;
-    height: 8vh;
-    bottom: 90px;
+    height: 7.5vh;
+    bottom: 85px;
     width: 85vw !important;
     left: 7.5vw;
     z-index: 99;
@@ -127,7 +127,7 @@ input[type=range]::-webkit-slider-runnable-track {
 }
 
 .mobile-music-player {
-    height: 8vh;
+    height: 7.5vh;
     background: rgba(0, 0, 0, 0.738);
     padding: 10px 10px;
     color: #e1e1e1;
